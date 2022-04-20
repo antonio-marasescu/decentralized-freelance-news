@@ -14,11 +14,15 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:main-ui-app",
-                "onlyDependOnLibsWithTags": ["scope:main-ui-app", "scope:eth-contract-lib"]
+                "onlyDependOnLibsWithTags": ["scope:main-ui-app", "scope:eth-contract-lib", "scope:shared-lib"]
               },
               {
                 "sourceTag": "scope:eth-contract-lib",
-                "onlyDependOnLibsWithTags": ["scope:eth-contract-lib"]
+                "onlyDependOnLibsWithTags": ["scope:eth-contract-lib", "scope:shared-lib"]
+              },
+              {
+                "sourceTag": "scope:shared-lib",
+                "onlyDependOnLibsWithTags": ["scope:shared-lib"]
               }
             ]
           }
