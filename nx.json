@@ -1,4 +1,4 @@
-{verifier
+{
   "npmScope": "decentralized-freelance-news",
   "affected": {
     "defaultBase": "main"
