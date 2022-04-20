@@ -1,0 +1,9 @@
+- Deploy a simple verifier
+- Test the verifier by interacting with the contract
+- Make a verifier with https://medium.com/zokrates/building-identity-linked-zksnarks-with-zokrates-a36085cdd40
+- Test verifier
+- Make BE application which manages identities
+- Create dynamic .zok file
+- Deploy and Test
+- Think about decentralized news smart contract
+- TODO
