@@ -13,8 +13,12 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "scope:main-ui-app",
+                "onlyDependOnLibsWithTags": ["scope:main-ui-app", "scope:eth-contract-lib"]
+              },
+              {
+                "sourceTag": "scope:eth-contract-lib",
+                "onlyDependOnLibsWithTags": ["scope:eth-contract-lib"]
               }
             ]
           }

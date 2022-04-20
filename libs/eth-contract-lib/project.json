@@ -1,0 +1,23 @@
+{
+  "projectType": "library",
+  "root": "libs/eth-contract-lib",
+  "sourceRoot": "libs/eth-contract-lib/src",
+  "prefix": "eth-contract",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/eth-contract-lib"],
+      "options": {
+        "jestConfig": "libs/eth-contract-lib/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/eth-contract-lib/src/**/*.ts", "libs/eth-contract-lib/src/**/*.html"]
+      }
+    }
+  },
+  "tags": ["scope:eth-contract-lib"]
+}

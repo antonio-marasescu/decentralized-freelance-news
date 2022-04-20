@@ -14,10 +14,7 @@
         "polyfills": "apps/main-ui-app/src/polyfills.ts",
         "tsConfig": "apps/main-ui-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/main-ui-app/src/favicon.ico",
-          "apps/main-ui-app/src/assets"
-        ],
+        "assets": ["apps/main-ui-app/src/favicon.ico", "apps/main-ui-app/src/assets"],
         "styles": ["apps/main-ui-app/src/styles.scss"],
         "scripts": []
       },
@@ -75,10 +72,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "apps/main-ui-app/src/**/*.ts",
-          "apps/main-ui-app/src/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/main-ui-app/src/**/*.ts", "apps/main-ui-app/src/**/*.html"]
       }
     },
     "test": {
@@ -90,5 +84,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:main-ui-app"]
 }

@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@decentralized-freelance-news/eth-contract-lib": ["libs/eth-contract-lib/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
