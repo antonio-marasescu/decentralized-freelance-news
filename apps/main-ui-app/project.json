@@ -2,7 +2,7 @@
   "projectType": "application",
   "root": "apps/main-ui-app",
   "sourceRoot": "apps/main-ui-app/src",
-  "prefix": "dfn",
+  "prefix": "decentralized-freelance-news",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
