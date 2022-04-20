@@ -9,7 +9,11 @@ import { LandingPageViewComponent } from './core/components/pages/landing-page/l
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent, LandingPageViewComponent],
-  imports: [BrowserModule, EthContractLibModule, RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' })],
+  imports: [
+    BrowserModule,
+    EthContractLibModule.forRoot(),
+    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,1 +1,1 @@
-export * from './lib/eth-contract-lib.module';
+export * from './lib/main';
