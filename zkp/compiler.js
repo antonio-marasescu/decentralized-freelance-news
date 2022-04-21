@@ -22,7 +22,7 @@ async function compile() {
   await fs.promises.writeFile(artifactsFilePath, JSON.stringify(artifacts));
 
   // computation
-  const { witness, output } = zokratesProvider.computeWitness(artifacts, ['2']);
+  const { witness, output } = zokratesProvider.computeWitness(artifacts, ['2', '4']);
 
   // run setup
   const keypair = zokratesProvider.setup(artifacts.program);

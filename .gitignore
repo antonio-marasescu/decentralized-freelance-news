@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/zkp/dist
 /tmp
 /out-tsc
 
