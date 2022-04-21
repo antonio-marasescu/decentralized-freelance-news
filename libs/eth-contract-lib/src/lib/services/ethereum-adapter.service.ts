@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Web3ProviderService } from '@decentralized-freelance-news/eth-contract-lib';
+import { Web3ProviderService } from './web3-provider.service';
 import { EtherCommandsUtils } from '../utils/ether-commands.utils';
 import { EtherCommandsTypes } from '../types/ether-commands.types';
+import { JsonRpcSigner } from '@ethersproject/providers/lib/json-rpc-provider';
 
 @Injectable({ providedIn: 'any' })
 export class EthereumAdapterService {
@@ -17,8 +18,16 @@ export class EthereumAdapterService {
   }
 
   async requestVersion(): Promise<string> {
-    const accountsResponse = await EtherCommandsUtils.sendCommand(this.provider, EtherCommandsTypes.RequestVersion, []);
+    const accountsResponse = await EtherCommandsUtils.sendCommand(
+      this.provider,
+      EtherCommandsTypes.RequestNetworkVersion,
+      []
+    );
     return accountsResponse.result;
+  }
+
+  async requestSigner(): Promise<JsonRpcSigner> {
+    return this.web3ProviderService.getSigner();
   }
 
   private get provider(): any {
