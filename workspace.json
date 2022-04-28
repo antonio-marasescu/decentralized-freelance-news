@@ -3,6 +3,7 @@
   "projects": {
     "eth-contract-lib": "libs/eth-contract-lib",
     "main-ui-app": "apps/main-ui-app",
-    "shared-lib": "libs/shared-lib"
+    "shared-lib": "libs/shared-lib",
+    "zkp-lib": "libs/zkp-lib"
   }
 }

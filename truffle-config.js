@@ -101,9 +101,9 @@ module.exports = {
   // overridden by specifying the adapter settings, as shown in the commented code below.
   //
   // NOTE: It is not possible to migrate your contracts to truffle DB and you should
-  // make a backup of your dist to a safe location before enabling this feature.
+  // make a backup of your sources to a safe location before enabling this feature.
   //
-  // After you backed up your dist you can utilize db by running migrate as follows:
+  // After you backed up your sources you can utilize db by running migrate as follows:
   // $ truffle migrate --reset --compile-all
   //
   // db: {

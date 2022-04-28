@@ -6,8 +6,6 @@ const resourcePath = `${__dirname}/resources`;
 const rootFilePath = `${resourcePath}/${rootFilename}`;
 
 const compiledOutputPath = `${__dirname}/dist`;
-const artifactsFilePath = `${compiledOutputPath}/artifacts.json`;
-const proofFilePath = `${compiledOutputPath}/proof.json`;
 const keyPairFilePath = `${compiledOutputPath}/keypair.json`;
 
 const environmentVerifierPath = process.env.VERIFIER_PATH;
@@ -19,25 +17,14 @@ async function compile() {
 
   // compilation
   const artifacts = zokratesProvider.compile(source);
-  await fs.promises.writeFile(artifactsFilePath, JSON.stringify(artifacts));
 
-  // computation
-  const { witness, output } = zokratesProvider.computeWitness(artifacts, ['2', '4']);
-
-  // run setup
+  // // run setup
   const keypair = zokratesProvider.setup(artifacts.program);
   await fs.promises.writeFile(keyPairFilePath, JSON.stringify(keypair));
 
-  // generate proof
-  const proof = zokratesProvider.generateProof(artifacts.program, witness, keypair.pk);
-  await fs.promises.writeFile(proofFilePath, JSON.stringify(proof));
-  //
-  // export solidity verifier
+  // // export solidity verifier
   const verifier = zokratesProvider.exportSolidityVerifier(keypair.vk);
   await fs.promises.writeFile(solidityVerifierPath, verifier.toString(), { encoding: 'utf8' });
-  //
-  // // or verify off-chain
-  // const isVerified = zokratesProvider.verify(keypair.vk, proof);
 }
 
 compile()

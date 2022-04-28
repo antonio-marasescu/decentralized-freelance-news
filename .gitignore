@@ -2,7 +2,7 @@
 
 # compiled output
 /dist
-/zkp/dist
+libs/zkp-lib/src/dist
 /tmp
 /out-tsc
 
