@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  gov-identity-db:
+    image: 'postgres'
+    environment:
+      - POSTGRES_USER=govidentityadmin
+      - POSTGRES_PASSWORD=govidentitypass
+      - POSTGRES_DB=govidentity
+    ports:
+      - 5438:5432
+    volumes:
+      - gov-identity-data-volume:/var/lib/postgresql/data
+
+volumes:
+  gov-identity-data-volume:

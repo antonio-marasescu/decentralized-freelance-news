@@ -1,0 +1,22 @@
+{
+  "root": "libs/api-shared-lib",
+  "sourceRoot": "libs/api-shared-lib/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api-shared-lib/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api-shared-lib"],
+      "options": {
+        "jestConfig": "libs/api-shared-lib/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

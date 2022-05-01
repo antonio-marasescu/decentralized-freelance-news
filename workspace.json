@@ -1,7 +1,9 @@
 {
   "version": 2,
   "projects": {
+    "api-shared-lib": "libs/api-shared-lib",
     "eth-contract-lib": "libs/eth-contract-lib",
+    "identity-api": "apps/identity-api",
     "main-ui-app": "apps/main-ui-app",
     "shared-lib": "libs/shared-lib"
   }
