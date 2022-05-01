@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export interface IIdentityUserLoginDto {
   username: string;
-  password?: string;
+  password: string;
 }
 
 export class IdentityUserLoginDto implements IIdentityUserLoginDto {
@@ -10,7 +10,7 @@ export class IdentityUserLoginDto implements IIdentityUserLoginDto {
   username: string;
 
   @ApiProperty({ required: true, minLength: 4 })
-  password?: string;
+  password: string;
 
   constructor(values: Partial<IIdentityUserLoginDto>) {
     if (values) {

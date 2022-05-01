@@ -1,5 +1,5 @@
 import { UsersRepository } from './users.repository';
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   IdentityUserDto,
   IdentityUserRegisterDto,

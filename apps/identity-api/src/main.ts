@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AUTH_FEATURE } from './app/auth/auth.config';
+import { ZKP_FEATURE } from './app/zkp/zkp.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
     .setDescription('An API to manage and generate proofs of identity')
     .setVersion(globalVersion)
     .addTag(AUTH_FEATURE.name)
+    .addTag(ZKP_FEATURE.name)
     .addBearerAuth()
     .build();
 
