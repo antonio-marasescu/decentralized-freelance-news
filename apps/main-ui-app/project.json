@@ -8,9 +8,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "allowedCommonJsDependencies": [
-          "hash.js"
-        ],
+        "allowedCommonJsDependencies": ["hash.js"],
         "outputPath": "dist/apps/main-ui-app",
         "index": "apps/main-ui-app/src/index.html",
         "main": "apps/main-ui-app/src/main.ts",
