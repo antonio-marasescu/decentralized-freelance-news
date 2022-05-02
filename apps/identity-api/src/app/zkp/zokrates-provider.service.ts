@@ -13,10 +13,6 @@ export class ZokratesProviderService {
     this.setup();
   }
 
-  async regenerateData(): Promise<void> {
-    this.setup();
-  }
-
   private async setup(): Promise<void> {
     Logger.log('Initializing Zokrates...');
     this.provider = await Zokrates.initialize();
