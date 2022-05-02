@@ -14,7 +14,7 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:main-ui-app",
-                "onlyDependOnLibsWithTags": ["scope:main-ui-app", "scope:eth-contract-lib", "scope:shared-lib"]
+                "onlyDependOnLibsWithTags": ["scope:main-ui-app", "scope:eth-contract-lib", "scope:shared-lib", "scope:api-shared-lib"]
               },
               {
                 "sourceTag": "scope:eth-contract-lib",
@@ -23,6 +23,14 @@
               {
                 "sourceTag": "scope:shared-lib",
                 "onlyDependOnLibsWithTags": ["scope:shared-lib"]
+              },
+              {
+                "sourceTag": "scope:identity-api",
+                "onlyDependOnLibsWithTags": ["scope:identity-api", "scope:api-shared-lib"]
+              },
+              {
+                "sourceTag": "scope:api-shared-lib",
+                "onlyDependOnLibsWithTags": ["scope:api-shared-lib"]
               }
             ]
           }

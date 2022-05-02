@@ -35,28 +35,32 @@ async function generateProof() {
   let privKey = new PrivateKey(sk);
   //get PublicKey object from privateKey object
   let pubKey = PublicKey.fromPrivate(privKey);
+  console.log(JSON.stringify(privKey));
+
+  console.log('.............................');
+
+  console.log(JSON.stringify(pubKey));
 
   const publicKey = [pubKey.p.x.n.toString(10), pubKey.p.y.n.toString(10)];
   const privateKey = privKey.s.n.toString(10);
-
   const someObject = {
-    uuid: '5',
-    name: 'iawgr',
+    name: 'string',
+    identificationNumber: 'stringstrings',
   };
   const str = JSON.stringify(someObject);
   const buffer = Buffer.alloc(64, '0');
   const dataBuffer = Buffer.from(str);
   dataBuffer.copy(buffer, 64 - dataBuffer.length);
   const hexBuffer = buffer.toString('hex');
-  console.log(hexBuffer);
   const packet1 = hexBuffer.slice(0, 32);
   const packet2 = hexBuffer.slice(32, 64);
   const packet3 = hexBuffer.slice(64, 96);
   const packet4 = hexBuffer.slice(96, 128);
 
   const packets = [packet1, packet2, packet3, packet4].map((p) => new BN(p, 16).toString(10));
-
   const secret = [packets[0], packets[1], packets[2], packets[3]]; // number 5
+
+  console.log([packet1, packet2, packet3, packet4]);
   const { output } = zokratesProvider.computeWitness(artifacts, [publicKey, secret, privateKey]);
   const outputObject = JSON.parse(output);
   const hashString1 = outputObject[0][0].toString();
