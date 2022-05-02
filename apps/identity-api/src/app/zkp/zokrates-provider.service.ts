@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import Zokrates, { CompilationArtifacts, ZoKratesProvider } from 'zokrates-js/node';
+import Zokrates, { CompilationArtifacts, SetupKeypair, ZoKratesProvider } from 'zokrates-js/node';
 import fs from 'fs';
 import { ZKP_PROGRAM_PATH } from './zkp.config';
 
@@ -7,8 +7,13 @@ import { ZKP_PROGRAM_PATH } from './zkp.config';
 export class ZokratesProviderService {
   artifacts: CompilationArtifacts;
   provider: ZoKratesProvider;
+  keypair: SetupKeypair;
 
   constructor() {
+    this.setup();
+  }
+
+  async regenerateData(): Promise<void> {
     this.setup();
   }
 
@@ -20,5 +25,7 @@ export class ZokratesProviderService {
     Logger.log('Compiling zokrates source...');
     this.artifacts = this.provider.compile(source);
     Logger.log('Compilation of zokrates source was a success');
+
+    this.keypair = this.provider.setup(this.artifacts.program);
   }
 }

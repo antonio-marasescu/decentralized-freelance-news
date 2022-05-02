@@ -11,6 +11,7 @@ export * from './authentication/unsecure-identity-user.dto';
 export * from './zkp/zkp-create.dto';
 export * from './zkp/zkp-identity.dto';
 export * from './zkp/zkp-keys.dto';
+export * from './zkp/zkp-proof.dto';
 export * from './zkp/babyjubjub/babyjubjub-parameter.dto';
 export * from './zkp/babyjubjub/babyjubjub-private-key.dto';
 export * from './zkp/babyjubjub/babyjubjub-public-key.dto';

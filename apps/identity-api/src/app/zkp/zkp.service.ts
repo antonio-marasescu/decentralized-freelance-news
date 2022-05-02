@@ -5,6 +5,7 @@ import {
   ZkpCreateDto,
   ZkpIdentityDto,
   ZkpKeysDto,
+  ZkpProofDto,
 } from '@decentralized-freelance-news/api-shared-lib';
 import { PrivateKey, PublicKey } from 'babyjubjub';
 import { ZkpInputs } from './zkp.types';
@@ -25,7 +26,7 @@ export class ZkpService {
     return new ZkpKeysDto({ publicKey, privateKey });
   }
 
-  async generateProof(createDto: ZkpCreateDto): Promise<void> {
+  async generateProof(createDto: ZkpCreateDto): Promise<ZkpProofDto> {
     Logger.log('Generating packets and zokrates inputs');
     const inputBuffer = this.objectTo64BytesBuffer(createDto.identity);
     const packets = this.bufferToHexPackets(inputBuffer);
@@ -33,14 +34,25 @@ export class ZkpService {
     Logger.log('Generation of packets and zokrates inputs was a success');
 
     Logger.log('Computing zokrates witness...');
-    const { output } = this.zkpProvider.provider.computeWitness(this.zkpProvider.artifacts, [
+    const { witness, output } = this.zkpProvider.provider.computeWitness(this.zkpProvider.artifacts, [
       zkpInputs.publicKey,
       zkpInputs.secret,
       zkpInputs.privateKey,
     ]);
 
+    Logger.log('Reconstructing hash and checking his integrity...');
     const outputHash = this.reconstructHash(output);
     this.checkHashIntegrity(inputBuffer, outputHash);
+
+    Logger.log('Generating Zero Knowledge Proof...');
+    const proof = this.zkpProvider.provider.generateProof(
+      this.zkpProvider.artifacts.program,
+      witness,
+      this.zkpProvider.keypair.pk
+    );
+    Logger.log('Proof was generated.');
+
+    return new ZkpProofDto(proof);
   }
 
   private objectTo64BytesBuffer(object: ZkpIdentityDto): Buffer {

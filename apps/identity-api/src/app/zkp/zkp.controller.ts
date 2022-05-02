@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ZKP_FEATURE } from './zkp.config';
-import { ZkpCreateDto, ZkpKeysDto } from '@decentralized-freelance-news/api-shared-lib';
+import { ZkpCreateDto, ZkpKeysDto, ZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
 import { ZkpService } from './zkp.service';
 
 @ApiBearerAuth()
@@ -20,7 +20,7 @@ export class ZkpController {
   }
 
   @Post('proof')
-  async generateProof(@Body() createDto: ZkpCreateDto): Promise<void> {
+  async generateProof(@Body() createDto: ZkpCreateDto): Promise<ZkpProofDto> {
     return this.zkpService.generateProof(createDto);
   }
 }

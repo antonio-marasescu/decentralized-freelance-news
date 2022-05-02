@@ -61,7 +61,7 @@ async function generateProof() {
   const secret = [packets[0], packets[1], packets[2], packets[3]]; // number 5
 
   console.log([packet1, packet2, packet3, packet4]);
-  const { output } = zokratesProvider.computeWitness(artifacts, [publicKey, secret, privateKey]);
+  const { witness, output } = zokratesProvider.computeWitness(artifacts, [publicKey, secret, privateKey]);
   const outputObject = JSON.parse(output);
   const hashString1 = outputObject[0][0].toString();
   const hashString2 = outputObject[0][1].toString();
@@ -74,12 +74,10 @@ async function generateProof() {
 
   // c6481e22c5ff4164af680b8cfaa5e8ed3120eeff89c4f307c4a6faaae059ce10
 
-  // // // run setup
-  // const keypairFileData = await fs.promises.readFile(keyPairFilePath, 'utf8');
-  // const keypair = JSON.parse(keypairFileData);
+  const keypair = zokratesProvider.setup(artifacts.program);
   //
   // // // generate proof
-  // const proof = zokratesProvider.generateProof(artifacts.program, witness, keypair.pk);
+  const proof = zokratesProvider.generateProof(artifacts.program, witness, keypair.pk);
   // await fs.promises.writeFile(proofFilePath, JSON.stringify(proof));
 }
 
