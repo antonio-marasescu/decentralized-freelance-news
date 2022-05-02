@@ -4,6 +4,7 @@
     "api-shared-lib": "libs/api-shared-lib",
     "eth-contract-lib": "libs/eth-contract-lib",
     "identity-api": "apps/identity-api",
+    "identity-ui-app": "apps/identity-ui-app",
     "main-ui-app": "apps/main-ui-app",
     "shared-lib": "libs/shared-lib"
   }
