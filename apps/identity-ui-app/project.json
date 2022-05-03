@@ -15,7 +15,16 @@
         "tsConfig": "apps/identity-ui-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/identity-ui-app/src/favicon.ico", "apps/identity-ui-app/src/assets"],
-        "styles": ["apps/identity-ui-app/src/styles.scss"],
+        "styles": [
+          "apps/identity-ui-app/src/assets/styles/styles.scss",
+          "node_modules/primeicons/primeicons.css",
+          "node_modules/primeflex/primeflex.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeng/resources/themes/lara-dark-teal/theme.css"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/identity-ui-app/src/assets/styles"]
+        },
         "scripts": []
       },
       "configurations": {
@@ -84,5 +93,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:identity-ui-app"]
 }

@@ -4,16 +4,19 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "ngcc --properties es2015 browser module main",
-    "start:main-ui:": "nx serve --project=main-ui-app",
+    "start:main-ui-app:": "nx serve --project=main-ui-app",
+    "start:identity-ui-app:": "nx serve --project=identity-ui-app",
     "start:identity-api": "nx serve --project=identity-api",
     "build:main-ui": "nx build --project=main-ui-app",
+    "build:identity-ui-app": "nx build --project=identity-ui-app",
     "build:identity-api": "nx build --project=identity-api",
     "zkp:compile": "node --max-old-space-size=8096 ./zkp/compiler.js",
     "zkp:generate-proof": "node --max-old-space-size=8096 ./zkp/proof-generator.js",
     "zkp:compile-export": "VERIFIER_PATH='truffle/contracts' VERIFIER_FILENAME=verifier.sol  node ./zkp/compiler.js",
     "truffle:migrate": "truffle migrate",
     "truffle:migrate-hard": "truffle migrate --reset",
-    "truffle:test-development": "truffle test --network development"
+    "truffle:test-development": "truffle test --network development",
+    "lint": "nx run-many --all --target=lint"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +47,9 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "pg": "^8.7.3",
+    "primeflex": "^3.1.3",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.3.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "swagger-ui-express": "^4.3.0",

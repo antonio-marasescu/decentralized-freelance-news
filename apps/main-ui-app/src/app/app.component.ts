@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EthereumAdapterService, ZkpVerifierAdapterService } from '@decentralized-freelance-news/eth-contract-lib';
 
 @Component({
@@ -6,17 +6,17 @@ import { EthereumAdapterService, ZkpVerifierAdapterService } from '@decentralize
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(
     private ethereumAdapterService: EthereumAdapterService,
     private zkpVerifierAdapterService: ZkpVerifierAdapterService
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    // const accounts = await this.ethereumAdapterService.requestAccounts();
-    // const version = await this.ethereumAdapterService.requestVersion();
-    // await this.zkpVerifierAdapterService.setupService(version);
-    //
-    // const response1 = await this.zkpVerifierAdapterService.verify(ProofData as ZkpProof);
-  }
+  // async ngOnInit(): Promise<void> {
+  //   // const accounts = await this.ethereumAdapterService.requestAccounts();
+  //   // const version = await this.ethereumAdapterService.requestVersion();
+  //   // await this.zkpVerifierAdapterService.setupService(version);
+  //   //
+  //   // const response1 = await this.zkpVerifierAdapterService.verify(ProofData as ZkpProof);
+  // }
 }
