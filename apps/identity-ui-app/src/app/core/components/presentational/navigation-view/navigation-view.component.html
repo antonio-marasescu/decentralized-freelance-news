@@ -1,0 +1,18 @@
+<p-menubar [model]="items" styleClass="bg-primary-reverse">
+  <ng-container *ngIf="currentUser">
+    <div class="flex flex-row">
+      <div class="flex w-full align-items-center justify-content-center">
+        <span class="text-lg hover:text-white">{{ currentUser.username }}</span>
+      </div>
+      <div class="flex pl-4">
+        <button
+          pButton
+          label="Logout"
+          icon="pi pi-power-off"
+          class="hover:bg-primary-reverse"
+          (click)="logout.emit()"
+        ></button>
+      </div>
+    </div>
+  </ng-container>
+</p-menubar>

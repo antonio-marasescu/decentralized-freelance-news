@@ -9,10 +9,15 @@ import { PanelModule } from 'primeng/panel';
 import { CardModule } from 'primeng/card';
 import { MenubarModule } from 'primeng/menubar';
 import { DividerModule } from 'primeng/divider';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
     PasswordModule,
@@ -21,10 +26,14 @@ import { DividerModule } from 'primeng/divider';
     PanelModule,
     MenubarModule,
     DividerModule,
+    InputSwitchModule,
+    AvatarModule,
+    AvatarGroupModule,
     CardModule,
   ],
   exports: [
     CommonModule,
+    ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
     PasswordModule,
@@ -33,6 +42,9 @@ import { DividerModule } from 'primeng/divider';
     PanelModule,
     MenubarModule,
     DividerModule,
+    InputSwitchModule,
+    AvatarModule,
+    AvatarGroupModule,
     CardModule,
   ],
 })

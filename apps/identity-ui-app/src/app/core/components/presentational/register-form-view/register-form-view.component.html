@@ -1,8 +1,8 @@
-<div class="flex justify-content-center align-items-center flex-wrap h-full pb-8">
+<div class="flex justify-content-center align-items-center flex-wrap h-full pb-8" [formGroup]="form">
   <div class="z-4 w-6">
     <div class="flex justify-content-center align-items-center flex-wrap">
       <div class="text-center">
-        <div class="text-5xl text-white font-bold">Login to Your Account</div>
+        <div class="text-5xl text-white font-bold">Register a new Account</div>
         <div class="text-lg text-bluegray-600 font-semibold mt-4">
           Connect to our API and generate your Proof of Identity
         </div>
@@ -14,14 +14,21 @@
     <div class="grid pt-8">
       <div class="col-5 mt-4">
         <span class="field p-float-label">
-          <input pInputText id="username" type="text" class="inputfield w-full" />
+          <input pInputText id="username" type="text" class="inputfield w-full" formControlName="username" />
           <label for="username">Username</label>
         </span>
         <span class="field p-float-label mt-4">
-          <input pPassword id="password" type="password" class="inputfield w-full" />
+          <input pPassword id="password" type="password" class="inputfield w-full" formControlName="password" />
           <label for="password">Password</label>
         </span>
-        <button pButton type="button" label="Sign In" class="w-full mt-2 hover:bg-primary-reverse"></button>
+        <button
+          pButton
+          type="button"
+          label="Register"
+          class="w-full mt-2 hover:bg-primary-reverse"
+          [disabled]="!form.valid"
+          (click)="register.emit()"
+        ></button>
       </div>
       <div class="flex col-2 mt-4 justify-content-center">
         <div
@@ -30,12 +37,13 @@
       </div>
       <div class="col-5 mt-4">
         <div class="flex justify-content-center align-content-center flex-wrap">
-          <div class="text-lg text-white font-semibold">Don't have an account?</div>
+          <div class="text-lg text-white font-semibold">Already have an account?</div>
           <button
             pButton
             type="button"
-            label="Register"
+            label="Sign In"
             class="p-button-outlined w-full mt-4 hover:bg-primary"
+            (click)="navigateLogin.emit()"
           ></button>
         </div>
       </div>

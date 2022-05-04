@@ -64,10 +64,12 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "identity-ui-app:build:production"
+          "browserTarget": "identity-ui-app:build:production",
+          "proxyConfig": "apps/identity-ui-app/src/proxy/proxy.conf.json"
         },
         "development": {
-          "browserTarget": "identity-ui-app:build:development"
+          "browserTarget": "identity-ui-app:build:development",
+          "proxyConfig": "apps/identity-ui-app/src/proxy/proxy.conf.prod.json"
         }
       },
       "defaultConfiguration": "development"

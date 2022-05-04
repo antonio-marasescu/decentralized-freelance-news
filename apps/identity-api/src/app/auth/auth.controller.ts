@@ -51,19 +51,6 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('users')
-  @ApiOkResponse({
-    description: 'List of all available identity users.',
-    type: [IdentityUserDto],
-  })
-  @ApiUnauthorizedResponse({
-    description: 'The user provided invalid authentication credentials.',
-  })
-  async findAllUsers(): Promise<IdentityUserDto[]> {
-    return this.usersService.findAll();
-  }
-
-  @UseGuards(JwtAuthGuard)
   @Get('users/:id')
   @ApiOkResponse({
     description: 'The user as per provided id.',
@@ -77,5 +64,21 @@ export class AuthController {
   })
   async findOneById(@Param('id') id: string): Promise<IdentityUserDto> {
     return this.usersService.findOneById(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('users/username/:username')
+  @ApiOkResponse({
+    description: 'The user as per provided username.',
+    type: IdentityUserDto,
+  })
+  @ApiUnauthorizedResponse({
+    description: 'The user provided invalid authentication credentials.',
+  })
+  @ApiNotFoundResponse({
+    description: 'The user with the provided username was not found.',
+  })
+  async findOneByUsername(@Param('username') username: string): Promise<IdentityUserDto> {
+    return this.usersService.findOneByUsername(username);
   }
 }
