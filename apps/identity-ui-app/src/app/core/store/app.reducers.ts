@@ -8,6 +8,7 @@ import {
   GetCurrentUserSuccess,
   Login,
   LoginSuccess,
+  Logout,
   Register,
   RegisterSuccess,
 } from '../../modules/shared/store/app.actions';
@@ -43,6 +44,9 @@ export const appReducer = createReducer(
   on(LoginSuccess, (state) => ({ ...state, loading: false })),
   on(Register, (state) => ({ ...state, loading: true })),
   on(RegisterSuccess, (state) => ({ ...state, loading: false })),
+  on(Logout, () => {
+    return adapter.getInitialState({ selectedUserId: null, loading: false, error: null });
+  }),
 
   on(ActionFailure, (state, { reason }) => ({ ...state, error: reason, loading: false }))
 );
