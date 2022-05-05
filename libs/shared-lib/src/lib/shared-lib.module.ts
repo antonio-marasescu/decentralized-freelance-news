@@ -13,13 +13,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TimelineModule } from 'primeng/timeline';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 
 @NgModule({
+  declarations: [LoadingOverlayComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
+    InputTextareaModule,
+    TimelineModule,
     PasswordModule,
     MessagesModule,
     MessageModule,
@@ -28,6 +35,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     DividerModule,
     InputSwitchModule,
     AvatarModule,
+    ProgressSpinnerModule,
     AvatarGroupModule,
     CardModule,
   ],
@@ -36,6 +44,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
+    InputTextareaModule,
+    TimelineModule,
     PasswordModule,
     MessagesModule,
     MessageModule,
@@ -44,8 +54,10 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     DividerModule,
     InputSwitchModule,
     AvatarModule,
+    ProgressSpinnerModule,
     AvatarGroupModule,
     CardModule,
+    LoadingOverlayComponent,
   ],
 })
 export class SharedLibModule {

@@ -1,0 +1,45 @@
+<p-card>
+  <form role="form" [formGroup]="form" novalidate>
+    <div class="field text-base font-semibold">Public Key</div>
+    <div class="field">
+      <textarea
+        pInputTextarea
+        type="text"
+        id="publicKey"
+        class="w-full"
+        formControlName="publicKey"
+        [readOnly]="true"
+      ></textarea>
+    </div>
+    <div class="field text-base font-semibold">Private Key</div>
+    <div class="field">
+      <textarea
+        pInputTextarea
+        type="text"
+        id="privateKey"
+        class="w-full"
+        formControlName="privateKey"
+        [readOnly]="true"
+      ></textarea>
+    </div>
+    <div class="field mt-5">
+      <button
+        pButton
+        type="button"
+        label="Generate Keys"
+        class="w-full hover:bg-primary-reverse"
+        (click)="generateKeys.emit()"
+      ></button>
+    </div>
+    <div class="field mt-3">
+      <button
+        pButton
+        type="button"
+        label="Download Keys"
+        class="w-full hover:bg-primary-reverse"
+        [disabled]="!isDownloadable || !form.valid"
+        (click)="downloadKeys.emit()"
+      ></button>
+    </div>
+  </form>
+</p-card>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { API_URL, httpOptionsFormUrlEncoded, httpOptionsJson } from '../configuration/http.config';
+import { API_URL, httpOptionsFormUrlEncoded, httpOptionsJson } from '../../modules/shared/configuration/http.config';
 import {
   IdentityUserDto,
   IIdentityUserAccessTokenDto,

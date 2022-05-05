@@ -11,12 +11,12 @@ import {
   Logout,
   Register,
   RegisterSuccess,
-} from './app.actions';
+} from '../../modules/shared/store/app.actions';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { of } from 'rxjs';
 import { IIdentityUserLoginDto, IIdentityUserRegisterDto } from '@decentralized-freelance-news/api-shared-lib';
-import { AppRoutesConfig } from '../configuration/app-routes.config';
+import { AppRoutesConfig } from '../../modules/shared/configuration/app-routes.config';
 import jwtDecode from 'jwt-decode';
 
 @Injectable()
@@ -81,7 +81,7 @@ export class AppEffects {
         ofType(LoginSuccess),
         tap(async (action: { access_token: string }) => {
           localStorage.setItem('authorization', action.access_token);
-          await this.router.navigateByUrl(`${AppRoutesConfig.LandingPage}`);
+          await this.router.navigateByUrl(`${AppRoutesConfig.ZkpModule}`);
         })
       ),
     { dispatch: false }

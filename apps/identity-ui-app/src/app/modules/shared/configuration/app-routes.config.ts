@@ -1,5 +1,5 @@
 export enum AppRoutesConfig {
-  LandingPage = 'home',
+  ZkpModule = 'zkp',
   LoginPage = 'login',
   RegisterPage = 'register',
 }

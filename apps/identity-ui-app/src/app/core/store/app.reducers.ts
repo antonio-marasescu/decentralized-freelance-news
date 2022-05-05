@@ -10,7 +10,7 @@ import {
   LoginSuccess,
   Register,
   RegisterSuccess,
-} from './app.actions';
+} from '../../modules/shared/store/app.actions';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 export interface AppState extends EntityState<IIdentityUserDto> {

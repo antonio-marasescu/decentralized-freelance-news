@@ -1,5 +1,11 @@
 import { HttpHeaders } from '@angular/common/http';
 
+export const httpOptionsText = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain',
+  }),
+};
+
 export const httpOptionsJson = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',

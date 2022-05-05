@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -9,6 +9,7 @@ import {
 import { ZKP_FEATURE } from './zkp.config';
 import { ZkpCreateDto, ZkpKeysDto, ZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
 import { ZkpService } from './zkp.service';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiBearerAuth()
 @ApiTags(ZKP_FEATURE.name)
@@ -16,6 +17,7 @@ import { ZkpService } from './zkp.service';
 export class ZkpController {
   constructor(private zkpService: ZkpService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get('keys')
   @ApiOkResponse({
     description: 'The private and public keys generated.',
@@ -25,6 +27,7 @@ export class ZkpController {
     return this.zkpService.generateKeys();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('proof')
   @ApiOkResponse({
     description: 'The generated zero knowledge proof.',
@@ -40,6 +43,7 @@ export class ZkpController {
     return this.zkpService.generateProof(createDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('contract')
   @ApiOkResponse({
     description: 'The generated solidity contract code.',

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppRoutesConfig } from '../../../configuration/app-routes.config';
+import { AppRoutesConfig } from '../../../../modules/shared/configuration/app-routes.config';
 import { Router } from '@angular/router';
-import { Login } from '../../../store/app.actions';
+import { Login } from '../../../../modules/shared/store/app.actions';
 import { Store } from '@ngrx/store';
 
 @Component({
