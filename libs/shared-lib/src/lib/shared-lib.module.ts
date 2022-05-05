@@ -17,6 +17,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TimelineModule } from 'primeng/timeline';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [LoadingOverlayComponent],
@@ -37,6 +38,7 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
     AvatarModule,
     ProgressSpinnerModule,
     AvatarGroupModule,
+    FileUploadModule,
     CardModule,
   ],
   exports: [
@@ -56,6 +58,7 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
     AvatarModule,
     ProgressSpinnerModule,
     AvatarGroupModule,
+    FileUploadModule,
     CardModule,
     LoadingOverlayComponent,
   ],

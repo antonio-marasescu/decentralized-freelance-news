@@ -17,12 +17,15 @@
         "inlineStyleLanguage": "scss",
         "assets": ["apps/main-ui-app/src/favicon.ico", "apps/main-ui-app/src/assets"],
         "styles": [
-          "apps/main-ui-app/src/styles.scss",
+          "apps/main-ui-app/src/assets/styles/styles.scss",
           "node_modules/primeicons/primeicons.css",
-          "node_modules/primeng/resources/themes/arya-orange/theme.css",
           "node_modules/primeflex/primeflex.css",
-          "node_modules/primeng/resources/primeng.min.css"
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeng/resources/themes/vela-green/theme.css"
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/main-ui-app/src/assets/styles"]
+        },
         "scripts": []
       },
       "configurations": {

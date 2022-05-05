@@ -1,22 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { UserEntity } from './user.entity';
+import { UserEntity, UserEntityDocument } from './user.entity';
 import {
   IdentityUserDto,
   IdentityUserRegisterDto,
   UnsecureIdentityUserDto,
 } from '@decentralized-freelance-news/api-shared-lib';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class UsersRepository {
-  constructor(
-    @InjectRepository(UserEntity)
-    private userEntityRepository: Repository<UserEntity>
-  ) {}
+  constructor(@InjectModel(UserEntity.name) private userEntityDocumentModel: Model<UserEntityDocument>) {}
 
   async findOneByUsername(username: string): Promise<UnsecureIdentityUserDto | null> {
-    const foundEntity: UserEntity = await this.userEntityRepository.findOne({ username });
+    const foundEntity: UserEntity = await this.userEntityDocumentModel.findOne({ username });
     if (!foundEntity) {
       return null;
     }
@@ -28,25 +26,27 @@ export class UsersRepository {
   }
 
   async findOneById(id: string): Promise<IdentityUserDto | null> {
-    const foundEntity: UserEntity = await this.userEntityRepository.findOne(id);
+    const foundEntity: UserEntity = await this.userEntityDocumentModel.findOne({ id });
     if (!foundEntity) {
       return null;
     }
-    return this.mapToIdentityUser(foundEntity);
+    return UsersRepository.mapToIdentityUser(foundEntity);
   }
 
   async findAll(): Promise<IdentityUserDto[]> {
-    const foundEntities: UserEntity[] = await this.userEntityRepository.find();
-    return foundEntities.map((entity) => this.mapToIdentityUser(entity));
+    const foundEntities: UserEntity[] = await this.userEntityDocumentModel.find();
+    return foundEntities.map((entity) => UsersRepository.mapToIdentityUser(entity));
   }
 
   async addUser(user: IdentityUserRegisterDto): Promise<IdentityUserDto> {
-    const entity = new UserEntity(undefined, user.username, user.password);
-    const savedEntity: UserEntity = await this.userEntityRepository.save(entity);
-    return this.mapToIdentityUser(savedEntity);
+    // TODO: hash password
+    const entity = new UserEntity(uuidv4(), user.username, user.password);
+    const entityModel = new this.userEntityDocumentModel(entity);
+    const savedEntity = await entityModel.save();
+    return UsersRepository.mapToIdentityUser(savedEntity);
   }
 
-  private mapToIdentityUser(userEntity: UserEntity): IdentityUserDto {
+  private static mapToIdentityUser(userEntity: UserEntity): IdentityUserDto {
     return new IdentityUserDto({ id: userEntity.id, username: userEntity.username });
   }
 }

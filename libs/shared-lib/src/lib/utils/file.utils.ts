@@ -19,4 +19,9 @@ export class FileUtils {
       window.URL.revokeObjectURL(url);
     }, 0);
   }
+
+  static async readFileContentAsJson<T>(file: File): Promise<T> {
+    const fileText = await file.text();
+    return JSON.parse(fileText) as T;
+  }
 }

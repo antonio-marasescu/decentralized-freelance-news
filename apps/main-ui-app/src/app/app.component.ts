@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { EthereumAdapterService, ZkpVerifierAdapterService } from '@decentralized-freelance-news/eth-contract-lib';
+import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
+import { FileUtils } from '@decentralized-freelance-news/shared-lib';
 
 @Component({
   selector: 'dfn-main-root',
@@ -12,11 +14,17 @@ export class AppComponent {
     private zkpVerifierAdapterService: ZkpVerifierAdapterService
   ) {}
 
-  // async ngOnInit(): Promise<void> {
-  //   // const accounts = await this.ethereumAdapterService.requestAccounts();
-  //   // const version = await this.ethereumAdapterService.requestVersion();
-  //   // await this.zkpVerifierAdapterService.setupService(version);
-  //   //
-  //   // const response1 = await this.zkpVerifierAdapterService.verify(ProofData as ZkpProof);
-  // }
+  async ngOnInit(): Promise<void> {
+    const accounts = await this.ethereumAdapterService.requestAccounts();
+    const version = await this.ethereumAdapterService.requestVersion();
+    await this.zkpVerifierAdapterService.setupService(version);
+  }
+
+  async onUploadFile(event): Promise<void> {
+    const file: File = event.files[0];
+    const zkpProof = await FileUtils.readFileContentAsJson<IZkpProofDto>(file);
+
+    const response1 = await this.zkpVerifierAdapterService.verify(zkpProof);
+    console.log(response1);
+  }
 }

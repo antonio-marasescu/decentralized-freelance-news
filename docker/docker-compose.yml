@@ -1,16 +1,18 @@
 version: '3.9'
 
 services:
-  gov-identity-db:
-    image: 'postgres'
+  fabula-db:
+    image: 'mongo'
+    container_name: 'fabula-db'
     environment:
-      - POSTGRES_USER=govidentityadmin
-      - POSTGRES_PASSWORD=govidentitypass
-      - POSTGRES_DB=govidentity
+      - MONGO_INITDB_DATABASE=fabuladb
+      - MONGO_INITDB_ROOT_USERNAME=fabularootuser
+      - MONGO_INITDB_ROOT_PASSWORD=fabularootpass
     ports:
-      - 5438:5432
+      - '27017:27017'
     volumes:
-      - gov-identity-data-volume:/var/lib/postgresql/data
+      - ../migrations/mongo/mongo-db-init.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - fabula-db-volume:/data/db
 
 volumes:
-  gov-identity-data-volume:
+  fabula-db-volume:

@@ -1,1 +1,9 @@
+<p-fileUpload
+  name="myfile[]"
+  [customUpload]="true"
+  (uploadHandler)="onUploadFile($event)"
+  [auto]="true"
+  mode="basic"
+></p-fileUpload>
+
 <router-outlet></router-outlet>

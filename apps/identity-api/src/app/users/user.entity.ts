@@ -1,14 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-@Entity()
+@Schema()
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @Prop({ isRequired: true })
   id?: string;
 
-  @Column({ unique: true, nullable: false })
+  @Prop({ isRequired: true })
   username: string;
 
-  @Column({ nullable: false })
+  @Prop({ isRequired: true })
   password?: string;
 
   constructor(id: string, username: string, password: string) {
@@ -17,3 +17,7 @@ export class UserEntity {
     this.password = password;
   }
 }
+
+export const UserEntitySchema = SchemaFactory.createForClass(UserEntity);
+
+export type UserEntityDocument = UserEntity & Document;

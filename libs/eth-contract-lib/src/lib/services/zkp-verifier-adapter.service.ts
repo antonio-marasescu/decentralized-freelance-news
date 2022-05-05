@@ -3,7 +3,7 @@ import { Contract } from 'ethers';
 import Verifier from 'truffle/abis/Verifier.json';
 import { EthereumAdapterService } from './ethereum-adapter.service';
 import { JsonRpcSigner } from '@ethersproject/providers/lib/json-rpc-provider';
-import { ZkpProof } from '../types/zkp-verification.types';
+import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
 
 @Injectable({ providedIn: 'any' })
 export class ZkpVerifierAdapterService {
@@ -19,7 +19,7 @@ export class ZkpVerifierAdapterService {
     this._contract = new Contract(this._contractNetworkAddress, Verifier.abi, this._signer);
   }
 
-  async verify(value: ZkpProof): Promise<boolean> {
+  async verify(value: IZkpProofDto): Promise<boolean> {
     try {
       return await this._contract['verifyTx'](value.proof, value.inputs);
     } catch {

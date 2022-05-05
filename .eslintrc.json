@@ -27,7 +27,7 @@
               },
               {
                 "sourceTag": "scope:eth-contract-lib",
-                "onlyDependOnLibsWithTags": ["scope:eth-contract-lib", "scope:shared-lib"]
+                "onlyDependOnLibsWithTags": ["scope:eth-contract-lib", "scope:shared-lib", "scope:api-shared-lib"]
               },
               {
                 "sourceTag": "scope:shared-lib",
