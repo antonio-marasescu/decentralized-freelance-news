@@ -30,12 +30,14 @@ export class ZkpService {
   }
 
   generateProof(payload: IZkpCreateDto): Observable<IZkpProofDto> {
+    this.isLoading = true;
     return this.httpClient
       .post<IZkpProofDto>(`${API_URL}/zkp/proof`, payload, httpOptionsJson)
       .pipe(finalize(() => (this.isLoading = false)));
   }
 
   generateContract(): Observable<string> {
+    this.isLoading = true;
     return this.httpClient
       .get(`${API_URL}/zkp/contract`, { ...httpOptionsText, responseType: 'text' })
       .pipe(finalize(() => (this.isLoading = false)));

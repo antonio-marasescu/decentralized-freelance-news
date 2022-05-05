@@ -5,7 +5,6 @@ import { ZKP_ARTIFACTS_ABI, ZKP_ARTIFACTS_PROGRAM, ZKP_KEY_PAIRS, ZKP_PROGRAM_PA
 
 @Injectable()
 export class ZokratesProviderService {
-  private encoder = new TextEncoder();
   artifacts: CompilationArtifacts;
   provider: ZoKratesProvider;
   keypair: SetupKeypair;
@@ -17,7 +16,7 @@ export class ZokratesProviderService {
   private async setup(): Promise<void> {
     Logger.log('Initializing Zokrates...');
     this.provider = await Zokrates.initialize();
-
+    Logger.log('Searching for Zokrates persisted data...');
     if (!ZokratesProviderService.zokratesDataExists()) {
       Logger.log('No persisted Zokrates data found.');
       await this.generateZokratesData();
@@ -46,7 +45,7 @@ export class ZokratesProviderService {
 
   private async persistZokratesData(): Promise<void> {
     Logger.log('Persisting zokrates data in repository.');
-    await fs.promises.writeFile(ZKP_ARTIFACTS_PROGRAM, this.artifacts.program.toString(), 'utf-8');
+    await fs.promises.writeFile(ZKP_ARTIFACTS_PROGRAM, JSON.stringify(Array.from(this.artifacts.program)), 'utf-8');
     await fs.promises.writeFile(ZKP_ARTIFACTS_ABI, JSON.stringify(this.artifacts.abi), 'utf-8');
     await fs.promises.writeFile(ZKP_KEY_PAIRS, JSON.stringify(this.keypair), 'utf-8');
     Logger.log('Persisting zokrates data in repository is done.');
@@ -56,7 +55,9 @@ export class ZokratesProviderService {
     const programArtifacts = await fs.promises.readFile(ZKP_ARTIFACTS_PROGRAM, 'utf-8');
     const abiArtifacts = await fs.promises.readFile(ZKP_ARTIFACTS_ABI, 'utf-8');
     const keypairArtifacts = await fs.promises.readFile(ZKP_KEY_PAIRS, 'utf-8');
-    const program = this.encoder.encode(programArtifacts);
+
+    const programFromJson = JSON.parse(programArtifacts);
+    const program = new Uint8Array(programFromJson);
     const abi = JSON.parse(abiArtifacts);
 
     this.keypair = JSON.parse(keypairArtifacts);
