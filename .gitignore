@@ -5,6 +5,7 @@
 libs/zkp-lib/src/dist
 /tmp
 /out-tsc
+/local-assets
 
 # dependencies
 node_modules

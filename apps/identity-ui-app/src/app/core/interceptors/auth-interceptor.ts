@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -20,6 +21,14 @@ export class AuthInterceptor implements HttpInterceptor {
     } else {
       updatedRequest = req.clone();
     }
-    return next.handle(updatedRequest);
+    return next.handle(updatedRequest).pipe(
+      tap((response) => {
+        if (response instanceof HttpResponse) {
+          if (response.status === 401) {
+            localStorage.removeItem('authorization');
+          }
+        }
+      })
+    );
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Web3ProviderService } from './services/web3-provider.service';
 import { EthereumAdapterService } from './services/ethereum-adapter.service';
 import { ZkpVerifierAdapterService } from './services/zkp-verifier-adapter.service';
+import { DfnContractAdapterService } from './services/dfn-contract-adapter.service';
 
 @NgModule({
   imports: [CommonModule],
@@ -12,7 +13,7 @@ export class EthContractLibModule {
   static forRoot(): ModuleWithProviders<EthContractLibModule> {
     return {
       ngModule: EthContractLibModule,
-      providers: [Web3ProviderService, EthereumAdapterService, ZkpVerifierAdapterService],
+      providers: [Web3ProviderService, EthereumAdapterService, ZkpVerifierAdapterService, DfnContractAdapterService],
     };
   }
 }
