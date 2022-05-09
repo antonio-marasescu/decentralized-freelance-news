@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { EthereumAdapterService, ZkpVerifierAdapterService } from '@decentralized-freelance-news/eth-contract-lib';
+import {
+  DfnContractAdapterService,
+  EthereumAdapterService,
+  ZkpVerifierAdapterService,
+} from '@decentralized-freelance-news/eth-contract-lib';
 import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
 import { FileUtils } from '@decentralized-freelance-news/shared-lib';
-import { DfnContractAdapterService } from '../../../../libs/eth-contract-lib/src/lib/services/dfn-contract-adapter.service';
 
 @Component({
   selector: 'dfn-main-root',

@@ -4,6 +4,7 @@ export * from './eth-contract-lib.module';
 // services
 export * from './services/ethereum-adapter.service';
 export * from './services/zkp-verifier-adapter.service';
+export * from './services/dfn-contract-adapter.service';
 
 // types
 

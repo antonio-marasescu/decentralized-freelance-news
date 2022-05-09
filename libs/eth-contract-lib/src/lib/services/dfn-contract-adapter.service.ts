@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { EthereumAdapterService, INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 import { Contract } from 'ethers';
 import { JsonRpcSigner } from '@ethersproject/providers/lib/json-rpc-provider';
-import { INewsModelCreateDto } from '../types/dfn-contract.types';
-import NewsShareContract from 'truffle/abis/NewsShareContract.json';
 import { ReplaySubject } from 'rxjs';
+import { INewsModel, INewsModelCreateDto } from '../types/dfn-contract.types';
+import { EthereumAdapterService } from './ethereum-adapter.service';
 import { DfnEventTypes } from '../types/dfn-contract-events.types';
+import NewsShareContract from 'truffle/abis/NewsShareContract.json';
 
 @Injectable({ providedIn: 'any' })
 export class DfnContractAdapterService {
