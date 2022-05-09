@@ -20,5 +20,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
 
-      - run: npx nx format:check
-      - run: npx nx affected --target=lint --parallel=3
+      - run: npx nx format:check --base=master
+      - run: npx nx affected --target=lint --parallel=3 --base=master
