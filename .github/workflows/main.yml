@@ -13,8 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -23,4 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: 'Build'
+      - run: yarn install
+      - name: 'Lint'
       - run: yarn run lint
