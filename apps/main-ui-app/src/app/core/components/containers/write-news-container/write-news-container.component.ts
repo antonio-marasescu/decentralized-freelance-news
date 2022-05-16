@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'dfn-main-landing-page',
+  selector: 'dfn-main-write-news-container',
   template: ``,
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPageComponent {}
+export class WriteNewsContainerComponent {}

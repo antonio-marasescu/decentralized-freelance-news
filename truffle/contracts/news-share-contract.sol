@@ -1,7 +1,9 @@
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
-contract NewsShareContract {
+import './verifier.sol';
+
+contract NewsShareContract is Verifier {
   event NewsAdded(uint newsIndex);
 
   struct NewsModel {
@@ -21,11 +23,16 @@ contract NewsShareContract {
     _;
   }
 
-  function addNews(string memory _ipfsAddress, string memory _newsHash, string memory _title, string memory _summary) public notUsed(_newsHash) {
+  function addNews(string memory _ipfsAddress, string memory _newsHash, string memory _title, string memory _summary, Proof memory proof, uint[4] memory input) public notUsed(_newsHash) returns (bool r) {
+    bool isVerified = verifyTx(proof, input);
+    if(!isVerified){
+      return false;
+    }
     NewsModel memory news = NewsModel(newsAddresses.length, _ipfsAddress, _newsHash, _title, _summary, msg.sender);
     newsHashToOwner[_newsHash] = msg.sender;
     newsAddresses.push(news);
     emit NewsAdded(newsAddresses.length);
+    return true;
   }
 
   function getNewsByIndex(uint index) external view returns (NewsModel memory) {

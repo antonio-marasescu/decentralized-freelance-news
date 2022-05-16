@@ -1,3 +1,4 @@
 export enum AppRoutesConfig {
-  LandingPage = 'home'
+  LandingPage = 'home',
+  WritePage = 'write',
 }

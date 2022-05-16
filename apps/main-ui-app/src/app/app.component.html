@@ -1,16 +1,1 @@
-<p-fileUpload
-  name="myfile[]"
-  [customUpload]="true"
-  (uploadHandler)="onUploadFile($event)"
-  [auto]="true"
-  mode="basic"
-></p-fileUpload>
-<button
-  pButton
-  type="button"
-  label="Generate News"
-  class="w-full hover:bg-primary-reverse"
-  (click)="onCreateNews()"
-></button>
-<button pButton type="button" label="Read News" class="w-full hover:bg-primary-reverse" (click)="onReadNews()"></button>
 <router-outlet></router-outlet>
