@@ -1,53 +1,22 @@
-import { Component } from '@angular/core';
-import {
-  DfnContractAdapterService,
-  EthereumAdapterService,
-  ZkpVerifierAdapterService,
-} from '@decentralized-freelance-news/eth-contract-lib';
-import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
-import { FileUtils } from '@decentralized-freelance-news/shared-lib';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { GetCurrentAccount, SetupEthereumServices } from './core/store/app.actions';
+import { Observable } from 'rxjs';
+import { selectIsLoading } from './core/store/app.reducers';
 
 @Component({
   selector: 'dfn-main-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  constructor(
-    private ethereumAdapterService: EthereumAdapterService,
-    private zkpVerifierAdapterService: ZkpVerifierAdapterService,
-    private dfnContractAdapterService: DfnContractAdapterService
-  ) {}
+export class AppComponent implements OnInit {
+  loading$: Observable<boolean>;
 
-  async ngOnInit(): Promise<void> {
-    const accounts = await this.ethereumAdapterService.requestAccounts();
-    const version = await this.ethereumAdapterService.requestVersion();
-    await this.zkpVerifierAdapterService.setupService(version);
-    await this.dfnContractAdapterService.setupService(version);
-  }
+  constructor(private store: Store) {}
 
-  async onCreateNews(): Promise<void> {
-    await this.dfnContractAdapterService.addNews({
-      ipfsAddress: '1234',
-      newsHash: 'thah',
-      title: 'The News01',
-      summary: 'I am news',
-    });
-  }
-
-  async onReadNews(): Promise<void> {
-    const resp2 = await this.dfnContractAdapterService.getNewsByIndex(0);
-    console.log(resp2);
-
-    const resp3 = await this.dfnContractAdapterService.getNews();
-    console.log(resp3);
-  }
-
-  async onUploadFile(event): Promise<void> {
-    const file: File = event.files[0];
-    const zkpProof = await FileUtils.readFileContentAsJson<IZkpProofDto>(file);
-
-    const response1 = await this.zkpVerifierAdapterService.verify(zkpProof);
-    console.log(response1);
+  ngOnInit() {
+    this.loading$ = this.store.select(selectIsLoading());
+    this.store.dispatch(GetCurrentAccount());
+    this.store.dispatch(SetupEthereumServices());
   }
 }

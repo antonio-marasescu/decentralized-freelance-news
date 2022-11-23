@@ -6,7 +6,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     class="w-screen h-screen flex flex-column justify-content-center align-items-center"
     *ngIf="isLoading"
   >
-    <div class="flex"><p-progressSpinner></p-progressSpinner></div>
+    <div class="flex">
+      <mat-progress-spinner color="primary"> </mat-progress-spinner>
+    </div>
     <div class="flex pt-2 text-lg text-primary">Data is loading...</div>
   </div>`,
   styleUrls: ['loading-overlay.component.scss'],

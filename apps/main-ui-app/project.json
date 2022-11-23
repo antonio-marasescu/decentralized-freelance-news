@@ -6,25 +6,31 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "allowedCommonJsDependencies": ["hash.js"],
+        "allowedCommonJsDependencies": [
+          "hash.js"
+        ],
         "outputPath": "dist/apps/main-ui-app",
         "index": "apps/main-ui-app/src/index.html",
         "main": "apps/main-ui-app/src/main.ts",
         "polyfills": "apps/main-ui-app/src/polyfills.ts",
         "tsConfig": "apps/main-ui-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/main-ui-app/src/favicon.ico", "apps/main-ui-app/src/assets"],
+        "assets": [
+          "apps/main-ui-app/src/favicon.ico",
+          "apps/main-ui-app/src/assets"
+        ],
         "styles": [
-          "apps/main-ui-app/src/assets/styles/styles.scss",
-          "node_modules/primeicons/primeicons.css",
-          "node_modules/primeflex/primeflex.css",
-          "node_modules/primeng/resources/primeng.min.css",
-          "node_modules/primeng/resources/themes/vela-green/theme.css"
+          "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+          "apps/main-ui-app/src/assets/styles/styles.scss"
         ],
         "stylePreprocessorOptions": {
-          "includePaths": ["apps/main-ui-app/src/assets/styles"]
+          "includePaths": [
+            "apps/main-ui-app/src/assets/styles"
+          ]
         },
         "scripts": []
       },
@@ -82,17 +88,24 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/main-ui-app/src/**/*.ts", "apps/main-ui-app/src/**/*.html"]
+        "lintFilePatterns": [
+          "apps/main-ui-app/src/**/*.ts",
+          "apps/main-ui-app/src/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/main-ui-app"],
+      "outputs": [
+        "coverage/apps/main-ui-app"
+      ],
       "options": {
         "jestConfig": "apps/main-ui-app/jest.config.js",
         "passWithNoTests": true
       }
     }
   },
-  "tags": ["scope:main-ui-app"]
+  "tags": [
+    "scope:main-ui-app"
+  ]
 }

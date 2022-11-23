@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { EthContractLibModule } from '@decentralized-freelance-news/eth-contract-lib';
 import { SharedLibModule } from '@decentralized-freelance-news/shared-lib';
 import { StoreModule } from '@ngrx/store';
@@ -18,6 +18,7 @@ import { NavigationViewComponent } from './core/components/presentational/naviga
 import { NewsListContainerComponent } from './core/components/containers/news-list-container/news-list-container.component';
 import { WriteNewsContainerComponent } from './core/components/containers/write-news-container/write-news-container.component';
 import { NavigationContainerComponent } from './core/components/containers/navigation-container/navigation-container.component';
+import { RootEffects, RootReducers } from './core/store/app.state';
 
 @NgModule({
   declarations: [
@@ -35,12 +36,12 @@ import { NavigationContainerComponent } from './core/components/containers/navig
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    EthContractLibModule.forRoot(),
     SharedLibModule.forRoot(),
-    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
-    StoreModule.forRoot({}),
+    EthContractLibModule.forRoot(),
+    StoreModule.forRoot(RootReducers),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 42 }) : [],
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(RootEffects),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'dfn-main-navigation-view',
@@ -6,4 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['navigation-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavigationViewComponent {}
+export class NavigationViewComponent {
+  @Input() items: MenuItem[];
+  @Input() currentAccount: string;
+}

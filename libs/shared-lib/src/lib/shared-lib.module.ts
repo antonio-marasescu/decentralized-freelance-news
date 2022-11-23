@@ -1,66 +1,64 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
-import { PanelModule } from 'primeng/panel';
-import { CardModule } from 'primeng/card';
-import { MenubarModule } from 'primeng/menubar';
-import { DividerModule } from 'primeng/divider';
-import { ReactiveFormsModule } from '@angular/forms';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { AvatarModule } from 'primeng/avatar';
-import { AvatarGroupModule } from 'primeng/avatargroup';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { TimelineModule } from 'primeng/timeline';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
-import { FileUploadModule } from 'primeng/fileupload';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MenuContainerWrapperComponent } from './components/menu-container-wrapper/menu-container-wrapper.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MenuContainerWrapperViewComponent } from './components/menu-container-wrapper/menu-container-wrapper-view/menu-container-wrapper-view.component';
 
 @NgModule({
-  declarations: [LoadingOverlayComponent],
+  declarations: [LoadingOverlayComponent, MenuContainerWrapperViewComponent, MenuContainerWrapperComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ButtonModule,
-    InputTextModule,
-    InputTextareaModule,
-    TimelineModule,
-    PasswordModule,
-    MessagesModule,
-    MessageModule,
-    PanelModule,
-    MenubarModule,
-    DividerModule,
-    InputSwitchModule,
-    AvatarModule,
-    ProgressSpinnerModule,
-    AvatarGroupModule,
-    FileUploadModule,
-    CardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatCardModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatButtonToggleModule,
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
-    ButtonModule,
-    InputTextModule,
-    InputTextareaModule,
-    TimelineModule,
-    PasswordModule,
-    MessagesModule,
-    MessageModule,
-    PanelModule,
-    MenubarModule,
-    DividerModule,
-    InputSwitchModule,
-    AvatarModule,
-    ProgressSpinnerModule,
-    AvatarGroupModule,
-    FileUploadModule,
-    CardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatCardModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatSidenavModule,
     LoadingOverlayComponent,
+    MatButtonToggleModule,
+    MenuContainerWrapperComponent,
+    MenuContainerWrapperViewComponent,
   ],
 })
 export class SharedLibModule {

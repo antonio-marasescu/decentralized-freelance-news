@@ -1,28 +1,28 @@
-<shared-lib-loading-overlay [isLoading]="isLoading"></shared-lib-loading-overlay>
-<div class="flex justify-content-center align-items-center flex-wrap h-full pb-8 overflow-y-auto">
-  <div class="z-4 w-9">
-    <div class="grid pt-8">
-      <div class="col-12 flex justify-content-center align-items-center">
-        <div class="text-lg text-bluegray-600 font-semibold mt-4">
-          Follow the steps to generate your Keys, your Proof of Identity and check the Solidity Contract
-        </div>
-      </div>
-      <div class="col-12">
-        <p-timeline [value]="timelineEvents" layout="horizontal" class="m-2">
-          <ng-template pTemplate="content" let-event>
-            <span class="text-base text-white w-full text-overflow-ellipsis">{{ event.status }}</span>
-          </ng-template>
-        </p-timeline>
-      </div>
-      <div class="col-4 mt-4 flex justify-content-center align-items-center flex-wrap">
-        <dfn-identity-zkp-generate-keys></dfn-identity-zkp-generate-keys>
-      </div>
-      <div class="col-4 mt-4 flex justify-content-center align-items-center flex-wrap">
-        <dfn-identity-zkp-generate-contract></dfn-identity-zkp-generate-contract>
-      </div>
-      <div class="col-4 mt-4 flex justify-content-center align-items-center flex-wrap">
-        <dfn-identity-zkp-generate-proof></dfn-identity-zkp-generate-proof>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<shared-lib-loading-overlay [isLoading]="isLoading"></shared-lib-loading-overlay>-->
+<!--<div class="flex justify-content-center align-items-center flex-wrap h-full pb-8 overflow-y-auto">-->
+<!--  <div class="z-4 w-9">-->
+<!--    <div class="grid pt-8">-->
+<!--      <div class="col-12 flex justify-content-center align-items-center">-->
+<!--        <div class="text-lg text-bluegray-600 font-semibold mt-4">-->
+<!--          Follow the steps to generate your Keys, your Proof of Identity and check the Solidity Contract-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-12">-->
+<!--        <p-timeline [value]="timelineEvents" layout="horizontal" class="m-2">-->
+<!--          <ng-template pTemplate="content" let-event>-->
+<!--            <span class="text-base text-white w-full text-overflow-ellipsis">{{ event.status }}</span>-->
+<!--          </ng-template>-->
+<!--        </p-timeline>-->
+<!--      </div>-->
+<!--      <div class="col-4 mt-4 flex justify-content-center align-items-center flex-wrap">-->
+<!--        <dfn-identity-zkp-generate-keys></dfn-identity-zkp-generate-keys>-->
+<!--      </div>-->
+<!--      <div class="col-4 mt-4 flex justify-content-center align-items-center flex-wrap">-->
+<!--        <dfn-identity-zkp-generate-contract></dfn-identity-zkp-generate-contract>-->
+<!--      </div>-->
+<!--      <div class="col-4 mt-4 flex justify-content-center align-items-center flex-wrap">-->
+<!--        <dfn-identity-zkp-generate-proof></dfn-identity-zkp-generate-proof>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

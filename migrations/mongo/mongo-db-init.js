@@ -1,6 +1,6 @@
 db.createUser({
-  user: 'fabulauser',
-  pwd: 'fabulapass',
-  roles: [{ role: 'readWrite', db: 'fabuladb' }],
+  user: 'identityuser',
+  pwd: 'identitypass',
+  roles: [{ role: 'readWrite', db: 'identitydb' }],
   mechanisms: ['SCRAM-SHA-1'],
 });

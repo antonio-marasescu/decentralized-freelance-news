@@ -30,6 +30,11 @@ export class EthereumAdapterService {
     return this.web3ProviderService.getSigner();
   }
 
+  async requestSignerAccount(): Promise<string> {
+    const signer = await this.web3ProviderService.getSigner();
+    return signer.getAddress();
+  }
+
   private get provider(): any {
     return this.web3ProviderService.provider;
   }

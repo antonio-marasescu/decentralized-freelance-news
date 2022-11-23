@@ -197,6 +197,15 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/cdk@^13.3.7":
+  version "13.3.7"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-13.3.7.tgz#4eb39366b6947a334828ea62da874787931d27f0"
+  integrity sha512-HtGqlrt4+ikbpzooF0LT/uMW6fgRJxLRUoOwkTY1oHhfNXhQaE2p8XEUH2qshl28aCIF8r8zrb6jpd4VqC+tyg==
+  dependencies:
+    tslib "^2.3.0"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@~13.3.0":
   version "13.3.3"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-13.3.3.tgz#dd789bfbb92dd713301f064dfcaf6353623d1a84"
@@ -270,6 +279,13 @@
   version "13.3.3"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-13.3.3.tgz#195aaa3fe2f371427b7f0427e8799f55ab731139"
   integrity sha512-oIiUfdVN2KFwo/Lup5+03iUMXnomUFctjWRU+z3LRKDe5iYskWq6pfbVGAJnKkPxSCvhWQofqV4DP7ktXdq0eQ==
+
+"@angular/material@^13.3.7":
+  version "13.3.7"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-13.3.7.tgz#7df10649b58eb9f6fdf8e3235eee633f617aa545"
+  integrity sha512-CXdLvohaxl3Nii6I70pEJX2FZRRkBPNiocUNP39hFHXf2PW/eNYCN8TS5DG2uOAaR2wyPwrXrU95mDjgvlqXqQ==
+  dependencies:
+    tslib "^2.3.0"
 
 "@angular/platform-browser-dynamic@~13.3.0":
   version "13.3.3"
@@ -4042,6 +4058,11 @@ boolbase@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+
+bootstrap@5:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.1.3.tgz#ba081b0c130f810fa70900acbc1c6d3c28fa8f34"
+  integrity sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -9617,6 +9638,11 @@ parse5@6.0.1, parse5@^6.0.1:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
 
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
+
 parseurl@~1.3.2, parseurl@~1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
@@ -10088,23 +10114,6 @@ pretty-format@^27.0.0, pretty-format@^27.2.2, pretty-format@^27.5.1:
     ansi-regex "^5.0.1"
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
-
-primeflex@^3.1.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/primeflex/-/primeflex-3.1.3.tgz#4872451532a3a1cabc09b332d9cd6705502a2811"
-  integrity sha512-muJlyDPVEJNSoeOGLVx+dFbSzCnPRUcuKv8iAbGVhP47sIjstfgNdlhrZqUvJNaaSJSNxBBbITyOltI1sBqUqQ==
-
-primeicons@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-5.0.0.tgz#73a0b6028a77c58a9eeb331ad13aaf085e8451ee"
-  integrity sha512-heygWF0X5HFI1otlZE62pp6ye7sZ8om78J9au2BRkg8O7Y8AHTZ9qKMRzchZUHLe8zUAvdi6hZzzm9XxgwIExw==
-
-primeng@^13.3.3:
-  version "13.3.3"
-  resolved "https://registry.yarnpkg.com/primeng/-/primeng-13.3.3.tgz#7fa2f650c5be4c37922a41bd6094d0fe7a5c9a6e"
-  integrity sha512-vuC4Ukv66fAH6iZp1WrBZtiogFBxH+sFRL6WcuL4NxYoxG4OoiU4yRXz2hawl/yBWqMsVDs9AvO7GwUTsKr9Hw==
-  dependencies:
-    tslib "^2.3.0"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

@@ -1,0 +1,21 @@
+@use './apps/identity-ui-app/src/assets/styles/variables' as vars;
+
+.content-spacer {
+  flex: 1 1 auto;
+}
+.account-container {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  color: vars.$text-color;
+
+  .username-container {
+    padding-right: 12px;
+    transition: all 0.2s ease-in-out;
+  }
+  :hover {
+    opacity: 0.9;
+  }
+}

@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+@use './libs/shared-lib/src/lib/components/menu-container-wrapper/main' as menu-container;
+@use 'theme-utilities' as theme-utils;
+@use 'variables' as vars;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$blue-grey-palette, 900);
+$my-accent: mat.define-palette(mat.$deep-purple-palette, 700, 600, 500);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$my-warn: mat.define-palette(mat.$red-palette);
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+  )
+);
+$modified-theme: theme-utils.modify-background($my-theme, vars.$background-color);
+@include mat.all-component-themes($modified-theme);
+@include menu-container.menu-container-wrapper($modified-theme);
