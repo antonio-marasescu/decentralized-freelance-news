@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'dfn-identity-zkp-landing-page-view',
+  selector: 'dfn-identity-zkp-main-page-view',
   templateUrl: `zkp-landing-page-view.component.html`,
   styleUrls: ['zkp-landing-page-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

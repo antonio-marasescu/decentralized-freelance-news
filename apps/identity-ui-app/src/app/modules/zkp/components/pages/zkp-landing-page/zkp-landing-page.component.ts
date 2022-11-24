@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ZkpService } from '../../../../../core/services/zkp.service';
 
 @Component({
-  selector: 'dfn-identity-zkp-landing-page',
+  selector: 'dfn-identity-zkp-main-page',
   template: `<dfn-identity-zkp-landing-page-view
     [timelineEvents]="timelineEvents"
     [isLoading]="isLoading$ | async"

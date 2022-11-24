@@ -96,7 +96,7 @@ export class AppEffects {
         ofType(LoginSuccess),
         tap(async (action: { access_token: string }) => {
           localStorage.setItem('authorization', action.access_token);
-          await this.router.navigateByUrl(`${AppRoutesConfig.LandingPage}`);
+          await this.router.navigateByUrl(`${AppRoutesConfig.MainPage}`);
         })
       ),
     { dispatch: false }

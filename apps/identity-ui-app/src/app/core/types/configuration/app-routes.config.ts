@@ -1,7 +1,7 @@
 export enum AppRoutesConfig {
   LoginPage = 'login',
   RegisterPage = 'register',
-  LandingPage = 'main',
+  MainPage = 'main',
   CreateKeysSubPage = 'keys',
   GenerateProofSubPage = 'proof',
 }

@@ -5,14 +5,17 @@ import { ZkpService } from '../../../services/zkp.service';
 import { firstValueFrom } from 'rxjs';
 import { FileUtils } from '@decentralized-freelance-news/shared-lib';
 import { Router } from '@angular/router';
+import { AppRoutesConfig } from '../../../types/configuration/app-routes.config';
 
 @Component({
-  selector: 'dfn-identity-landing-page',
-  template: `<dfn-identity-landing-page-view
+  selector: 'dfn-identity-main-page',
+  template: `<dfn-identity-main-page-view
     (previewContract)="onPreviewContract()"
-  ></dfn-identity-landing-page-view>`,
+    (generateProof)="onGenerateProof()"
+    (createKeys)="onCreateKeys()"
+  ></dfn-identity-main-page-view>`,
 })
-export class LandingPageComponent implements OnInit {
+export class MainPageComponent implements OnInit {
   constructor(private store: Store, private zkpService: ZkpService, private router: Router) {}
 
   ngOnInit(): void {
@@ -23,5 +26,13 @@ export class LandingPageComponent implements OnInit {
     const contract = await firstValueFrom(this.zkpService.generateContract());
     const fileContract = FileUtils.makeFileFromString(contract, '.sol');
     FileUtils.downloadFile(fileContract, 'verifier.sol');
+  }
+
+  async onCreateKeys(): Promise<void> {
+    await this.router.navigate([AppRoutesConfig.MainPage, AppRoutesConfig.CreateKeysSubPage]);
+  }
+
+  async onGenerateProof(): Promise<void> {
+    await this.router.navigate([AppRoutesConfig.MainPage, AppRoutesConfig.GenerateProofSubPage]);
   }
 }

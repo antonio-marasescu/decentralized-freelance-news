@@ -4,8 +4,10 @@ import { selectIsInitialized } from '../../../store/app.reducers';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'dfn-main-landing-page',
-  template: `<dfn-main-news-list-container *ngIf="isInitialized$ | async"></dfn-main-news-list-container>`,
+  selector: 'dfn-main-main-page',
+  template: `<dfn-main-news-list-container
+    *ngIf="isInitialized$ | async"
+  ></dfn-main-news-list-container>`,
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

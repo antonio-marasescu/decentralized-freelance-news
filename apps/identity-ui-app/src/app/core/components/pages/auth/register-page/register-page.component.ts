@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppRoutesConfig } from '../../../types/configuration/app-routes.config';
+import { AppRoutesConfig } from '../../../../types/configuration/app-routes.config';
 import { Store } from '@ngrx/store';
-import { Register } from '../../../store/app.actions';
+import { Register } from '../../../../store/app.actions';
 
 @Component({
   selector: 'dfn-identity-register-page',

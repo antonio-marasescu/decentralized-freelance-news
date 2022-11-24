@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'dfn-identity-landing-page-view',
-  templateUrl: 'landing-page-view.component.html',
-  styleUrls: ['landing-page-view.component.scss'],
+  selector: 'dfn-identity-main-page-view',
+  templateUrl: 'main-page-view.component.html',
+  styleUrls: ['main-page-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPageViewComponent {
+export class MainPageViewComponent {
   @Output() previewContract = new EventEmitter<void>();
   @Output() createKeys = new EventEmitter<void>();
   @Output() generateProof = new EventEmitter<void>();

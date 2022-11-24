@@ -4,11 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedLibModule } from '@decentralized-freelance-news/shared-lib';
-import { LoginPageComponent } from './core/components/pages/login-page/login-page.component';
-import { LoginFormViewComponent } from './core/components/presentational/login-form-view/login-form-view.component';
+import { LoginPageComponent } from './core/components/pages/auth/login-page/login-page.component';
+import { LoginFormViewComponent } from './core/components/presentational/auth/login-form-view/login-form-view.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegisterFormViewComponent } from './core/components/presentational/register-form-view/register-form-view.component';
-import { RegisterPageComponent } from './core/components/pages/register-page/register-page.component';
+import { RegisterFormViewComponent } from './core/components/presentational/auth/register-form-view/register-form-view.component';
+import { RegisterPageComponent } from './core/components/pages/auth/register-page/register-page.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/utils/interceptors/auth-interceptor';
 import { StoreModule } from '@ngrx/store';
@@ -18,8 +18,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { NavigationViewComponent } from './core/components/presentational/navigation-view/navigation-view.component';
 import { NavigationComponent } from './core/components/containers/navigation/navigation.component';
-import { LandingPageComponent } from './core/components/pages/landing-page/landing-page.component';
-import { LandingPageViewComponent } from './core/components/presentational/landing-page-view/landing-page-view.component';
+import { MainPageComponent } from './core/components/pages/main-page/main-page.component';
+import { MainPageViewComponent } from './core/components/presentational/main-page-view/main-page-view.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +30,8 @@ import { LandingPageViewComponent } from './core/components/presentational/landi
     RegisterFormViewComponent,
     NavigationViewComponent,
     NavigationComponent,
-    LandingPageComponent,
-    LandingPageViewComponent,
+    MainPageComponent,
+    MainPageViewComponent,
   ],
   imports: [
     BrowserModule,
