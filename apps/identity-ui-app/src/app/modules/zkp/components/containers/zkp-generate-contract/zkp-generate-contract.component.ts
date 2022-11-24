@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ZkpService } from '../../../services/zkp.service';
+import { ZkpService } from '../../../../../core/services/zkp.service';
 import { firstValueFrom } from 'rxjs';
 import { FileUtils } from '@decentralized-freelance-news/shared-lib';
 

@@ -1,3 +1,5 @@
+@use 'variables' as vars;
+
 .scale-up {
   transition: all 0.2s ease-in-out;
 }
@@ -7,4 +9,8 @@
 
 .pointer-cursor {
   cursor: pointer;
+}
+
+.primary-text-color {
+  color: vars.$primary-color;
 }

@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterFormViewComponent } from './core/components/presentational/register-form-view/register-form-view.component';
 import { RegisterPageComponent } from './core/components/pages/register-page/register-page.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './core/interceptors/auth-interceptor';
+import { AuthInterceptor } from './core/utils/interceptors/auth-interceptor';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RootEffects, RootReducers } from './core/store/app.state';
@@ -18,6 +18,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { NavigationViewComponent } from './core/components/presentational/navigation-view/navigation-view.component';
 import { NavigationComponent } from './core/components/containers/navigation/navigation.component';
+import { LandingPageComponent } from './core/components/pages/landing-page/landing-page.component';
+import { LandingPageViewComponent } from './core/components/presentational/landing-page-view/landing-page-view.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { NavigationComponent } from './core/components/containers/navigation/nav
     RegisterFormViewComponent,
     NavigationViewComponent,
     NavigationComponent,
+    LandingPageComponent,
+    LandingPageViewComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GetCurrentUser } from '../../../../shared/store/app.actions';
+import { GetCurrentUser } from '../../../../../core/store/app.actions';
 import { Observable } from 'rxjs';
-import { ZkpService } from '../../../services/zkp.service';
+import { ZkpService } from '../../../../../core/services/zkp.service';
 
 @Component({
   selector: 'dfn-identity-zkp-landing-page',

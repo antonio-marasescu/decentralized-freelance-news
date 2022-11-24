@@ -11,7 +11,7 @@ import {
   Logout,
   Register,
   RegisterSuccess,
-} from '../../modules/shared/store/app.actions';
+} from './app.actions';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { of } from 'rxjs';
@@ -19,7 +19,7 @@ import {
   IIdentityUserLoginDto,
   IIdentityUserRegisterDto,
 } from '@decentralized-freelance-news/api-shared-lib';
-import { AppRoutesConfig } from '../../modules/shared/configuration/app-routes.config';
+import { AppRoutesConfig } from '../types/configuration/app-routes.config';
 import jwtDecode from 'jwt-decode';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -57,7 +57,7 @@ export class AppEffects {
       mergeMap((action: { payload: IIdentityUserLoginDto }) =>
         this.authService.login(action.payload).pipe(
           map((payload) => LoginSuccess(payload)),
-          catchError((err) =>
+          catchError(() =>
             of(ActionFailure({ reason: 'Invalid credentials', origin: AppActions.LOGIN }))
           )
         )
@@ -71,7 +71,7 @@ export class AppEffects {
       mergeMap((action: { payload: IIdentityUserRegisterDto }) =>
         this.authService.register(action.payload).pipe(
           map((user) => RegisterSuccess({ user })),
-          catchError((err) =>
+          catchError(() =>
             of(ActionFailure({ reason: 'Invalid credentials', origin: AppActions.REGISTER }))
           )
         )
@@ -96,7 +96,7 @@ export class AppEffects {
         ofType(LoginSuccess),
         tap(async (action: { access_token: string }) => {
           localStorage.setItem('authorization', action.access_token);
-          await this.router.navigateByUrl(`${AppRoutesConfig.ZkpModule}`);
+          await this.router.navigateByUrl(`${AppRoutesConfig.LandingPage}`);
         })
       ),
     { dispatch: false }

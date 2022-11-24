@@ -1,15 +1,27 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AppRoutesConfig } from './modules/shared/configuration/app-routes.config';
+import { AppRoutesConfig } from './core/types/configuration/app-routes.config';
 import { LoginPageComponent } from './core/components/pages/login-page/login-page.component';
 import { RegisterPageComponent } from './core/components/pages/register-page/register-page.component';
-import { AuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from './core/utils/guards/auth.guard';
+import { LandingPageComponent } from './core/components/pages/landing-page/landing-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: AppRoutesConfig.ZkpModule, pathMatch: 'full' },
+  { path: '', redirectTo: AppRoutesConfig.LandingPage, pathMatch: 'full' },
   {
-    path: AppRoutesConfig.ZkpModule,
-    loadChildren: () => import('./modules/zkp/zkp.module').then((m) => m.ZkpModule),
+    path: AppRoutesConfig.LandingPage,
+    component: LandingPageComponent,
+    children: [
+      { path: '', redirectTo: AppRoutesConfig.CreateKeysSubPage, pathMatch: 'full' },
+      {
+        path: AppRoutesConfig.CreateKeysSubPage,
+        component: LoginPageComponent,
+      },
+      {
+        path: AppRoutesConfig.GenerateProofSubPage,
+        component: LoginPageComponent,
+      },
+    ],
     canActivate: [AuthGuard],
   },
   {

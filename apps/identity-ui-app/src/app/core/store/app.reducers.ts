@@ -2,8 +2,6 @@ import { createReducer, createSelector, on } from '@ngrx/store';
 import { IIdentityUserDto } from '@decentralized-freelance-news/api-shared-lib';
 import {
   ActionFailure,
-  GetAllUsers,
-  GetAllUsersSuccess,
   GetCurrentUser,
   GetCurrentUserSuccess,
   Login,
@@ -11,7 +9,7 @@ import {
   Logout,
   Register,
   RegisterSuccess,
-} from '../../modules/shared/store/app.actions';
+} from './app.actions';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 export interface AppState extends EntityState<IIdentityUserDto> {
@@ -31,11 +29,6 @@ export const initialAppState: AppState = adapter.getInitialState({
 
 export const appReducer = createReducer(
   initialAppState,
-
-  on(GetAllUsers, (state) => ({ ...state, loading: true })),
-  on(GetAllUsersSuccess, (state, { users }) => {
-    return adapter.upsertMany(users, { ...state, loading: false });
-  }),
   on(GetCurrentUser, (state) => ({ ...state, loading: true })),
   on(GetCurrentUserSuccess, (state, { user }) => {
     return adapter.setOne(user, { ...state, loading: false, selectedUserId: user.id });
@@ -53,9 +46,11 @@ export const appReducer = createReducer(
 
 export const selectFeature = () => (state: { appState: AppState }) => state.appState;
 
-export const selectUsers = () => createSelector(selectFeature(), (state: AppState) => Object.values(state.entities));
+export const selectUsers = () =>
+  createSelector(selectFeature(), (state: AppState) => Object.values(state.entities));
 export const selectCurrentUser = () =>
   createSelector(selectFeature(), (state: AppState) =>
     state.selectedUserId ? state.entities[state.selectedUserId] : null
   );
-export const selectIsLoading = () => createSelector(selectFeature(), (state: AppState) => state.loading);
+export const selectIsLoading = () =>
+  createSelector(selectFeature(), (state: AppState) => state.loading);

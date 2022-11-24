@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ZkpService } from '../../../services/zkp.service';
+import { ZkpService } from '../../../../../core/services/zkp.service';
 import { firstValueFrom } from 'rxjs';
 import { FileUtils } from '@decentralized-freelance-news/shared-lib';
 
@@ -31,7 +31,10 @@ export class ZkpGenerateKeysComponent implements OnInit {
 
   async onGenerateKeys(): Promise<void> {
     const keys = await firstValueFrom(this.zkpService.generateKeys());
-    this.form.patchValue({ privateKey: JSON.stringify(keys.privateKey), publicKey: JSON.stringify(keys.publicKey) });
+    this.form.patchValue({
+      privateKey: JSON.stringify(keys.privateKey),
+      publicKey: JSON.stringify(keys.publicKey),
+    });
     this.isDownloadable = true;
     this.changeDetectorRef.detectChanges();
   }

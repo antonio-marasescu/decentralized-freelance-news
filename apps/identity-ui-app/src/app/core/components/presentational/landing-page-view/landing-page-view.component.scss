@@ -1,0 +1,23 @@
+@use './apps/identity-ui-app/src/assets/styles/variables' as vars;
+
+.landing-page-container {
+  height: 100%;
+
+  .drawer-container {
+    box-shadow: 4px 10px 5px #aaaaaa;
+    width: 180px;
+    height: 100%;
+  }
+  .drawer-button-item {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: center;
+    height: 82px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

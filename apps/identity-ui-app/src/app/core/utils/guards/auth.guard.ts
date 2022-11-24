@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { isNil } from 'lodash-es';
-import { AppRoutesConfig } from '../../modules/shared/configuration/app-routes.config';
+import { AppRoutesConfig } from '../../types/configuration/app-routes.config';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {

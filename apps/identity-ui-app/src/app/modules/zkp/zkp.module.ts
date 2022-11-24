@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ZkpLandingPageComponent } from './components/pages/zkp-landing-page/zkp-landing-page.component';
 import { ZkpLandingPageViewComponent } from './components/presentational/zkp-landing-page-view/zkp-landing-page-view.component';
-import { ZkpRoutingModule } from './zkp-routing.module';
 import { ZkpGenerateKeysComponent } from './components/containers/zkp-generate-keys/zkp-generate-keys.component';
 import { ZkpGenerateKeysViewComponent } from './components/presentational/zkp-generate-keys-view/zkp-generate-keys-view.component';
 import { SharedLibModule } from '@decentralized-freelance-news/shared-lib';
@@ -19,7 +18,7 @@ import { ZkpGenerateContractComponent } from './components/containers/zkp-genera
     ZkpGenerateProofComponent,
     ZkpGenerateContractComponent,
   ],
-  imports: [ZkpRoutingModule, SharedLibModule],
+  imports: [SharedLibModule],
   providers: [],
 })
 export class ZkpModule {}

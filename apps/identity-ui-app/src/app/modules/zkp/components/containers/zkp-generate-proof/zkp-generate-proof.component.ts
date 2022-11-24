@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ZkpService } from '../../../services/zkp.service';
+import { ZkpService } from '../../../../../core/services/zkp.service';
 import { IZkpCreateDto } from '@decentralized-freelance-news/api-shared-lib';
 import { firstValueFrom } from 'rxjs';
 import { FileUtils } from '@decentralized-freelance-news/shared-lib';

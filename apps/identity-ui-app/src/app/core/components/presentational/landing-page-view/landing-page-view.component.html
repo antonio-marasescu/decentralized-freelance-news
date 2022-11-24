@@ -1,0 +1,30 @@
+<mat-drawer-container class="landing-page-container">
+  <mat-drawer mode="side" class="drawer-container" opened>
+    <div class="pt-2">
+      <button mat-button color="primary" class="w-100" (click)="createKeys.emit()">
+        <div class="drawer-button-item">
+          <mat-icon>lock</mat-icon>
+          <div>Create Keys</div>
+        </div>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-button color="primary" class="w-100" (click)="generateProof.emit()">
+        <div class="drawer-button-item">
+          <mat-icon>api</mat-icon>
+          <div>Generate Proof</div>
+        </div>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-button color="primary" class="w-100" (click)="previewContract.emit()">
+        <div class="drawer-button-item">
+          <mat-icon>preview</mat-icon>
+          <div>Preview Contract</div>
+        </div>
+      </button>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

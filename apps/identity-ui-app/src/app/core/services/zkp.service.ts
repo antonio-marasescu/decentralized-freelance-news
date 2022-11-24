@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, finalize, Observable } from 'rxjs';
-import { API_URL, httpOptionsJson, httpOptionsText } from '../../shared/configuration/http.config';
-import { IZkpCreateDto, IZkpKeysDto, IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
+import { API_URL, httpOptionsJson, httpOptionsText } from '../types/configuration/http.config';
+import {
+  IZkpCreateDto,
+  IZkpKeysDto,
+  IZkpProofDto,
+} from '@decentralized-freelance-news/api-shared-lib';
 
 @Injectable({ providedIn: 'root' })
 export class ZkpService {
