@@ -1,5 +1,9 @@
 @use './apps/identity-ui-app/src/assets/styles/variables' as vars;
 
+.navigation-container {
+  box-shadow: 0 3px 10px vars.$primary-color;
+}
+
 .content-spacer {
   flex: 1 1 auto;
 }

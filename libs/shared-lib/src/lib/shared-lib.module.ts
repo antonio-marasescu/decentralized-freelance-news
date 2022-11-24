@@ -18,9 +18,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MenuContainerWrapperComponent } from './components/menu-container-wrapper/menu-container-wrapper.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MenuContainerWrapperViewComponent } from './components/menu-container-wrapper/menu-container-wrapper-view/menu-container-wrapper-view.component';
+import { FormValidationMessageComponent } from './components/form-validation-message/form-validation-message.component';
 
 @NgModule({
-  declarations: [LoadingOverlayComponent, MenuContainerWrapperViewComponent, MenuContainerWrapperComponent],
+  declarations: [
+    LoadingOverlayComponent,
+    MenuContainerWrapperViewComponent,
+    MenuContainerWrapperComponent,
+    FormValidationMessageComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -59,6 +65,7 @@ import { MenuContainerWrapperViewComponent } from './components/menu-container-w
     MatButtonToggleModule,
     MenuContainerWrapperComponent,
     MenuContainerWrapperViewComponent,
+    FormValidationMessageComponent,
   ],
 })
 export class SharedLibModule {
