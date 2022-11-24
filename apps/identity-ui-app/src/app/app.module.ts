@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedLibModule } from '@decentralized-freelance-news/shared-lib';
@@ -17,9 +16,11 @@ import { RootEffects, RootReducers } from './core/store/app.state';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { NavigationViewComponent } from './core/components/presentational/navigation-view/navigation-view.component';
-import { NavigationComponent } from './core/components/containers/navigation/navigation.component';
+import { NavigationComponent } from './core/components/containers/navigation.component';
 import { MainPageComponent } from './core/components/pages/main-page/main-page.component';
 import { MainPageViewComponent } from './core/components/presentational/main-page-view/main-page-view.component';
+import { CreateKeysViewComponent } from './core/components/presentational/create-keys-view/create-keys-view.component';
+import { CreateKeysComponent } from './core/components/containers/create-keys.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,8 @@ import { MainPageViewComponent } from './core/components/presentational/main-pag
     NavigationComponent,
     MainPageComponent,
     MainPageViewComponent,
+    CreateKeysViewComponent,
+    CreateKeysComponent,
   ],
   imports: [
     BrowserModule,

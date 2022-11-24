@@ -1,4 +1,7 @@
 <div class="app-background">
+  <ng-container *ngIf="isLoading$">
+    <shared-lib-loading-overlay [isLoading]="isLoading$ | async"></shared-lib-loading-overlay>
+  </ng-container>
   <dfn-identity-navigation></dfn-identity-navigation>
   <router-outlet></router-outlet>
 </div>

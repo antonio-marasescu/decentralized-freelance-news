@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectCurrentUser } from '../../../store/app.reducers';
+import { selectCurrentUser } from '../../store/app.reducers';
 import { Observable } from 'rxjs';
 import { IIdentityUserDto } from '@decentralized-freelance-news/api-shared-lib';
-import { Logout } from '../../../store/app.actions';
+import { Logout } from '../../store/app.actions';
 
 @Component({
   selector: 'dfn-identity-navigation',

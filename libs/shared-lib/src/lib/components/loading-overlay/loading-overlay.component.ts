@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'shared-lib-loading-overlay',
-  template: `<div class="loading-overlay-container">
+  template: `<div class="loading-overlay-container" *ngIf="isLoading">
     <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </div>`,
   styles: [

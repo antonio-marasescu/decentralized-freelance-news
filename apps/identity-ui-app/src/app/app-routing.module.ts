@@ -5,6 +5,7 @@ import { LoginPageComponent } from './core/components/pages/auth/login-page/logi
 import { RegisterPageComponent } from './core/components/pages/auth/register-page/register-page.component';
 import { AuthGuard } from './core/utils/guards/auth.guard';
 import { MainPageComponent } from './core/components/pages/main-page/main-page.component';
+import { CreateKeysComponent } from './core/components/containers/create-keys.component';
 
 const routes: Routes = [
   { path: '', redirectTo: AppRoutesConfig.MainPage, pathMatch: 'full' },
@@ -15,7 +16,7 @@ const routes: Routes = [
       { path: '', redirectTo: AppRoutesConfig.CreateKeysSubPage, pathMatch: 'full' },
       {
         path: AppRoutesConfig.CreateKeysSubPage,
-        component: LoginPageComponent,
+        component: CreateKeysComponent,
       },
       {
         path: AppRoutesConfig.GenerateProofSubPage,

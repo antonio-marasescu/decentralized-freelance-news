@@ -40,7 +40,6 @@ export const appReducer = createReducer(
   on(Logout, () => {
     return adapter.getInitialState({ selectedUserId: null, loading: false, error: null });
   }),
-
   on(ActionFailure, (state, { reason }) => ({ ...state, error: reason, loading: false }))
 );
 

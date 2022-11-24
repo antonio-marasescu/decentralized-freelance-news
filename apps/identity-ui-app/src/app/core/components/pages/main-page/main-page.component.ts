@@ -9,11 +9,13 @@ import { AppRoutesConfig } from '../../../types/configuration/app-routes.config'
 
 @Component({
   selector: 'dfn-identity-main-page',
-  template: `<dfn-identity-main-page-view
-    (previewContract)="onPreviewContract()"
-    (generateProof)="onGenerateProof()"
-    (createKeys)="onCreateKeys()"
-  ></dfn-identity-main-page-view>`,
+  template: `
+    <dfn-identity-main-page-view
+      (previewContract)="onPreviewContract()"
+      (generateProof)="onGenerateProof()"
+      (createKeys)="onCreateKeys()"
+    ></dfn-identity-main-page-view>
+  `,
 })
 export class MainPageComponent implements OnInit {
   constructor(private store: Store, private zkpService: ZkpService, private router: Router) {}
