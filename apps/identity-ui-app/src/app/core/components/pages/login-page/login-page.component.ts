@@ -4,7 +4,6 @@ import { AppRoutesConfig } from '../../../../modules/shared/configuration/app-ro
 import { Router } from '@angular/router';
 import { Login } from '../../../../modules/shared/store/app.actions';
 import { Store } from '@ngrx/store';
-import { MenuContainerWrapperItem, MenuContainerWrapperType } from '@decentralized-freelance-news/shared-lib';
 
 @Component({
   selector: 'dfn-identity-login-page',
@@ -21,9 +20,7 @@ import { MenuContainerWrapperItem, MenuContainerWrapperType } from '@decentraliz
 })
 export class LoginPageComponent implements OnInit {
   form: FormGroup | null = null;
-  items: Array<MenuContainerWrapperItem> = [
-    { id: '1', description: 'Sign Up', type: MenuContainerWrapperType.Raised, color: 'primary', zIndex: 0 },
-  ];
+
   constructor(private router: Router, private store: Store) {}
 
   ngOnInit(): void {

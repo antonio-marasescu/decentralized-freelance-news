@@ -2,16 +2,23 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'shared-lib-loading-overlay',
-  template: `<div
-    class="w-screen h-screen flex flex-column justify-content-center align-items-center"
-    *ngIf="isLoading"
-  >
-    <div class="flex">
-      <mat-progress-spinner color="primary"> </mat-progress-spinner>
-    </div>
-    <div class="flex pt-2 text-lg text-primary">Data is loading...</div>
+  template: `<div class="loading-overlay-container">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </div>`,
-  styleUrls: ['loading-overlay.component.scss'],
+  styles: [
+    `
+      .loading-overlay-container {
+        position: sticky;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingOverlayComponent {

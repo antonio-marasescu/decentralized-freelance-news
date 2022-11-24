@@ -1,5 +1,4 @@
 @use '@angular/material' as mat;
-@use './libs/shared-lib/src/lib/components/menu-container-wrapper/main' as menu-container;
 @use 'theme-utilities' as theme-utils;
 @use 'variables' as vars;
 
@@ -21,4 +20,3 @@ $my-theme: mat.define-light-theme(
 );
 $modified-theme: theme-utils.modify-background($my-theme, vars.$background-color);
 @include mat.all-component-themes($modified-theme);
-@include menu-container.menu-container-wrapper($modified-theme);

@@ -15,13 +15,22 @@ import {
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { of } from 'rxjs';
-import { IIdentityUserLoginDto, IIdentityUserRegisterDto } from '@decentralized-freelance-news/api-shared-lib';
+import {
+  IIdentityUserLoginDto,
+  IIdentityUserRegisterDto,
+} from '@decentralized-freelance-news/api-shared-lib';
 import { AppRoutesConfig } from '../../modules/shared/configuration/app-routes.config';
 import jwtDecode from 'jwt-decode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class AppEffects {
-  constructor(private actions$: Actions, private router: Router, private authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private router: Router,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
+  ) {}
 
   getCurrentUser = createEffect(() =>
     this.actions$.pipe(
@@ -34,7 +43,9 @@ export class AppEffects {
       mergeMap((username) =>
         this.authService.getUserByUsername(username).pipe(
           map((user) => GetCurrentUserSuccess({ user })),
-          catchError((err) => of(ActionFailure({ reason: JSON.stringify(err), origin: AppActions.GET_CURRENT_USER })))
+          catchError((err) =>
+            of(ActionFailure({ reason: JSON.stringify(err), origin: AppActions.GET_CURRENT_USER }))
+          )
         )
       )
     )
@@ -46,7 +57,9 @@ export class AppEffects {
       mergeMap((action: { payload: IIdentityUserLoginDto }) =>
         this.authService.login(action.payload).pipe(
           map((payload) => LoginSuccess(payload)),
-          catchError((err) => of(ActionFailure({ reason: JSON.stringify(err), origin: AppActions.LOGIN })))
+          catchError((err) =>
+            of(ActionFailure({ reason: 'Invalid credentials', origin: AppActions.LOGIN }))
+          )
         )
       )
     )
@@ -58,7 +71,9 @@ export class AppEffects {
       mergeMap((action: { payload: IIdentityUserRegisterDto }) =>
         this.authService.register(action.payload).pipe(
           map((user) => RegisterSuccess({ user })),
-          catchError((err) => of(ActionFailure({ reason: JSON.stringify(err), origin: AppActions.REGISTER })))
+          catchError((err) =>
+            of(ActionFailure({ reason: 'Invalid credentials', origin: AppActions.REGISTER }))
+          )
         )
       )
     )
@@ -98,6 +113,17 @@ export class AppEffects {
             })
           )
         )
+      ),
+    { dispatch: false }
+  );
+
+  actionFailure$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ActionFailure),
+        tap(({ reason }) => {
+          this.snackBar.open(reason, 'Ok', { duration: 5000 });
+        })
       ),
     { dispatch: false }
   );

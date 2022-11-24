@@ -15,18 +15,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MenuContainerWrapperComponent } from './components/menu-container-wrapper/menu-container-wrapper.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MenuContainerWrapperViewComponent } from './components/menu-container-wrapper/menu-container-wrapper-view/menu-container-wrapper-view.component';
 import { FormValidationMessageComponent } from './components/form-validation-message/form-validation-message.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    LoadingOverlayComponent,
-    MenuContainerWrapperViewComponent,
-    MenuContainerWrapperComponent,
-    FormValidationMessageComponent,
-  ],
+  declarations: [LoadingOverlayComponent, FormValidationMessageComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -44,6 +38,7 @@ import { FormValidationMessageComponent } from './components/form-validation-mes
     MatSidenavModule,
     MatSelectModule,
     MatButtonToggleModule,
+    MatSnackBarModule,
   ],
   exports: [
     CommonModule,
@@ -61,10 +56,9 @@ import { FormValidationMessageComponent } from './components/form-validation-mes
     MatToolbarModule,
     MatSelectModule,
     MatSidenavModule,
-    LoadingOverlayComponent,
     MatButtonToggleModule,
-    MenuContainerWrapperComponent,
-    MenuContainerWrapperViewComponent,
+    MatSnackBarModule,
+    LoadingOverlayComponent,
     FormValidationMessageComponent,
   ],
 })
