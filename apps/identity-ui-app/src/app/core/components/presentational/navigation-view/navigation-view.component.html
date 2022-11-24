@@ -2,6 +2,12 @@
   <span class="content-spacer"></span>
   <div *ngIf="currentUser" class="account-container">
     <span class="username-container">{{ currentUser.username }}</span>
-    <mat-icon>person</mat-icon>
+    <mat-icon [matMenuTriggerFor]="menu">person</mat-icon>
   </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout.emit()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
 </mat-toolbar>

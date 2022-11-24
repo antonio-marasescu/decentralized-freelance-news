@@ -18,6 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormValidationMessageComponent } from './components/form-validation-message/form-validation-message.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [LoadingOverlayComponent, FormValidationMessageComponent],
@@ -39,6 +40,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatButtonToggleModule,
     MatSnackBarModule,
+    MatMenuModule,
   ],
   exports: [
     CommonModule,
@@ -58,6 +60,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSidenavModule,
     MatButtonToggleModule,
     MatSnackBarModule,
+    MatMenuModule,
     LoadingOverlayComponent,
     FormValidationMessageComponent,
   ],
