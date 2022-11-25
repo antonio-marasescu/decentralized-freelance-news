@@ -11,9 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { RootEffects, RootReducers } from './core/store/app.state';
+import { NavigationViewComponent } from './core/components/presentational/navigation-view/navigation-view.component';
+import { NavigationContainerComponent } from './core/components/containers/navigation-container.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavigationViewComponent, NavigationContainerComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

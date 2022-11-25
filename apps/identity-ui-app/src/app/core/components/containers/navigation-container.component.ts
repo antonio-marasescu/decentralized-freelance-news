@@ -6,7 +6,7 @@ import { IIdentityUserDto } from '@decentralized-freelance-news/api-shared-lib';
 import { Logout } from '../../store/app.actions';
 
 @Component({
-  selector: 'dfn-identity-navigation',
+  selector: 'dfn-identity-navigation-container',
   template: `<dfn-identity-navigation-view
     [currentUser]="currentUser$ | async"
     (logout)="onLogout()"
@@ -14,7 +14,7 @@ import { Logout } from '../../store/app.actions';
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavigationComponent implements OnInit {
+export class NavigationContainerComponent implements OnInit {
   currentUser$: Observable<IIdentityUserDto>;
 
   constructor(private store: Store) {}
