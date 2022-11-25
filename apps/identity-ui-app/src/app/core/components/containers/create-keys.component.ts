@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { ZkpService } from '../../services/zkp.service';
 import { FileUtils } from '@decentralized-freelance-news/shared-lib';
+import { ProofKeys } from '../../types/zkp-form.types';
 
 @Component({
   selector: 'dfn-identity-create-keys',
@@ -34,8 +35,8 @@ export class CreateKeysComponent implements OnInit {
     if (!this.isDownloadEnabled) {
       return;
     }
-    const contract = this.form.value;
-    const fileKeys = FileUtils.makeJsonFileFromObject(contract);
+    const proofKeys: ProofKeys = this.form.value;
+    const fileKeys = FileUtils.makeJsonFileFromObject(proofKeys);
     FileUtils.downloadFile(fileKeys, 'verifier-keys.json');
   }
 
@@ -44,7 +45,7 @@ export class CreateKeysComponent implements OnInit {
     this.form.patchValue({
       privateKey: JSON.stringify(keys.privateKey),
       publicKey: JSON.stringify(keys.publicKey),
-    });
+    } as ProofKeys);
     this.isDownloadEnabled = true;
     this.changeDetectorRef.detectChanges();
   }

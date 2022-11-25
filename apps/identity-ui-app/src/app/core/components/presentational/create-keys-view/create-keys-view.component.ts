@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'dfn-identity-create-keys-view',
   templateUrl: 'create-keys-view.component.html',
-  styleUrls: ['create-keys-view.component.scss'],
+  styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateKeysViewComponent {

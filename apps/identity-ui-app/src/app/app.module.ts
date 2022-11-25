@@ -21,6 +21,8 @@ import { MainPageComponent } from './core/components/pages/main-page/main-page.c
 import { MainPageViewComponent } from './core/components/presentational/main-page-view/main-page-view.component';
 import { CreateKeysViewComponent } from './core/components/presentational/create-keys-view/create-keys-view.component';
 import { CreateKeysComponent } from './core/components/containers/create-keys.component';
+import { GenerateProofComponent } from './core/components/containers/generate-proof.component';
+import { GenerateProofViewComponent } from './core/components/presentational/generate-proof-view/generate-proof-view.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { CreateKeysComponent } from './core/components/containers/create-keys.co
     MainPageViewComponent,
     CreateKeysViewComponent,
     CreateKeysComponent,
+    GenerateProofComponent,
+    GenerateProofViewComponent,
   ],
   imports: [
     BrowserModule,

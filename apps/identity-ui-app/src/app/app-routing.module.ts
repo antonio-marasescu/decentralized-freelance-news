@@ -6,6 +6,7 @@ import { RegisterPageComponent } from './core/components/pages/auth/register-pag
 import { AuthGuard } from './core/utils/guards/auth.guard';
 import { MainPageComponent } from './core/components/pages/main-page/main-page.component';
 import { CreateKeysComponent } from './core/components/containers/create-keys.component';
+import { GenerateProofComponent } from './core/components/containers/generate-proof.component';
 
 const routes: Routes = [
   { path: '', redirectTo: AppRoutesConfig.MainPage, pathMatch: 'full' },
@@ -20,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: AppRoutesConfig.GenerateProofSubPage,
-        component: LoginPageComponent,
+        component: GenerateProofComponent,
       },
     ],
     canActivate: [AuthGuard],
