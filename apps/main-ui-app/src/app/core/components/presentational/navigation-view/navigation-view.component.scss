@@ -19,7 +19,7 @@
 
     &:hover {
       color: vars.$primary-color;
-      transform: skewY(-4deg) scale(1.1) translateX(12px);
+      transform: skewY(-3deg) scale(1.1) translateX(10px);
     }
   }
 
@@ -35,4 +35,8 @@
 }
 .mat-drawer-inner-container {
   overflow: hidden !important;
+}
+
+.selected {
+  color: vars.$primary-color;
 }

@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
-$primary-color: map-get(mat.$blue-grey-palette, 900);
-$accent-color: map-get(mat.$deep-purple-palette, 700);
+$primary-color: map-get(mat.$light-blue-palette, 800);
+$accent-color: map-get(mat.$blue-grey-palette, 600);
 $text-color: rgba(228, 228, 228, 0.87);
 $background-color: #e7e7e7;

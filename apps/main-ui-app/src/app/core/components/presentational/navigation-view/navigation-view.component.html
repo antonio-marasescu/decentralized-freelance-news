@@ -9,10 +9,11 @@
           </div>
         </div>
       </div>
-      <div class="row pt-3">
+
+      <div class="row pt-4">
         <div class="col-12">
-          <button mat-button color="primary" class="w-100">
-            <div class="nav-drawer-button-item">
+          <button mat-button class="w-100">
+            <div class="nav-drawer-button-item" [ngClass]="{ selected: selectedIndex === 1 }">
               <mat-icon>home</mat-icon>
               <div>Home</div>
             </div>
@@ -22,10 +23,21 @@
 
       <div class="row pt-2">
         <div class="col-12">
-          <button mat-button color="primary" class="w-100">
-            <div class="nav-drawer-button-item">
+          <button mat-button class="w-100">
+            <div class="nav-drawer-button-item" [ngClass]="{ selected: selectedIndex === 2 }">
               <mat-icon>newspaper</mat-icon>
               <div>Create Article</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-12">
+          <button mat-button class="w-100">
+            <div class="nav-drawer-button-item" [ngClass]="{ selected: selectedIndex === 3 }">
+              <mat-icon>fingerprint</mat-icon>
+              <div>Identity</div>
             </div>
           </button>
         </div>
@@ -33,6 +45,8 @@
     </div>
   </mat-drawer>
   <mat-drawer-content>
-    <ng-content></ng-content>
+    <div class="w-100 h-100">
+      <ng-content></ng-content>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
