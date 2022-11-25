@@ -10,28 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { LandingPageComponent } from './core/components/pages/landing-page/landing-page.component';
-import { WriteNewsPageComponent } from './core/components/pages/write-news-page/write-news-page.component';
-import { NewsListViewComponent } from './core/components/presentational/news-list-view/news-list-view.component';
-import { WriteNewsViewComponent } from './core/components/presentational/write-news-view/write-news-view.component';
-import { NavigationViewComponent } from './core/components/presentational/navigation-view/navigation-view.component';
-import { NewsListContainerComponent } from './core/components/containers/news-list-container/news-list-container.component';
-import { WriteNewsContainerComponent } from './core/components/containers/write-news-container/write-news-container.component';
-import { NavigationContainerComponent } from './core/components/containers/navigation-container/navigation-container.component';
 import { RootEffects, RootReducers } from './core/store/app.state';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LandingPageComponent,
-    WriteNewsPageComponent,
-    NewsListViewComponent,
-    WriteNewsViewComponent,
-    NavigationViewComponent,
-    NewsListContainerComponent,
-    WriteNewsContainerComponent,
-    NavigationContainerComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
