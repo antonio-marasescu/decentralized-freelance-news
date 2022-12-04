@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectIsLoading } from './core/store/app.reducers';
+import { GetCurrentAccount } from './core/store/app.actions';
 
 @Component({
   selector: 'dfn-main-root',
@@ -15,7 +16,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.loading$ = this.store.select(selectIsLoading());
-    // this.store.dispatch(GetCurrentAccount());
-    // this.store.dispatch(SetupEthereumServices());
+    this.store.dispatch(GetCurrentAccount());
   }
 }

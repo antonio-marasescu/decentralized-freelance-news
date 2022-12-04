@@ -1,0 +1,15 @@
+.news-feed-page-container {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'none feed account-and-filters';
+  grid-column-gap: 12px;
+}
+
+.news-feed-container {
+  grid-area: feed;
+}
+
+.account-and-filters-container {
+  grid-area: account-and-filters;
+}

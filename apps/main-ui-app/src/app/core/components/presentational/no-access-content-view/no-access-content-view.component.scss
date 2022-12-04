@@ -1,0 +1,16 @@
+@use './apps/main-ui-app/src/assets/styles/variables' as vars;
+
+.no-access-container {
+  border-radius: 26px;
+  box-shadow: 1px 1px 16px vars.$faded-text-color;
+  padding: 12px;
+}
+
+.no-access-icon {
+  color: vars.$faded-text-color;
+  font-size: 100px;
+}
+
+.no-access-text {
+  color: vars.$faded-text-color;
+}

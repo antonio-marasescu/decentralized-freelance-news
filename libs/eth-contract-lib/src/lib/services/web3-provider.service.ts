@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 
 export const MetamaskWeb3Provider = new InjectionToken('Metamask Web3 provider', {
   providedIn: 'root',
-  factory: () => (window as any).web3.currentProvider,
+  factory: () => (window as any).ethereum,
 });
 
 @Injectable({

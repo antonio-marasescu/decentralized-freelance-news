@@ -3,7 +3,6 @@
 .news-article-container {
   width: 470px;
   display: flex;
-  cursor: pointer;
 
   .news-article-title-container {
     display: grid;
@@ -33,16 +32,13 @@
     height: 250px;
     max-height: 250px;
 
-    box-shadow: 1px 1px 8px #1a1a1a;
-    background: rgb(2, 119, 189);
-    background: radial-gradient(
-      circle,
-      rgb(6, 138, 216) 0%,
-      rgb(3, 106, 169) 35%,
-      rgb(3, 99, 157) 100%
-    );
+    box-shadow: 1px 1px 8px vars.$faded-text-color;
+    background: #141e30;
+    background: -webkit-linear-gradient(to right, #243b55, #141e30);
+    background: linear-gradient(to right, #243b55, #141e30);
 
     &--text {
+      color: vars.$text-white-color;
       margin: 20px;
       text-align: center;
     }

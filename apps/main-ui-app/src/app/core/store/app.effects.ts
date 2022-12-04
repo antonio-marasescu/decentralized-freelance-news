@@ -7,10 +7,14 @@ import {
   ActionFailure,
   GetCurrentAccount,
   GetCurrentAccountSuccess,
+  RequestAccountsAccess,
   SetupEthereumServices,
   SetupEthereumServicesSuccess,
 } from './app.actions';
-import { DfnContractAdapterService, EthereumAdapterService } from '@decentralized-freelance-news/eth-contract-lib';
+import {
+  DfnContractAdapterService,
+  EthereumAdapterService,
+} from '@decentralized-freelance-news/eth-contract-lib';
 
 @Injectable()
 export class AppEffects {
@@ -33,13 +37,33 @@ export class AppEffects {
     )
   );
 
+  getCurrentAccountSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GetCurrentAccountSuccess),
+      map(() => SetupEthereumServices())
+    )
+  );
+
+  requestAccountAccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RequestAccountsAccess),
+      map(async () => {
+        await this.ethereumAdapterService.requestAccounts();
+        return SetupEthereumServices();
+      }),
+      switchMap((promise) => from(promise)),
+      catchError((err) => of(ActionFailure({ reason: err, origin: 'RequestAccountsAccess' })))
+    )
+  );
+
   setupEthereumServices$ = createEffect(() =>
     this.actions$.pipe(
       ofType(SetupEthereumServices),
       map(async () => {
         const version = await this.ethereumAdapterService.requestVersion();
+        const currentAccount = await this.ethereumAdapterService.requestSignerAccount();
         await this.dfnContractAdapterService.setupService(version);
-        return SetupEthereumServicesSuccess();
+        return SetupEthereumServicesSuccess({ currentAccount });
       }),
       switchMap((promise) => from(promise)),
       catchError((err) => of(ActionFailure({ reason: err, origin: 'SetupEthereumServices' })))

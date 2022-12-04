@@ -1,0 +1,27 @@
+<div class="p-4 d-flex justify-content-center align-items-center">
+  <div *ngIf="account; else noAccount">
+    <button
+      class="extended-fab-button"
+      mat-fab
+      color="none"
+      disableRipple
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon color="accent">account_circle</mat-icon>
+      <mat-icon color="primary" *ngIf="hasIdentity">check_circle</mat-icon>
+      <span class="extended-fab-button__text">{{ account }}</span>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button mat-menu-item [cdkCopyToClipboard]="account">
+        <mat-icon>content_copy</mat-icon>
+        <span>Copy Address</span>
+      </button>
+    </mat-menu>
+  </div>
+  <ng-template #noAccount>
+    <button class="extended-fab-button" mat-fab color="none" (click)="connect.emit()">
+      <mat-icon>link</mat-icon>
+      <span class="extended-fab-button__text">Connect</span>
+    </button>
+  </ng-template>
+</div>

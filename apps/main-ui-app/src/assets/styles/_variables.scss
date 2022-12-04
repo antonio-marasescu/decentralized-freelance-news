@@ -2,5 +2,9 @@
 
 $primary-color: map-get(mat.$light-blue-palette, 800);
 $accent-color: map-get(mat.$blue-grey-palette, 600);
-$text-color: rgba(228, 228, 228, 0.87);
-$background-color: #e7e7e7;
+
+$background-color: #ececec;
+
+$faded-text-color: #a0a0a0;
+$text-color: rgba(0, 0, 0, 0.87);
+$text-white-color: #e7e7e7;

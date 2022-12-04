@@ -16,6 +16,10 @@ import { NavigationContainerComponent } from './core/components/containers/navig
 import { NewsFeedPageComponent } from './core/components/pages/news-feed-page/news-feed-page.component';
 import { NewsFeedContainerComponent } from './core/components/containers/news-feed-container.component';
 import { NewsFeedViewComponent } from './core/components/presentational/news-feed-view/news-feed-view.component';
+import { AccountManagementContainerComponent } from './core/components/containers/account-management-container.component';
+import { AccountManagementViewComponent } from './core/components/presentational/account-managemet-view/account-management-view.component';
+import { NoAccessContentViewComponent } from './core/components/presentational/no-access-content-view/no-access-content-view.component';
+import { NewsIdentityPageComponent } from './core/components/pages/news-identity-page/news-identity-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { NewsFeedViewComponent } from './core/components/presentational/news-fee
     NewsFeedPageComponent,
     NewsFeedContainerComponent,
     NewsFeedViewComponent,
+    AccountManagementContainerComponent,
+    AccountManagementViewComponent,
+    NoAccessContentViewComponent,
+    NewsIdentityPageComponent,
   ],
   imports: [
     BrowserModule,
