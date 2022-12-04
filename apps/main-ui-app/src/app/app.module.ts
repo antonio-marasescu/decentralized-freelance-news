@@ -20,6 +20,8 @@ import { AccountManagementContainerComponent } from './core/components/container
 import { AccountManagementViewComponent } from './core/components/presentational/account-managemet-view/account-management-view.component';
 import { NoAccessContentViewComponent } from './core/components/presentational/no-access-content-view/no-access-content-view.component';
 import { NewsIdentityPageComponent } from './core/components/pages/news-identity-page/news-identity-page.component';
+import { IdentityVerificationContainerComponent } from './core/components/containers/identity-verification-container.component';
+import { IdentityVerificationViewComponent } from './core/components/presentational/identity-verification-view/identity-verification-view.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { NewsIdentityPageComponent } from './core/components/pages/news-identity
     AccountManagementViewComponent,
     NoAccessContentViewComponent,
     NewsIdentityPageComponent,
+    IdentityVerificationContainerComponent,
+    IdentityVerificationViewComponent,
   ],
   imports: [
     BrowserModule,

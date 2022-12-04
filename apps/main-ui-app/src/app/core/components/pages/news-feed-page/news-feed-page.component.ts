@@ -21,7 +21,6 @@ import { Observable } from 'rxjs';
     </div>
   `,
   styleUrls: ['news-feed-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsFeedPageComponent implements OnInit {
   isInitialized$: Observable<boolean>;

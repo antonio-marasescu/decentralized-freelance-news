@@ -2,7 +2,6 @@
 
 .news-article-container {
   width: 470px;
-  display: flex;
 
   .news-article-title-container {
     display: grid;
@@ -43,14 +42,4 @@
       text-align: center;
     }
   }
-
-  .news-article-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-  }
-}
-
-.mat-card-header-text {
-  margin: 0 !important;
 }

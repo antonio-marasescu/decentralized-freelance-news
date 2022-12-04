@@ -23,12 +23,10 @@ export class NavigationContainerComponent implements OnInit {
   constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    this.identifyUrl(this.router.url);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.currentIndex = this.urlToIndex[event.url.slice(1)];
-        this.changeDetectorRef.detectChanges();
-      });
+      .subscribe((event: NavigationEnd) => this.identifyUrl(event.url));
   }
 
   async onNavigate(index: number): Promise<void> {
@@ -46,5 +44,10 @@ export class NavigationContainerComponent implements OnInit {
         return;
       }
     }
+  }
+
+  private identifyUrl(url: string): void {
+    this.currentIndex = this.urlToIndex[url.slice(1)];
+    this.changeDetectorRef.detectChanges();
   }
 }

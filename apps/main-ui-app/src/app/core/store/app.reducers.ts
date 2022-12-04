@@ -2,18 +2,27 @@ import { createReducer, createSelector, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import {
   ActionFailure,
+  ChangeStorageClass,
+  ChangeStorageClassSuccess,
   GetCurrentAccount,
   GetCurrentAccountSuccess,
+  IdentityVerificationUpload,
+  IdentityVerificationUploadSuccess,
   SetupEthereumServices,
   SetupEthereumServicesSuccess,
+  SetupIdentity,
+  SetupIdentitySuccess,
 } from './app.actions';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
+import { IdentityStorageClass } from '../types/identity-storage-class.types';
 
 export interface AppState extends EntityState<INewsModel> {
   selectedNews: number | null;
   currentAccount: string | null;
   loading: boolean;
   isInitialized: boolean;
+  storedIdentity: string | null;
+  storageClass: IdentityStorageClass;
   error: string;
 }
 export const adapter: EntityAdapter<INewsModel> = createEntityAdapter<INewsModel>({
@@ -25,6 +34,8 @@ export const initialAppState: AppState = adapter.getInitialState({
   currentAccount: null,
   loading: false,
   isInitialized: false,
+  storedIdentity: null,
+  storageClass: IdentityStorageClass.InMemory,
   error: null,
 });
 
@@ -43,6 +54,29 @@ export const appReducer = createReducer(
     isInitialized: true,
     loading: false,
   })),
+  on(SetupIdentity, (state) => ({
+    ...state,
+    loading: false,
+  })),
+  on(SetupIdentitySuccess, (state, { storageClass, storedIdentity }) => ({
+    ...state,
+    storageClass,
+    storedIdentity,
+    loading: false,
+  })),
+  on(ChangeStorageClass, (state) => ({ ...state, loading: true })),
+  on(ChangeStorageClassSuccess, (state, { storedIdentity, storageClass }) => ({
+    ...state,
+    storageClass,
+    storedIdentity,
+    loading: false,
+  })),
+  on(IdentityVerificationUpload, (state) => ({ ...state, loading: true })),
+  on(IdentityVerificationUploadSuccess, (state, { storedIdentity }) => ({
+    ...state,
+    storedIdentity,
+    loading: false,
+  })),
   on(ActionFailure, (state, { reason }) => ({ ...state, error: reason, loading: false }))
 );
 
@@ -54,3 +88,7 @@ export const selectIsLoading = () =>
   createSelector(selectFeature(), (state: AppState) => state.loading);
 export const selectIsInitialized = () =>
   createSelector(selectFeature(), (state: AppState) => state.isInitialized);
+export const selectStorageClass = () =>
+  createSelector(selectFeature(), (state: AppState) => state.storageClass);
+export const selectStoredIdentity = () =>
+  createSelector(selectFeature(), (state: AppState) => state.storedIdentity);

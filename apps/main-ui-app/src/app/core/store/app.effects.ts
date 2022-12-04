@@ -5,16 +5,23 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { from, of } from 'rxjs';
 import {
   ActionFailure,
+  ChangeStorageClass,
+  ChangeStorageClassSuccess,
   GetCurrentAccount,
   GetCurrentAccountSuccess,
+  IdentityVerificationUpload,
+  IdentityVerificationUploadSuccess,
   RequestAccountsAccess,
   SetupEthereumServices,
   SetupEthereumServicesSuccess,
+  SetupIdentity,
+  SetupIdentitySuccess,
 } from './app.actions';
 import {
   DfnContractAdapterService,
   EthereumAdapterService,
 } from '@decentralized-freelance-news/eth-contract-lib';
+import { IdentityVerificationService } from '../services/identity-verification.service';
 
 @Injectable()
 export class AppEffects {
@@ -22,7 +29,8 @@ export class AppEffects {
     private actions$: Actions,
     private router: Router,
     private ethereumAdapterService: EthereumAdapterService,
-    private dfnContractAdapterService: DfnContractAdapterService
+    private dfnContractAdapterService: DfnContractAdapterService,
+    private identityVerificationService: IdentityVerificationService
   ) {}
 
   getCurrentAccount$ = createEffect(() =>
@@ -67,6 +75,42 @@ export class AppEffects {
       }),
       switchMap((promise) => from(promise)),
       catchError((err) => of(ActionFailure({ reason: err, origin: 'SetupEthereumServices' })))
+    )
+  );
+
+  setupIdentity$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SetupIdentity),
+      map(() => {
+        const storageClass = this.identityVerificationService.storageClass;
+        const storedIdentity = this.identityVerificationService.storedIdentity;
+        return SetupIdentitySuccess({ storedIdentity, storageClass });
+      }),
+      catchError((err) => of(ActionFailure({ reason: err, origin: 'SetupIdentity' })))
+    )
+  );
+
+  changeStorageClass$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ChangeStorageClass),
+      map(({ newStorageClass }) => {
+        this.identityVerificationService.storageClass = newStorageClass;
+        const storedIdentity = this.identityVerificationService.storedIdentity;
+        return ChangeStorageClassSuccess({ storedIdentity, storageClass: newStorageClass });
+      }),
+      catchError((err) => of(ActionFailure({ reason: err, origin: 'ChangeStorageClass' })))
+    )
+  );
+
+  identityVerificationUpload$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(IdentityVerificationUpload),
+      map(({ newStoredIdentity }) => {
+        this.identityVerificationService.storedIdentity = newStoredIdentity;
+        const storedIdentity = this.identityVerificationService.storedIdentity;
+        return IdentityVerificationUploadSuccess({ storedIdentity });
+      }),
+      catchError((err) => of(ActionFailure({ reason: err, origin: 'IdentityVerificationUpload' })))
     )
   );
 }

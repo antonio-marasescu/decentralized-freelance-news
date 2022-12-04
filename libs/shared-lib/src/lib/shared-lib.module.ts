@@ -22,6 +22,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [LoadingOverlayComponent, FormValidationMessageComponent],
@@ -44,6 +46,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatButtonToggleModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatRadioModule,
+    MatSlideToggleModule,
     ClipboardModule,
     MatMenuModule,
     MatBadgeModule,
@@ -69,6 +73,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatMenuModule,
     MatBadgeModule,
     MatTooltipModule,
+    MatRadioModule,
+    MatSlideToggleModule,
     ClipboardModule,
     LoadingOverlayComponent,
     FormValidationMessageComponent,

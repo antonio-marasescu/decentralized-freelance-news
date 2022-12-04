@@ -1,0 +1,84 @@
+<div class="vh-100 w-100 pt-4">
+  <mat-card class="mat-elevation-z0">
+    <mat-card-content>
+      <div class="mat-h1">Identity Verification</div>
+      <mat-divider [inset]="true"></mat-divider>
+      <div class="container">
+        <div class="row pt-1">
+          <div class="col-12 mat-h2">Identity Storage Type</div>
+        </div>
+        <div class="row m-1">
+          <div class="col-12">
+            <mat-radio-group
+              aria-label="Select an option"
+              class="storage-type-radio-group"
+              color="primary"
+              [value]="storageClass"
+              (change)="storageClassChange.emit($event.value)"
+            >
+              <mat-radio-button [value]="StorageClasses.InMemory">
+                <div class="d-inline-flex justify-content-center align-items-center gap-2">
+                  In Memory
+                  <mat-icon matTooltip="Data will be persisted so long the application is opened."
+                    >report</mat-icon
+                  >
+                </div>
+              </mat-radio-button>
+              <mat-radio-button [value]="StorageClasses.SessionStorage">
+                <div class="d-inline-flex justify-content-center align-content-around gap-2">
+                  Session Storage
+                  <mat-icon
+                    matTooltip="Data will be persisted so long a tab with the webpage is opened."
+                    >report</mat-icon
+                  >
+                </div>
+              </mat-radio-button>
+              <mat-radio-button [value]="StorageClasses.LocalStorage">
+                <div class="d-inline-flex justify-content-center align-items-center gap-2">
+                  Local Storage
+                  <mat-icon
+                    matTooltip="Data will be persisted after the browser is closed and represent a security threat."
+                    >report</mat-icon
+                  >
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="pt-4">
+          <mat-divider></mat-divider>
+        </div>
+        <div class="row pt-3">
+          <div class="col-12 mat-h2">Identity Verification</div>
+        </div>
+      </div>
+      <div class="row pt-2 m-1">
+        <div class="col-12">
+          <mat-slide-toggle
+            class="example-margin"
+            color="primary"
+            [disabled]="true"
+            [checked]="hasIdentityStored"
+          >
+            Identity Verification Stored
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <mat-divider></mat-divider>
+      <div class="d-flex justify-content-end p-3">
+        <button mat-flat-button (click)="hiddenUploadInput.click()" color="primary">
+          <input
+            #hiddenUploadInput
+            id="hiddenUploadInput"
+            class="d-none"
+            type="file"
+            (change)="identityUpload.emit($event)"
+          />
+          Upload Identity
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

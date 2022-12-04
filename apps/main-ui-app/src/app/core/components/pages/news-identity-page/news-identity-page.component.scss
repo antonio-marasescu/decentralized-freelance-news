@@ -1,0 +1,15 @@
+.news-identity-page-container {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'none identity account-and-filters';
+  grid-column-gap: 12px;
+}
+
+.news-identity-container {
+  grid-area: identity;
+}
+
+.account-and-filters-container {
+  grid-area: account-and-filters;
+}

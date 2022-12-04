@@ -1,74 +1,83 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
+import { first, interval, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'dfn-main-news-feed-container',
-  template: `<dfn-main-news-feed-view [newsFeedList]="items"></dfn-main-news-feed-view>`,
+  template: `<dfn-main-news-feed-view [newsFeedList]="items$ | async"></dfn-main-news-feed-view>`,
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewsFeedContainerComponent {
-  items: INewsModel[] = [
-    {
-      index: 1,
-      ipfsAddress: 'Test',
-      newsHash: 'test',
-      title: 'Elon Musk Buys Twitter',
-      summary:
-        'Another ne news aAnothen Musk Another news a news aAnon MskAnother news about Elon MuskAnother news about Elon Musk',
-      contentType: 'text/plain',
-      rating: 2,
-      owner: 'agahwhwatthaahw',
-    },
-    {
-      index: 2,
-      ipfsAddress: 'Test 2',
-      newsHash: 'test 2',
-      title: 'Elon Musk Doge Pump',
-      summary: 'Another news about Elon Musk',
-      contentType: 'text/plain',
-      rating: 4,
-      owner: 'agahwhwatthaahw',
-    },
-    {
-      index: 3,
-      ipfsAddress: 'Test',
-      newsHash: 'test',
-      title: 'Elon Musk Buys Twitter',
-      summary: 'Another news about Elon Musk',
-      contentType: 'text/plain',
-      rating: 2,
-      owner: 'agahwhwatthaahw',
-    },
-    {
-      index: 4,
-      ipfsAddress: 'Test 2',
-      newsHash: 'test 2',
-      title: 'Elon Musk Doge Pump',
-      summary: 'Another news about Elon Musk',
-      contentType: 'text/plain',
-      rating: 4,
-      owner: 'agahwhwatthaahw',
-    },
-    {
-      index: 5,
-      ipfsAddress: 'Test',
-      newsHash: 'test',
-      title: 'Elon Musk Buys Twitter',
-      summary: 'Another news about Elon Musk',
-      contentType: 'text/plain',
-      rating: 2,
-      owner: 'agahwhwatthaahw',
-    },
-    {
-      index: 6,
-      ipfsAddress: 'Test 2',
-      newsHash: 'test 2',
-      title: 'Elon Musk Doge Pump',
-      summary: 'Another news about Elon Musk',
-      contentType: 'text/plain',
-      rating: 4,
-      owner: 'agahwhwatthaahw',
-    },
-  ];
+export class NewsFeedContainerComponent implements OnInit {
+  items$: Observable<INewsModel[]>;
+
+  ngOnInit(): void {
+    this.items$ = interval(500).pipe(
+      first(),
+      map(() => [
+        {
+          index: 1,
+          ipfsAddress: 'Test',
+          newsHash: 'test',
+          title: 'Elon Musk Buys Twitter',
+          summary:
+            'Another ne news aAnothen Musk Another news a news aAnon MskAnother news about Elon MuskAnother news about Elon Musk',
+          contentType: 'text/plain',
+          rating: 2,
+          owner: 'agahwhwatthaahw',
+        },
+        {
+          index: 2,
+          ipfsAddress: 'Test 2',
+          newsHash: 'test 2',
+          title: 'Elon Musk Doge Pump',
+          summary: 'Another news about Elon Musk',
+          contentType: 'text/plain',
+          rating: 4,
+          owner: 'agahwhwatthaahw',
+        },
+        {
+          index: 3,
+          ipfsAddress: 'Test',
+          newsHash: 'test',
+          title: 'Elon Musk Buys Twitter',
+          summary: 'Another news about Elon Musk',
+          contentType: 'text/plain',
+          rating: 2,
+          owner: 'agahwhwatthaahw',
+        },
+        {
+          index: 4,
+          ipfsAddress: 'Test 2',
+          newsHash: 'test 2',
+          title: 'Elon Musk Doge Pump',
+          summary: 'Another news about Elon Musk',
+          contentType: 'text/plain',
+          rating: 4,
+          owner: 'agahwhwatthaahw',
+        },
+        {
+          index: 5,
+          ipfsAddress: 'Test',
+          newsHash: 'test',
+          title: 'Elon Musk Buys Twitter',
+          summary: 'Another news about Elon Musk',
+          contentType: 'text/plain',
+          rating: 2,
+          owner: 'agahwhwatthaahw',
+        },
+        {
+          index: 6,
+          ipfsAddress: 'Test 2',
+          newsHash: 'test 2',
+          title: 'Elon Musk Doge Pump',
+          summary: 'Another news about Elon Musk',
+          contentType: 'text/plain',
+          rating: 4,
+          owner: 'agahwhwatthaahw',
+        },
+      ])
+    );
+  }
 }

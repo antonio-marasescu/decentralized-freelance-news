@@ -24,4 +24,8 @@ export class FileUtils {
     const fileText = await file.text();
     return JSON.parse(fileText) as T;
   }
+
+  static async readFileContentAsText(file: File): Promise<string> {
+    return file.text();
+  }
 }
