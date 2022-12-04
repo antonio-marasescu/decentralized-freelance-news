@@ -25,6 +25,7 @@ import { IdentityVerificationViewComponent } from './core/components/presentatio
 import { CreateArticleContainerComponent } from './core/components/containers/create-article-container.component';
 import { CreateArticleViewComponent } from './core/components/presentational/create-article-view/create-article-view.component';
 import { NewsCreatePageComponent } from './core/components/pages/news-create-page/news-create-page.component';
+import { UploadIpfsModalComponent } from './core/components/containers/modals/upload-ipfs-modal/upload-ipfs-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NewsCreatePageComponent } from './core/components/pages/news-create-pag
     CreateArticleContainerComponent,
     CreateArticleViewComponent,
     NewsCreatePageComponent,
+    UploadIpfsModalComponent,
   ],
   imports: [
     BrowserModule,

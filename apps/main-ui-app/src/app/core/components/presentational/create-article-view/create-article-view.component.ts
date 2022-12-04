@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { CreateArticleViewConfiguration } from './create-article-view.configuration';
 
 @Component({
   selector: 'dfn-main-create-article-view',
@@ -6,4 +8,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['create-article-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateArticleViewComponent {}
+export class CreateArticleViewComponent {
+  configuration = CreateArticleViewConfiguration.configuration;
+  @Input() form: FormGroup;
+  @Output() uploadToIpfs = new EventEmitter<void>();
+  @Output() createArticle = new EventEmitter<void>();
+}
