@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'dfn-main-navigation-view',
@@ -9,4 +16,5 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 })
 export class NavigationViewComponent {
   @Input() selectedIndex: 1 | 2 | 3;
+  @Output() navigate = new EventEmitter<number>();
 }

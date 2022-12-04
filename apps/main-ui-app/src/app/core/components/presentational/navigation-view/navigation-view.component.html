@@ -12,7 +12,7 @@
 
       <div class="row pt-4">
         <div class="col-12">
-          <button mat-button class="w-100">
+          <button mat-button class="w-100" (click)="navigate.emit(1)">
             <div class="nav-drawer-button-item" [ngClass]="{ selected: selectedIndex === 1 }">
               <mat-icon>home</mat-icon>
               <div>Home</div>
@@ -23,7 +23,7 @@
 
       <div class="row pt-2">
         <div class="col-12">
-          <button mat-button class="w-100">
+          <button mat-button class="w-100" (click)="navigate.emit(2)">
             <div class="nav-drawer-button-item" [ngClass]="{ selected: selectedIndex === 2 }">
               <mat-icon>newspaper</mat-icon>
               <div>Create Article</div>
@@ -34,7 +34,7 @@
 
       <div class="row pt-2">
         <div class="col-12">
-          <button mat-button class="w-100">
+          <button mat-button class="w-100" (click)="navigate.emit(3)">
             <div class="nav-drawer-button-item" [ngClass]="{ selected: selectedIndex === 3 }">
               <mat-icon>fingerprint</mat-icon>
               <div>Identity</div>
