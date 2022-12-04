@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppRoutesConfig } from './core/configuration/app-routes.config';
+import { NewsFeedPageComponent } from './core/components/pages/news-feed-page/news-feed-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: AppRoutesConfig.NewsFeed, pathMatch: 'full' },
+  { path: AppRoutesConfig.NewsFeed, component: NewsFeedPageComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

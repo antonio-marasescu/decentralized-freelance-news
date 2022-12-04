@@ -13,9 +13,19 @@ import { AppComponent } from './app.component';
 import { RootEffects, RootReducers } from './core/store/app.state';
 import { NavigationViewComponent } from './core/components/presentational/navigation-view/navigation-view.component';
 import { NavigationContainerComponent } from './core/components/containers/navigation-container.component';
+import { NewsFeedPageComponent } from './core/components/pages/news-feed-page/news-feed-page.component';
+import { NewsFeedContainerComponent } from './core/components/containers/news-feed-container.component';
+import { NewsFeedViewComponent } from './core/components/presentational/news-feed-view/news-feed-view.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationViewComponent, NavigationContainerComponent],
+  declarations: [
+    AppComponent,
+    NavigationViewComponent,
+    NavigationContainerComponent,
+    NewsFeedPageComponent,
+    NewsFeedContainerComponent,
+    NewsFeedViewComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

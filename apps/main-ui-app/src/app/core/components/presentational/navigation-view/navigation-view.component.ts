@@ -8,5 +8,5 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   encapsulation: ViewEncapsulation.None,
 })
 export class NavigationViewComponent {
-  @Input() selectedIndex: number = 2;
+  @Input() selectedIndex: 1 | 2 | 3;
 }

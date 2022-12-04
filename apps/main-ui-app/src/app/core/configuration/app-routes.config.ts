@@ -1,1 +1,3 @@
-export enum AppRoutesConfig {}
+export enum AppRoutesConfig {
+  NewsFeed = 'news',
+}

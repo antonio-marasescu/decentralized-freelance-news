@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row pt-4" *ngFor="let articleItem of newsFeedList">
+    <div class="col-12">
+      <mat-card class="news-article-container m-0 p-0">
+        <mat-card-header>
+          <div class="news-article-title-container w-100 m-3">
+            <div>
+              <mat-card-title
+                class="news-article-title-container--text"
+                [matTooltip]="articleItem.title"
+                [cdkCopyToClipboard]="articleItem.title"
+                >{{ articleItem.title }}</mat-card-title
+              >
+              <mat-card-subtitle
+                class="news-article-title-container--text"
+                [matTooltip]="articleItem.owner"
+                [cdkCopyToClipboard]="articleItem.title"
+                >Posted By: {{ articleItem.owner }}</mat-card-subtitle
+              >
+            </div>
+            <div class="news-article-title-container--rating">
+              <mat-chip-list>
+                <mat-chip>{{ articleItem.rating }}</mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="news-article-content">
+            <div class="news-article-content--text">
+              {{ articleItem.summary }}
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="p-3">
+          <div class="w-100 news-article-actions">
+            <button mat-button>LIKE</button>
+            <button mat-raised-button color="primary">READ</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

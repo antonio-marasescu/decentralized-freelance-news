@@ -19,6 +19,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormValidationMessageComponent } from './components/form-validation-message/form-validation-message.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [LoadingOverlayComponent, FormValidationMessageComponent],
@@ -40,7 +43,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatButtonToggleModule,
     MatSnackBarModule,
+    MatTooltipModule,
+    ClipboardModule,
     MatMenuModule,
+    MatBadgeModule,
   ],
   exports: [
     CommonModule,
@@ -61,6 +67,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonToggleModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatBadgeModule,
+    MatTooltipModule,
+    ClipboardModule,
     LoadingOverlayComponent,
     FormValidationMessageComponent,
   ],
