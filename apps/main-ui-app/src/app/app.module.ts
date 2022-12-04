@@ -22,6 +22,9 @@ import { NoAccessContentViewComponent } from './core/components/presentational/n
 import { NewsIdentityPageComponent } from './core/components/pages/news-identity-page/news-identity-page.component';
 import { IdentityVerificationContainerComponent } from './core/components/containers/identity-verification-container.component';
 import { IdentityVerificationViewComponent } from './core/components/presentational/identity-verification-view/identity-verification-view.component';
+import { CreateArticleContainerComponent } from './core/components/containers/create-article-container.component';
+import { CreateArticleViewComponent } from './core/components/presentational/create-article-view/create-article-view.component';
+import { NewsCreatePageComponent } from './core/components/pages/news-create-page/news-create-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { IdentityVerificationViewComponent } from './core/components/presentatio
     NewsIdentityPageComponent,
     IdentityVerificationContainerComponent,
     IdentityVerificationViewComponent,
+    CreateArticleContainerComponent,
+    CreateArticleViewComponent,
+    NewsCreatePageComponent,
   ],
   imports: [
     BrowserModule,

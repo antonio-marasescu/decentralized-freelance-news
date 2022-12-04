@@ -17,6 +17,7 @@ export class NavigationContainerComponent implements OnInit {
   currentIndex: 1 | 2 | 3;
   private urlToIndex = {
     [AppRoutesConfig.NewsFeed]: 1,
+    [AppRoutesConfig.CreateArticle]: 2,
     [AppRoutesConfig.Identity]: 3,
   };
 
@@ -36,7 +37,7 @@ export class NavigationContainerComponent implements OnInit {
         return;
       }
       case 2: {
-        await this.router.navigate([AppRoutesConfig.NewsFeed]);
+        await this.router.navigate([AppRoutesConfig.CreateArticle]);
         return;
       }
       case 3: {

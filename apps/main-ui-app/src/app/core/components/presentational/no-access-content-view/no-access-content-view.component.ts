@@ -9,9 +9,9 @@ import { Component } from '@angular/core';
           <mat-icon class="no-access-icon">sentiment_dissatisfied</mat-icon>
         </div>
       </div>
-      <div class="row">
+      <div class="row pt-3">
         <div class="col-12 text-center no-access-text">
-          You need to provide access to your account before viewing the content
+          You need to provide access to your Ethereum account before accessing the content
         </div>
       </div>
     </div>
