@@ -16,6 +16,6 @@ import {
 })
 export class AccountManagementViewComponent {
   @Input() account: string;
-  @Input() hasIdentity: boolean = false;
+  @Input() hasIdentity = false;
   @Output() connect = new EventEmitter<void>();
 }
