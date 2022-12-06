@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { EthContractLibModule } from '@decentralized-freelance-news/eth-contract-lib';
+import { EthContractLibModule, IpfsToken } from '@decentralized-freelance-news/eth-contract-lib';
 import { SharedLibModule } from '@decentralized-freelance-news/shared-lib';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -26,6 +26,7 @@ import { CreateArticleContainerComponent } from './core/components/containers/cr
 import { CreateArticleViewComponent } from './core/components/presentational/create-article-view/create-article-view.component';
 import { NewsCreatePageComponent } from './core/components/pages/news-create-page/news-create-page.component';
 import { UploadIpfsModalComponent } from './core/components/containers/modals/upload-ipfs-modal/upload-ipfs-modal.component';
+import { create } from 'ipfs-http-client';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,23 @@ import { UploadIpfsModalComponent } from './core/components/containers/modals/up
     EffectsModule.forRoot(RootEffects),
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: IpfsToken,
+      useFactory: () => {
+        try {
+          return create({
+            host: environment.ipfs.host,
+            port: environment.ipfs.port,
+            protocol: environment.ipfs.protocol,
+          });
+        } catch (err) {
+          console.error('IPFS Token Factory', err);
+          throw new Error('Unable to access IPFS node daemon');
+        }
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

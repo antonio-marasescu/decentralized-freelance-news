@@ -4,6 +4,11 @@
 
 export const environment = {
   production: false,
+  ipfs: {
+    host: 'localhost',
+    port: 5001,
+    protocol: 'http',
+  },
 };
 
 /*

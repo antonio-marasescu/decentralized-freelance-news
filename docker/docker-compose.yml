@@ -1,6 +1,16 @@
 version: '3.9'
 
 services:
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    hostname: ipfs_host1
+    volumes:
+      - ipfs-volume-export:/export
+      - ipfs-volume-data:/data/ipfs
+    ports:
+      - "5001:5001"
+      - "4001:4001"
+      - "8080:8080"
   identity-db:
     image: 'mongo'
     container_name: 'identity-db'
@@ -16,3 +26,5 @@ services:
 
 volumes:
   identity-db-volume:
+  ipfs-volume-data:
+  ipfs-volume-export:

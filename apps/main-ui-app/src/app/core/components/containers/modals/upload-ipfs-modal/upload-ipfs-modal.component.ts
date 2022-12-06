@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IpfsAdapterService } from '@decentralized-freelance-news/eth-contract-lib';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'dfn-main-upload-ipfs-modal',
@@ -13,7 +15,8 @@ export class UploadIpfsModalComponent {
   fileAdded = false;
 
   constructor(
-    public dialogRef: MatDialogRef<UploadIpfsModalComponent>,
+    private dialogRef: MatDialogRef<UploadIpfsModalComponent>,
+    private ipfsAdapterService: IpfsAdapterService,
     private snackBarRef: MatSnackBar
   ) {}
 
@@ -28,11 +31,17 @@ export class UploadIpfsModalComponent {
   }
 
   async onUpload(): Promise<void> {
+    if (!this.fileAdded) {
+      return;
+    }
+
+    const address = await firstValueFrom(this.ipfsAdapterService.addFile(this.file));
+    console.log(address);
     this.snackBarRef.open('The file has been uploaded to IPFS', 'OK', {
       duration: 4000,
       panelClass: ['background-colored-snackbar'],
     });
-    this.dialogRef.close('the ipfs address');
+    this.dialogRef.close(address);
   }
 
   async onCancel(): Promise<void> {
