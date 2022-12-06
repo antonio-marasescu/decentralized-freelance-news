@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectNews } from '../../store/app.reducers';
 import { GetNews } from '../../store/app.actions';

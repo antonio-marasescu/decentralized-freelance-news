@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectStorageClass, selectStoredIdentity } from '../../store/app.reducers';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IdentityStorageClass } from '../../types/identity-storage-class.types';
 import { map } from 'rxjs/operators';
 import { isNil } from 'lodash-es';
