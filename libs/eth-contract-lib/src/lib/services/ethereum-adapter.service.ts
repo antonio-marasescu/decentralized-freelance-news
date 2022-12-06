@@ -4,7 +4,7 @@ import { EtherCommandsUtils } from '../utils/ether-commands.utils';
 import { EtherCommandsTypes } from '../types/ether-commands.types';
 import { JsonRpcSigner } from '@ethersproject/providers/lib/json-rpc-provider';
 
-@Injectable({ providedIn: 'any' })
+@Injectable({ providedIn: 'root' })
 export class EthereumAdapterService {
   constructor(private web3ProviderService: Web3ProviderService) {}
 

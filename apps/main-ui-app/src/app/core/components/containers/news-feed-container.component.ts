@@ -1,83 +1,32 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
-import { first, interval, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectNews } from '../../store/app.reducers';
+import { GetNews } from '../../store/app.actions';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { NewsContractionNotificationsService } from '../../services/news-contraction-notifications.service';
 
+@UntilDestroy()
 @Component({
   selector: 'dfn-main-news-feed-container',
-  template: `<dfn-main-news-feed-view [newsFeedList]="items$ | async"></dfn-main-news-feed-view>`,
+  template: `<ng-container *ngIf="items$">
+    <dfn-main-news-feed-view [newsFeedList]="items$ | async"></dfn-main-news-feed-view>
+  </ng-container>`,
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsFeedContainerComponent implements OnInit {
   items$: Observable<INewsModel[]>;
 
+  constructor(
+    private store: Store,
+    private newsContractionNotificationsService: NewsContractionNotificationsService
+  ) {}
+
   ngOnInit(): void {
-    this.items$ = interval(500).pipe(
-      first(),
-      map(() => [
-        {
-          index: 1,
-          ipfsAddress: 'Test',
-          newsHash: 'test',
-          title: 'Elon Musk Buys Twitter',
-          summary:
-            'Another ne news aAnothen Musk Another news a news aAnon MskAnother news about Elon MuskAnother news about Elon Musk',
-          contentType: 'text/plain',
-          rating: 2,
-          owner: 'agahwhwatthaahw',
-        },
-        {
-          index: 2,
-          ipfsAddress: 'Test 2',
-          newsHash: 'test 2',
-          title: 'Elon Musk Doge Pump',
-          summary: 'Another news about Elon Musk',
-          contentType: 'text/plain',
-          rating: 4,
-          owner: 'agahwhwatthaahw',
-        },
-        {
-          index: 3,
-          ipfsAddress: 'Test',
-          newsHash: 'test',
-          title: 'Elon Musk Buys Twitter',
-          summary: 'Another news about Elon Musk',
-          contentType: 'text/plain',
-          rating: 2,
-          owner: 'agahwhwatthaahw',
-        },
-        {
-          index: 4,
-          ipfsAddress: 'Test 2',
-          newsHash: 'test 2',
-          title: 'Elon Musk Doge Pump',
-          summary: 'Another news about Elon Musk',
-          contentType: 'text/plain',
-          rating: 4,
-          owner: 'agahwhwatthaahw',
-        },
-        {
-          index: 5,
-          ipfsAddress: 'Test',
-          newsHash: 'test',
-          title: 'Elon Musk Buys Twitter',
-          summary: 'Another news about Elon Musk',
-          contentType: 'text/plain',
-          rating: 2,
-          owner: 'agahwhwatthaahw',
-        },
-        {
-          index: 6,
-          ipfsAddress: 'Test 2',
-          newsHash: 'test 2',
-          title: 'Elon Musk Doge Pump',
-          summary: 'Another news about Elon Musk',
-          contentType: 'text/plain',
-          rating: 4,
-          owner: 'agahwhwatthaahw',
-        },
-      ])
-    );
+    this.items$ = this.store.select(selectNews());
+    this.store.dispatch(GetNews());
+    this.newsContractionNotificationsService.setup().pipe(untilDestroyed(this)).subscribe();
   }
 }

@@ -1,4 +1,6 @@
-<shared-lib-loading-overlay [isLoading]="loading$ | async"></shared-lib-loading-overlay>
+<ng-container *ngIf="loading$">
+  <shared-lib-loading-overlay [isLoading]="loading$ | async"></shared-lib-loading-overlay>
+</ng-container>
 <dfn-main-navigation-container>
   <router-outlet></router-outlet>
 </dfn-main-navigation-container>

@@ -2,7 +2,10 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { NavigationEnd, Router } from '@angular/router';
 import { AppRoutesConfig } from '../../configuration/app-routes.config';
 import { filter } from 'rxjs';
+import { AppRoutingService } from '../../services/app-routing.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'dfn-main-navigation-container',
   template: `<dfn-main-navigation-view
@@ -21,27 +24,34 @@ export class NavigationContainerComponent implements OnInit {
     [AppRoutesConfig.Identity]: 3,
   };
 
-  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private appRoutingService: AppRoutingService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.identifyUrl(this.router.url);
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        untilDestroyed(this)
+      )
       .subscribe((event: NavigationEnd) => this.identifyUrl(event.url));
   }
 
   async onNavigate(index: number): Promise<void> {
     switch (index) {
       case 1: {
-        await this.router.navigate([AppRoutesConfig.NewsFeed]);
+        await this.appRoutingService.navigateToNewsFeedPage();
         return;
       }
       case 2: {
-        await this.router.navigate([AppRoutesConfig.CreateArticle]);
+        await this.appRoutingService.navigateToCreateArticlePage();
         return;
       }
       case 3: {
-        await this.router.navigate([AppRoutesConfig.Identity]);
+        await this.appRoutingService.navigateToIdentityPage();
         return;
       }
     }

@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadIpfsModalComponent } from './modals/upload-ipfs-modal/upload-ipfs-modal.component';
 import { firstValueFrom } from 'rxjs';
+import { INewsModelCreateDto } from '@decentralized-freelance-news/eth-contract-lib';
+import { CreateNewsArticle } from '../../store/app.actions';
 
 @Component({
   selector: 'dfn-main-create-article-container',
@@ -42,10 +44,11 @@ export class CreateArticleContainerComponent implements OnInit {
     const dialogResult = await firstValueFrom(dialogRef.afterClosed());
   }
 
-  onCreateArticle(): void {
+  async onCreateArticle(): Promise<void> {
     if (this.form.invalid) {
       return;
     }
-    // const value: INewsModelCreateDto = this.form.value;
+    const article: INewsModelCreateDto = this.form.value;
+    this.store.dispatch(CreateNewsArticle({ article }));
   }
 }

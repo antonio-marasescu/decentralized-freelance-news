@@ -5,7 +5,7 @@ import { EthereumAdapterService } from './ethereum-adapter.service';
 import { JsonRpcSigner } from '@ethersproject/providers/lib/json-rpc-provider';
 import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
 
-@Injectable({ providedIn: 'any' })
+@Injectable({ providedIn: 'root' })
 export class ZkpVerifierAdapterService {
   private _contractNetworkAddress: string = null;
   private _contract: Contract = null;

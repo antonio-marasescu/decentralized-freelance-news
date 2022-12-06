@@ -2,10 +2,15 @@ import { createReducer, createSelector, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import {
   ActionFailure,
+  AddNewsArticleSuccess,
   ChangeStorageClass,
   ChangeStorageClassSuccess,
+  CreateNewsArticle,
+  CreateNewsArticleSuccess,
   GetCurrentAccount,
   GetCurrentAccountSuccess,
+  GetNews,
+  GetNewsSuccess,
   IdentityVerificationUpload,
   IdentityVerificationUploadSuccess,
   SetupEthereumServices,
@@ -15,6 +20,7 @@ import {
 } from './app.actions';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 import { IdentityStorageClass } from '../types/identity-storage-class.types';
+import { values } from 'lodash-es';
 
 export interface AppState extends EntityState<INewsModel> {
   selectedNews: number | null;
@@ -77,6 +83,11 @@ export const appReducer = createReducer(
     storedIdentity,
     loading: false,
   })),
+  on(GetNews, (state) => ({ ...state, loading: true })),
+  on(GetNewsSuccess, (state, { news }) => adapter.setMany(news, { ...state, loading: false })),
+  on(CreateNewsArticle, (state) => ({ ...state, loading: true })),
+  on(CreateNewsArticleSuccess, (state) => ({ ...state, loading: false })),
+  on(AddNewsArticleSuccess, (state, { article }) => adapter.addOne(article, { ...state })),
   on(ActionFailure, (state, { reason }) => ({ ...state, error: reason, loading: false }))
 );
 
@@ -92,3 +103,8 @@ export const selectStorageClass = () =>
   createSelector(selectFeature(), (state: AppState) => state.storageClass);
 export const selectStoredIdentity = () =>
   createSelector(selectFeature(), (state: AppState) => state.storedIdentity);
+
+export const selectNews = () =>
+  createSelector(selectFeature(), (state: AppState) => values(state.entities));
+export const selectNewsMap = () =>
+  createSelector(selectFeature(), (state: AppState) => state.entities);

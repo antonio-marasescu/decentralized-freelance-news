@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IdentityStorageClass } from '../types/identity-storage-class.types';
+import { INewsModel, INewsModelCreateDto } from '@decentralized-freelance-news/eth-contract-lib';
 
 export enum AppActions {
   // setup
@@ -19,7 +20,11 @@ export enum AppActions {
 
   // contract interaction
   GET_NEWS = '[DFN] Get News',
-  GET_NEWS_SUCCESS = '[DFN] Get News',
+  GET_NEWS_SUCCESS = '[DFN] Get News Success',
+  CREATE_NEWS_ARTICLE = '[DFN] Create News Article',
+  CREATE_NEWS_ARTICLE_SUCCESS = '[DFN] Create News Article Success',
+  ADD_NEWS_ARTICLE = '[DFN] Add News Article',
+  ADD_NEWS_ARTICLE_Success = '[DFN] Add News Article Success',
 
   // errors
   ACTION_FAILURE = '[DFN] Action Failure',
@@ -59,6 +64,27 @@ export const IdentityVerificationUpload = createAction(
 export const IdentityVerificationUploadSuccess = createAction(
   AppActions.IDENTITY_VERIFICATION_UPLOAD_SUCCESS,
   props<{ storedIdentity: string | null }>()
+);
+
+// contract interaction
+
+export const GetNews = createAction(AppActions.GET_NEWS);
+export const GetNewsSuccess = createAction(
+  AppActions.GET_NEWS_SUCCESS,
+  props<{ news: INewsModel[] }>()
+);
+export const CreateNewsArticle = createAction(
+  AppActions.CREATE_NEWS_ARTICLE,
+  props<{ article: INewsModelCreateDto }>()
+);
+export const CreateNewsArticleSuccess = createAction(AppActions.CREATE_NEWS_ARTICLE_SUCCESS);
+export const AddNewsArticle = createAction(
+  AppActions.ADD_NEWS_ARTICLE,
+  props<{ articleId: number }>()
+);
+export const AddNewsArticleSuccess = createAction(
+  AppActions.ADD_NEWS_ARTICLE_Success,
+  props<{ article: INewsModel }>()
 );
 
 // errors

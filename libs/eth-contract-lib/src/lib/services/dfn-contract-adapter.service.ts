@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Contract } from 'ethers';
 import { JsonRpcSigner } from '@ethersproject/providers/lib/json-rpc-provider';
-import { ReplaySubject } from 'rxjs';
-import { INewsContractResponse, INewsModel, INewsModelCreateDto } from '../types/dfn-contract.types';
+import { Subject } from 'rxjs';
+import {
+  INewsContractResponse,
+  INewsModel,
+  INewsModelCreateDto,
+} from '../types/dfn-contract.types';
 import { EthereumAdapterService } from './ethereum-adapter.service';
 import { DfnEventTypes } from '../types/dfn-contract-events.types';
 import NewsShareContract from 'truffle/abis/NewsShareContract.json';
+import BigNumber from 'bignumber.js';
+import { Web3ProviderService } from './web3-provider.service';
 
-@Injectable({ providedIn: 'any' })
+@Injectable({ providedIn: 'root' })
 export class DfnContractAdapterService {
   private _contractNetworkAddress: string = null;
   private _contract: Contract = null;
   private _signer: JsonRpcSigner = null;
-  newsAddedEvent: ReplaySubject<INewsModel> = new ReplaySubject<INewsModel>();
+  newsAddedEvent: Subject<number> = new Subject<number>();
 
   private static mapToNewsModel(contractNews: INewsContractResponse): INewsModel {
     return {
@@ -27,13 +33,26 @@ export class DfnContractAdapterService {
     } as INewsModel;
   }
 
-  constructor(private ethereumAdapterService: EthereumAdapterService) {}
+  constructor(
+    private ethereumAdapterService: EthereumAdapterService,
+    private web3ProviderService: Web3ProviderService
+  ) {}
 
   async setupService(networkVersion: string): Promise<void> {
     this._signer = await this.ethereumAdapterService.requestSigner();
     this._contractNetworkAddress = NewsShareContract.networks[networkVersion].address;
-    this._contract = new Contract(this._contractNetworkAddress, NewsShareContract.abi, this._signer);
-    this._contract.on(DfnEventTypes.NewsAdded, (data) => this.newsAddedEvent.next(data));
+    this._contract = new Contract(
+      this._contractNetworkAddress,
+      NewsShareContract.abi,
+      this._signer
+    );
+
+    // only subscribe to events after the last block https://github.com/ethers-io/ethers.js/issues/2310
+    this.web3ProviderService.once('block', () => {
+      this._contract.on(DfnEventTypes.NewsAdded, (data: BigNumber) => {
+        this.newsAddedEvent.next(data.toNumber());
+      });
+    });
   }
 
   async addNews(payload: INewsModelCreateDto): Promise<void> {
@@ -47,12 +66,14 @@ export class DfnContractAdapterService {
   }
 
   async getNewsByIndex(index: number): Promise<INewsModel> {
-    const contractNews: INewsContractResponse = await this._contract['newsAddresses'](index);
+    const contractNews: INewsContractResponse = await this._contract['getNewsByIndex'](index);
     return DfnContractAdapterService.mapToNewsModel(contractNews);
   }
 
   async getNews(): Promise<Array<INewsModel>> {
     const contractNewsList: Array<INewsContractResponse> = await this._contract['getNews']();
-    return contractNewsList.map((contractNews) => DfnContractAdapterService.mapToNewsModel(contractNews));
+    return contractNewsList.map((contractNews) =>
+      DfnContractAdapterService.mapToNewsModel(contractNews)
+    );
   }
 }

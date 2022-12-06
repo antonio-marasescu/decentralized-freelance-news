@@ -38,7 +38,7 @@ contract NewsShareContract is Verifier {
     NewsModel memory news = NewsModel(newsAddresses.length, _ipfsAddress, _newsHash, _title, _summary, _contentType, 0, msg.sender);
     newsHashToOwner[_newsHash] = msg.sender;
     newsAddresses.push(news);
-    emit NewsAdded(newsAddresses.length);
+    emit NewsAdded(newsAddresses.length - 1);
     return true;
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectIsLoading } from './core/store/app.reducers';
@@ -8,6 +8,7 @@ import { GetCurrentAccount, SetupIdentity } from './core/store/app.actions';
   selector: 'dfn-main-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   loading$: Observable<boolean>;

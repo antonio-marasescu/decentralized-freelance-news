@@ -14,3 +14,8 @@
 .primary-text-color {
   color: vars.$primary-color;
 }
+
+.background-colored-snackbar {
+  color: vars.$text-color;
+  background: white;
+}
