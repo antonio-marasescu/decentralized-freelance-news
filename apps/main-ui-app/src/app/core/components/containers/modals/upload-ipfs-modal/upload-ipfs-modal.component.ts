@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'dfn-main-upload-ipfs-modal',
@@ -11,7 +12,10 @@ export class UploadIpfsModalComponent {
   file: File | null = null;
   fileAdded = false;
 
-  constructor(public dialogRef: MatDialogRef<UploadIpfsModalComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<UploadIpfsModalComponent>,
+    private snackBarRef: MatSnackBar
+  ) {}
 
   async onFileAdded(event: Event): Promise<void> {
     const element = event.currentTarget as HTMLInputElement;
@@ -24,6 +28,10 @@ export class UploadIpfsModalComponent {
   }
 
   async onUpload(): Promise<void> {
+    this.snackBarRef.open('The file has been uploaded to IPFS', 'OK', {
+      duration: 4000,
+      panelClass: ['background-colored-snackbar'],
+    });
     this.dialogRef.close('the ipfs address');
   }
 

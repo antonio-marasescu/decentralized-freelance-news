@@ -71,12 +71,7 @@
     <mat-card-actions>
       <mat-divider></mat-divider>
       <div class="d-flex justify-content-end p-3 gap-3">
-        <button
-          id="uploadToIpfsButton"
-          mat-flat-button
-          color="accent"
-          (click)="uploadToIpfs.emit()"
-        >
+        <button id="uploadToIpfsButton" mat-button color="primary" (click)="uploadToIpfs.emit()">
           Upload to IPFS
         </button>
         <button
