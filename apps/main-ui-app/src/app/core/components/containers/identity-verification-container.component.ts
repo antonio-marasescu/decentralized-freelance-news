@@ -42,8 +42,8 @@ export class IdentityVerificationContainerComponent implements OnInit {
     this.store.dispatch(ChangeStorageClass({ newStorageClass }));
   }
 
-  async onIdentityUpload(data: Event): Promise<void> {
-    const element = data.currentTarget as HTMLInputElement;
+  async onIdentityUpload(event: Event): Promise<void> {
+    const element = event.currentTarget as HTMLInputElement;
     const uploadedFile = element.files?.[0];
     if (!uploadedFile) {
       return;

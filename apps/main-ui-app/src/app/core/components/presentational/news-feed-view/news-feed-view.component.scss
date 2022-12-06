@@ -2,12 +2,6 @@
 
 .news-article-container {
   width: 470px;
-  transition: transform 0.2s ease-in-out;
-  z-index: 99;
-
-  &:hover {
-    transform: scale(1.03);
-  }
 
   .news-article-title-container {
     display: grid;

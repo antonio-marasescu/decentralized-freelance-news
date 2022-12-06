@@ -1,6 +1,25 @@
-<h1 mat-dialog-title>Delete file</h1>
-<div mat-dialog-content>Would you like to delete cat.jpeg?</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+<div class="d-flex flex-column h-100 w-100">
+  <h1 mat-dialog-title>Upload Article Content to IPFS</h1>
+  <div
+    mat-dialog-content
+    class="d-flex justify-content-center align-items-center upload-ipfs-modal-content"
+  >
+    <button mat-button (click)="hiddenUploadInput.click()" color="none">
+      <mat-icon>upload</mat-icon>
+      <input
+        #hiddenUploadInput
+        id="hiddenUploadInput"
+        class="d-none"
+        type="file"
+        (change)="onFileAdded($event)"
+      />
+      Add file
+    </button>
+  </div>
+  <div mat-dialog-actions class="d-flex flex-row-reverse gap-2">
+    <button mat-flat-button color="primary" (click)="onUpload()" [disabled]="!fileAdded">
+      Upload
+    </button>
+    <button mat-flat-button (click)="onCancel()">Cancel</button>
+  </div>
 </div>

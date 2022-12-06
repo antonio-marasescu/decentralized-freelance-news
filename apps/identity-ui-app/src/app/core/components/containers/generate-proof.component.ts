@@ -31,8 +31,8 @@ export class GenerateProofComponent implements OnInit {
     });
   }
 
-  async onImportKeys(data: Event): Promise<void> {
-    const element = data.currentTarget as HTMLInputElement;
+  async onImportKeys(event: Event): Promise<void> {
+    const element = event.currentTarget as HTMLInputElement;
     const uploadedFile = element.files?.[0];
     if (!uploadedFile) {
       return;

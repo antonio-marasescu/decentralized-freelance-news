@@ -6,6 +6,7 @@ import { UploadIpfsModalComponent } from './modals/upload-ipfs-modal/upload-ipfs
 import { firstValueFrom } from 'rxjs';
 import { INewsModelCreateDto } from '@decentralized-freelance-news/eth-contract-lib';
 import { CreateNewsArticle } from '../../store/app.actions';
+import { isNil } from 'lodash-es';
 
 @Component({
   selector: 'dfn-main-create-article-container',
@@ -40,8 +41,13 @@ export class CreateArticleContainerComponent implements OnInit {
     const dialogRef = this.matDialog.open(UploadIpfsModalComponent, {
       height: '400px',
       width: '600px',
+      autoFocus: false,
     });
     const dialogResult = await firstValueFrom(dialogRef.afterClosed());
+    if (isNil(dialogResult)) {
+      return;
+    }
+    this.form.patchValue({ ipfsAddress: dialogResult });
   }
 
   async onCreateArticle(): Promise<void> {
