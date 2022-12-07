@@ -10,6 +10,10 @@ import {
   GetCurrentAccount,
   GetCurrentAccountSuccess,
   GetNews,
+  GetNewsArticleById,
+  GetNewsArticleByIdSuccess,
+  GetNewsArticleContentByAddress,
+  GetNewsArticleContentByAddressSuccess,
   GetNewsSuccess,
   IdentityVerificationUpload,
   IdentityVerificationUploadSuccess,
@@ -20,10 +24,11 @@ import {
 } from './app.actions';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 import { IdentityStorageClass } from '../types/identity-storage-class.types';
-import { values } from 'lodash-es';
+import { isNil, values } from 'lodash-es';
 
 export interface AppState extends EntityState<INewsModel> {
-  selectedNews: number | null;
+  selectedArticleId: number | null;
+  selectedArticleContent: Blob;
   currentAccount: string | null;
   loading: boolean;
   isInitialized: boolean;
@@ -31,12 +36,16 @@ export interface AppState extends EntityState<INewsModel> {
   storageClass: IdentityStorageClass;
   error: string;
 }
+
+export const getArticleId = (model: INewsModel) => model.index;
 export const adapter: EntityAdapter<INewsModel> = createEntityAdapter<INewsModel>({
-  selectId: (model) => model.index,
+  selectId: getArticleId,
+  sortComparer: (a, b) => b.index - a.index,
 });
 
 export const initialAppState: AppState = adapter.getInitialState({
-  selectedNews: null,
+  selectedArticleId: null,
+  selectedArticleContent: null,
   currentAccount: null,
   loading: false,
   isInitialized: false,
@@ -85,6 +94,16 @@ export const appReducer = createReducer(
   })),
   on(GetNews, (state) => ({ ...state, loading: true })),
   on(GetNewsSuccess, (state, { news }) => adapter.setMany(news, { ...state, loading: false })),
+  on(GetNewsArticleById, (state) => ({ ...state, loading: true })),
+  on(GetNewsArticleByIdSuccess, (state, { article }) =>
+    adapter.addOne(article, { ...state, selectedArticleId: getArticleId(article), loading: false })
+  ),
+  on(GetNewsArticleContentByAddress, (state) => ({ ...state, loading: true })),
+  on(GetNewsArticleContentByAddressSuccess, (state, { file }) => ({
+    ...state,
+    selectedArticleContent: file,
+    loading: false,
+  })),
   on(CreateNewsArticle, (state) => ({ ...state, loading: true })),
   on(CreateNewsArticleSuccess, (state) => ({ ...state, loading: false })),
   on(AddNewsArticleSuccess, (state, { article }) => adapter.addOne(article, { ...state })),
@@ -104,7 +123,13 @@ export const selectStorageClass = () =>
 export const selectStoredIdentity = () =>
   createSelector(selectFeature(), (state: AppState) => state.storedIdentity);
 
-export const selectNews = () =>
-  createSelector(selectFeature(), (state: AppState) => values(state.entities));
-export const selectNewsMap = () =>
-  createSelector(selectFeature(), (state: AppState) => state.entities);
+const { selectEntities, selectAll } = adapter.getSelectors();
+
+export const selectNews = () => createSelector(selectFeature(), selectAll);
+export const selectNewsMap = () => createSelector(selectFeature(), selectEntities);
+export const selectCurrentNewsArticle = () =>
+  createSelector(selectFeature(), (state: AppState) =>
+    !isNil(state.selectedArticleId) ? state.entities[state.selectedArticleId] : null
+  );
+export const selectCurrentNewsArticleContent = () =>
+  createSelector(selectFeature(), (state: AppState) => state.selectedArticleContent);

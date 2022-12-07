@@ -13,6 +13,10 @@ import {
   GetCurrentAccount,
   GetCurrentAccountSuccess,
   GetNews,
+  GetNewsArticleById,
+  GetNewsArticleByIdSuccess,
+  GetNewsArticleContentByAddress,
+  GetNewsArticleContentByAddressSuccess,
   GetNewsSuccess,
   IdentityVerificationUpload,
   IdentityVerificationUploadSuccess,
@@ -25,6 +29,7 @@ import {
 import {
   DfnContractAdapterService,
   EthereumAdapterService,
+  IpfsAdapterService,
 } from '@decentralized-freelance-news/eth-contract-lib';
 import { IdentityVerificationService } from '../services/identity-verification.service';
 import { AppRoutingService } from '../services/app-routing.service';
@@ -37,6 +42,7 @@ export class AppEffects {
     private ethereumAdapterService: EthereumAdapterService,
     private dfnContractAdapterService: DfnContractAdapterService,
     private identityVerificationService: IdentityVerificationService,
+    private ipfsAdapterService: IpfsAdapterService,
     private appRoutingService: AppRoutingService,
     private snackBarRef: MatSnackBar
   ) {}
@@ -125,12 +131,45 @@ export class AppEffects {
   getNews$ = createEffect(() =>
     this.actions$.pipe(
       ofType(GetNews),
-      switchMap(() => {
-        return from(this.dfnContractAdapterService.getNews()).pipe(
+      switchMap(() =>
+        from(this.dfnContractAdapterService.getNews()).pipe(
           map((news) => GetNewsSuccess({ news })),
           catchError((err) => of(ActionFailure({ reason: err, origin: 'GetNews' })))
-        );
-      })
+        )
+      )
+    )
+  );
+
+  getNewsArticleById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GetNewsArticleById),
+      switchMap(({ id }) =>
+        from(this.dfnContractAdapterService.getNewsByIndex(id)).pipe(
+          map((article) => GetNewsArticleByIdSuccess({ article })),
+          catchError((err) => of(ActionFailure({ reason: err, origin: 'GetNewsArticleById' })))
+        )
+      )
+    )
+  );
+
+  getNewsArticleByIdSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GetNewsArticleByIdSuccess),
+      map(({ article }) => GetNewsArticleContentByAddress({ address: article.ipfsAddress }))
+    )
+  );
+
+  getNewsArticleContentByAddress$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GetNewsArticleContentByAddress),
+      switchMap(({ address }) =>
+        from(this.ipfsAdapterService.getFile(address)).pipe(
+          map((file) => GetNewsArticleContentByAddressSuccess({ file })),
+          catchError((err) =>
+            of(ActionFailure({ reason: err, origin: 'GetNewsArticleContentByAddress' }))
+          )
+        )
+      )
     )
   );
 

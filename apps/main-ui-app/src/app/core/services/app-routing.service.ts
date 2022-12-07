@@ -10,6 +10,10 @@ export class AppRoutingService {
     await this.router.navigate([AppRoutesConfig.NewsFeed]);
   }
 
+  async navigateToNewsArticlePage(id: number): Promise<void> {
+    await this.router.navigate([AppRoutesConfig.NewsArticle.replace(':id', id.toString())]);
+  }
+
   async navigateToCreateArticlePage(): Promise<void> {
     await this.router.navigate([AppRoutesConfig.CreateArticle]);
   }

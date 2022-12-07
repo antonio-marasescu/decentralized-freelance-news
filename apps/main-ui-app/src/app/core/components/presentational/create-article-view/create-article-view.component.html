@@ -19,9 +19,8 @@
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>Content Type</mat-label>
               <mat-select formControlName="contentType">
-                <mat-option [value]="'text/plain'"> Text </mat-option>
-                <mat-option [value]="'video/mp4'"> Video </mat-option>
-                <mat-option [value]="'application/markdown'"> Markdown </mat-option>
+                <mat-option [value]="ContentType.TextPlain"> Text </mat-option>
+                <mat-option [value]="ContentType.Markdown"> Markdown </mat-option>
               </mat-select>
             </mat-form-field>
             <shared-lib-form-validation-message

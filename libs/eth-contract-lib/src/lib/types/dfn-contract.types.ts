@@ -1,6 +1,9 @@
 import BigNumber from 'bignumber.js';
 
-export type NewsContentType = 'text/plain' | 'video/mp4' | 'application/markdown';
+export enum NewsContentType {
+  TextPlain = 'text/plain',
+  Markdown = 'application/markdown',
+}
 
 export interface INewsContractResponse {
   index: BigNumber;

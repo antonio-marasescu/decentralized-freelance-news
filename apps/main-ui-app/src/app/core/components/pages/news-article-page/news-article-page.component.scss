@@ -1,0 +1,11 @@
+.news-article-page-container {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 0.2fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'a content b';
+  grid-column-gap: 12px;
+}
+
+.news-article-container {
+  grid-area: content;
+}

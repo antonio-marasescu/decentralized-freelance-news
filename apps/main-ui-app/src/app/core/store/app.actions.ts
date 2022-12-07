@@ -2,93 +2,81 @@ import { createAction, props } from '@ngrx/store';
 import { IdentityStorageClass } from '../types/identity-storage-class.types';
 import { INewsModel, INewsModelCreateDto } from '@decentralized-freelance-news/eth-contract-lib';
 
-export enum AppActions {
-  // setup
-  GET_CURRENT_ACCOUNT = '[DFN] Get Current Account',
-  GET_CURRENT_ACCOUNT_SUCCESS = '[DFN] Get Current Account Success',
-  REQUEST_ACCOUNTS_ACCESS = '[DFN] Request Accounts Access',
-  SETUP_ETHEREUM_SERVICES = '[DFN] Setup Ethereum Services',
-  SETUP_ETHEREUM_SERVICES_SUCCESS = '[DFN] Setup Ethereum Services Success',
+// contract interaction
 
-  // identity verification
-  SETUP_IDENTITY = '[DFN] Setup Identity',
-  SETUP_IDENTITY_SUCCESS = '[DFN] Setup Identity Success',
-  CHANGE_STORAGE_CLASS = '[DFN] Change Storage Class',
-  CHANGE_STORAGE_CLASS_SUCCESS = '[DFN] Change Storage Class Success',
-  IDENTITY_VERIFICATION_UPLOAD = '[DFN] Identity Verification Upload',
-  IDENTITY_VERIFICATION_UPLOAD_SUCCESS = '[DFN] Identity Verification Upload Success',
-
-  // contract interaction
-  GET_NEWS = '[DFN] Get News',
-  GET_NEWS_SUCCESS = '[DFN] Get News Success',
-  CREATE_NEWS_ARTICLE = '[DFN] Create News Article',
-  CREATE_NEWS_ARTICLE_SUCCESS = '[DFN] Create News Article Success',
-  ADD_NEWS_ARTICLE = '[DFN] Add News Article',
-  ADD_NEWS_ARTICLE_Success = '[DFN] Add News Article Success',
-
-  // errors
-  ACTION_FAILURE = '[DFN] Action Failure',
-}
+export const GetNews = createAction('[DFN] Get News');
+export const GetNewsSuccess = createAction(
+  '[DFN] Get News Success',
+  props<{ news: INewsModel[] }>()
+);
+export const GetNewsArticleById = createAction(
+  '[DFN] Get News Article By Id',
+  props<{ id: number }>()
+);
+export const GetNewsArticleByIdSuccess = createAction(
+  '[DFN] Get News Article By Id Success',
+  props<{ article: INewsModel }>()
+);
+export const GetNewsArticleContentByAddress = createAction(
+  '[DFN] Get News Article Content By Address',
+  props<{ address: string }>()
+);
+export const GetNewsArticleContentByAddressSuccess = createAction(
+  '[DFN] Get News Article Content By Address Success',
+  props<{ file: Blob }>()
+);
+export const CreateNewsArticle = createAction(
+  '[DFN] Create News Article',
+  props<{ article: INewsModelCreateDto }>()
+);
+export const CreateNewsArticleSuccess = createAction('[DFN] Create News Article Success');
+export const AddNewsArticle = createAction(
+  '[DFN] Add News Article',
+  props<{ articleId: number }>()
+);
+export const AddNewsArticleSuccess = createAction(
+  '[DFN] Add News Article Success',
+  props<{ article: INewsModel }>()
+);
 
 // setup
-export const GetCurrentAccount = createAction(AppActions.GET_CURRENT_ACCOUNT);
+export const GetCurrentAccount = createAction('[DFN] Get Current Account');
 export const GetCurrentAccountSuccess = createAction(
-  AppActions.GET_CURRENT_ACCOUNT_SUCCESS,
+  '[DFN] Get Current Account Success',
   props<{ account: string }>()
 );
-export const RequestAccountsAccess = createAction(AppActions.REQUEST_ACCOUNTS_ACCESS);
-export const SetupEthereumServices = createAction(AppActions.SETUP_ETHEREUM_SERVICES);
+export const RequestAccountsAccess = createAction('[DFN] Request Accounts Access');
+export const SetupEthereumServices = createAction('[DFN] Setup Ethereum Services');
 export const SetupEthereumServicesSuccess = createAction(
-  AppActions.SETUP_ETHEREUM_SERVICES_SUCCESS,
+  '[DFN] Setup Ethereum Services Success',
   props<{ currentAccount: string }>()
 );
 
 // identity verification
-export const SetupIdentity = createAction(AppActions.SETUP_IDENTITY);
+export const SetupIdentity = createAction('[DFN] Setup Identity');
 export const SetupIdentitySuccess = createAction(
-  AppActions.SETUP_IDENTITY_SUCCESS,
+  '[DFN] Setup Identity Success',
   props<{ storageClass: IdentityStorageClass; storedIdentity: string | null }>()
 );
 export const ChangeStorageClass = createAction(
-  AppActions.CHANGE_STORAGE_CLASS,
+  '[DFN] Change Storage Class',
   props<{ newStorageClass: IdentityStorageClass }>()
 );
 export const ChangeStorageClassSuccess = createAction(
-  AppActions.CHANGE_STORAGE_CLASS_SUCCESS,
+  '[DFN] Change Storage Class Success',
   props<{ storageClass: IdentityStorageClass; storedIdentity: string | null }>()
 );
 export const IdentityVerificationUpload = createAction(
-  AppActions.IDENTITY_VERIFICATION_UPLOAD,
+  '[DFN] Identity Verification Upload',
   props<{ newStoredIdentity: string }>()
 );
 export const IdentityVerificationUploadSuccess = createAction(
-  AppActions.IDENTITY_VERIFICATION_UPLOAD_SUCCESS,
+  '[DFN] Identity Verification Upload Success',
   props<{ storedIdentity: string | null }>()
-);
-
-// contract interaction
-
-export const GetNews = createAction(AppActions.GET_NEWS);
-export const GetNewsSuccess = createAction(
-  AppActions.GET_NEWS_SUCCESS,
-  props<{ news: INewsModel[] }>()
-);
-export const CreateNewsArticle = createAction(
-  AppActions.CREATE_NEWS_ARTICLE,
-  props<{ article: INewsModelCreateDto }>()
-);
-export const CreateNewsArticleSuccess = createAction(AppActions.CREATE_NEWS_ARTICLE_SUCCESS);
-export const AddNewsArticle = createAction(
-  AppActions.ADD_NEWS_ARTICLE,
-  props<{ articleId: number }>()
-);
-export const AddNewsArticleSuccess = createAction(
-  AppActions.ADD_NEWS_ARTICLE_Success,
-  props<{ article: INewsModel }>()
 );
 
 // errors
 export const ActionFailure = createAction(
-  AppActions.ACTION_FAILURE,
+  '[DFN] Action Failure',
   props<{ reason: string; origin: string }>()
 );

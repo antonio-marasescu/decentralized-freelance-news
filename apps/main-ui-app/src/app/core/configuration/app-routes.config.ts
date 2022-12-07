@@ -1,5 +1,6 @@
 export enum AppRoutesConfig {
-  NewsFeed = 'news',
+  NewsFeed = 'feed',
+  NewsArticle = 'news/:id',
   CreateArticle = 'write',
   Identity = 'identity',
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 
 @Component({
@@ -9,4 +9,6 @@ import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 })
 export class NewsFeedViewComponent {
   @Input() newsFeedList: INewsModel[] = [];
+  @Output() likeEvent = new EventEmitter<number>();
+  @Output() readEvent = new EventEmitter<number>();
 }

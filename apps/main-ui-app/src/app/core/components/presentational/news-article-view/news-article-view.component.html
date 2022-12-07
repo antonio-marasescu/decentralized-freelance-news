@@ -1,0 +1,46 @@
+<ng-container *ngIf="article && content">
+  <div class="vh-100 w-100 pt-4">
+    <mat-card class="mat-elevation-z0">
+      <mat-card-header>
+        <div class="news-article-header w-100 m-1">
+          <div>
+            <div class="mat-h1">
+              {{ article.title }}
+            </div>
+            <mat-card-subtitle>Posted By: {{ article.owner }}</mat-card-subtitle>
+          </div>
+          <div class="news-article-header--rating">
+            <mat-chip-list>
+              <mat-chip>{{ article.rating }}</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <div class="container">
+          <div class="row pt-4">
+            <div class="col-12 mat-h2">Summary</div>
+            <div class="col-12 mat-body">{{ article.summary }}</div>
+          </div>
+          <div class="pt-4">
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+        <div class="row pt-4">
+          <div class="col-12" [ngSwitch]="article.contentType">
+            <dfn-main-news-article-view-markdown-renderer
+              *ngSwitchCase="ContentType.Markdown"
+              [markdownContent]="content"
+            >
+            </dfn-main-news-article-view-markdown-renderer>
+            <dfn-main-news-article-view-text-renderer
+              *ngSwitchDefault
+              [textContent]="content"
+            ></dfn-main-news-article-view-text-renderer>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>

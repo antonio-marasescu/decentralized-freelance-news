@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CreateArticleViewConfiguration } from './create-article-view.configuration';
+import { NewsContentType } from '@decentralized-freelance-news/eth-contract-lib';
 
 @Component({
   selector: 'dfn-main-create-article-view',
@@ -9,6 +10,7 @@ import { CreateArticleViewConfiguration } from './create-article-view.configurat
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateArticleViewComponent {
+  ContentType = NewsContentType;
   configuration = CreateArticleViewConfiguration.configuration;
   @Input() form: FormGroup;
   @Output() uploadToIpfs = new EventEmitter<void>();

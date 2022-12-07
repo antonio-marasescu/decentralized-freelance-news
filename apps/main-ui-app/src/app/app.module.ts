@@ -27,6 +27,12 @@ import { CreateArticleViewComponent } from './core/components/presentational/cre
 import { NewsCreatePageComponent } from './core/components/pages/news-create-page/news-create-page.component';
 import { UploadIpfsModalComponent } from './core/components/containers/modals/upload-ipfs-modal/upload-ipfs-modal.component';
 import { create } from 'ipfs-http-client';
+import { NewsArticleContainerComponent } from './core/components/containers/news-article-container.component';
+import { NewsArticleViewTextRendererComponent } from './core/components/presentational/news-article-view/renderers/news-article-view-text-renderer/news-article-view-text-renderer.component';
+import { NewsArticleViewComponent } from './core/components/presentational/news-article-view/news-article-view.component';
+import { NewsArticlePageComponent } from './core/components/pages/news-article-page/news-article-page.component';
+import { NewsArticleViewMarkdownRendererComponent } from './core/components/presentational/news-article-view/renderers/news-article-view-markdown-renderer/news-article-view-markdown-renderer.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -46,6 +52,11 @@ import { create } from 'ipfs-http-client';
     CreateArticleViewComponent,
     NewsCreatePageComponent,
     UploadIpfsModalComponent,
+    NewsArticleContainerComponent,
+    NewsArticleViewTextRendererComponent,
+    NewsArticleViewMarkdownRendererComponent,
+    NewsArticleViewComponent,
+    NewsArticlePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +64,7 @@ import { create } from 'ipfs-http-client';
     BrowserAnimationsModule,
     SharedLibModule.forRoot(),
     EthContractLibModule.forRoot(),
+    MarkdownModule.forRoot(),
     StoreModule.forRoot(RootReducers),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 42 }) : [],
     EffectsModule.forRoot(RootEffects),

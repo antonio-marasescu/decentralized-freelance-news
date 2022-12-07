@@ -1,0 +1,9 @@
+.news-article-header {
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+  align-items: start;
+
+  &--rating {
+    justify-self: end;
+  }
+}
