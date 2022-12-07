@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectCurrentAccount, selectStoredIdentity } from '../../store/app.reducers';
+import { selectCurrentAccount, selectHasIdentityStored } from '../../store/app.reducers';
 import { Observable } from 'rxjs';
 import { RequestAccountsAccess } from '../../store/app.actions';
-import { map } from 'rxjs/operators';
-import { isNil } from 'lodash-es';
 
 @Component({
   selector: 'dfn-main-account-management-container',
@@ -28,9 +26,7 @@ export class AccountManagementContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.account$ = this.store.select(selectCurrentAccount());
-    this.hasIdentityStored$ = this.store
-      .select(selectStoredIdentity())
-      .pipe(map((value) => !isNil(value)));
+    this.hasIdentityStored$ = this.store.select(selectHasIdentityStored());
   }
 
   onConnect(): void {

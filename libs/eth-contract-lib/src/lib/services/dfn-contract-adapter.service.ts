@@ -13,6 +13,7 @@ import NewsShareContract from 'truffle/abis/NewsShareContract.json';
 import BigNumber from 'bignumber.js';
 import { Web3ProviderService } from './web3-provider.service';
 import { parseUnits } from 'ethers/lib/utils';
+import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
 
 @Injectable({ providedIn: 'root' })
 export class DfnContractAdapterService {
@@ -59,17 +60,21 @@ export class DfnContractAdapterService {
     });
   }
 
-  async addNews(payload: INewsModelCreateDto): Promise<void> {
+  async addNews(payload: INewsModelCreateDto, zkpProofDto: IZkpProofDto): Promise<void> {
     await this._contract['addNews'](
       payload.ipfsAddress,
       payload.title,
       payload.summary,
-      payload.contentType
+      payload.contentType,
+      zkpProofDto.proof,
+      zkpProofDto.inputs
     );
   }
 
-  async increaseRating(index: number, amount: number): Promise<void> {
-    await this._contract['increaseRating'](index, { value: parseUnits(amount.toString()) });
+  async increaseRating(index: number, amount: number, zkpProofDto: IZkpProofDto): Promise<void> {
+    await this._contract['increaseRating'](index, zkpProofDto.proof, zkpProofDto.inputs, {
+      value: parseUnits(amount.toString()),
+    });
   }
 
   async getNewsByIndex(index: number): Promise<INewsModel> {

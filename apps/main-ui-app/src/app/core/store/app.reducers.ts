@@ -27,6 +27,7 @@ import {
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 import { IdentityStorageClass } from '../types/identity-storage-class.types';
 import { isNil } from 'lodash-es';
+import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
 
 export interface AppState extends EntityState<INewsModel> {
   selectedArticleId: number | null;
@@ -125,7 +126,10 @@ export const selectIsInitialized = () =>
 export const selectStorageClass = () =>
   createSelector(selectFeature(), (state: AppState) => state.storageClass);
 export const selectStoredIdentity = () =>
-  createSelector(selectFeature(), (state: AppState) => state.storedIdentity);
+  createSelector(
+    selectFeature(),
+    (state: AppState) => JSON.parse(state.storedIdentity) as IZkpProofDto
+  );
 export const selectHasIdentityStored = () =>
   createSelector(selectFeature(), (state: AppState) => !isNil(state.storedIdentity));
 

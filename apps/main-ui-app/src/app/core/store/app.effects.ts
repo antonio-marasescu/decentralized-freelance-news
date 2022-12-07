@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import { from, of, tap } from 'rxjs';
+import { from, of, tap, withLatestFrom } from 'rxjs';
 import {
   ActionFailure,
   AddNewsArticle,
@@ -36,6 +36,8 @@ import {
 import { IdentityVerificationService } from '../services/identity-verification.service';
 import { AppRoutingService } from '../services/app-routing.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { selectStoredIdentity } from './app.reducers';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class AppEffects {
@@ -46,6 +48,7 @@ export class AppEffects {
     private identityVerificationService: IdentityVerificationService,
     private ipfsAdapterService: IpfsAdapterService,
     private appRoutingService: AppRoutingService,
+    private store: Store,
     private snackBarRef: MatSnackBar
   ) {}
 
@@ -178,8 +181,10 @@ export class AppEffects {
   createNewsArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CreateNewsArticle),
-      switchMap(({ article }) => {
-        return from(this.dfnContractAdapterService.addNews(article)).pipe(
+      map(({ article }) => article),
+      withLatestFrom(this.store.select(selectStoredIdentity())),
+      switchMap(([article, storedIdentity]) => {
+        return from(this.dfnContractAdapterService.addNews(article, storedIdentity)).pipe(
           map(() => CreateNewsArticleSuccess()),
           catchError((err) => of(ActionFailure({ reason: err, origin: 'CreateNewsArticle' })))
         );
@@ -209,8 +214,11 @@ export class AppEffects {
   increaseNewsArticleRating$ = createEffect(() =>
     this.actions$.pipe(
       ofType(IncreaseNewsArticleRating),
-      switchMap(({ articleId, amount }) => {
-        return from(this.dfnContractAdapterService.increaseRating(articleId, amount)).pipe(
+      withLatestFrom(this.store.select(selectStoredIdentity())),
+      switchMap(([{ articleId, amount }, storedIdentity]) => {
+        return from(
+          this.dfnContractAdapterService.increaseRating(articleId, amount, storedIdentity)
+        ).pipe(
           map(() => IncreaseNewsArticleRatingSuccess()),
           catchError((err) =>
             of(ActionFailure({ reason: err, origin: 'IncreaseNewsArticleRating' }))
