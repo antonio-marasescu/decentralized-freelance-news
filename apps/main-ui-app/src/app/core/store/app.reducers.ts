@@ -126,6 +126,8 @@ export const selectStorageClass = () =>
   createSelector(selectFeature(), (state: AppState) => state.storageClass);
 export const selectStoredIdentity = () =>
   createSelector(selectFeature(), (state: AppState) => state.storedIdentity);
+export const selectHasIdentityStored = () =>
+  createSelector(selectFeature(), (state: AppState) => !isNil(state.storedIdentity));
 
 const { selectEntities, selectAll } = adapter.getSelectors();
 

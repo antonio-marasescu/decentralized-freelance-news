@@ -65,7 +65,7 @@
           id="createArticleButton"
           mat-flat-button
           color="primary"
-          [disabled]="form.invalid"
+          [disabled]="form.invalid || !hasIdentity"
           (click)="createArticle.emit()"
         >
           Create

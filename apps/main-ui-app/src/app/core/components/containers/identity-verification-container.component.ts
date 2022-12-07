@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectStorageClass, selectStoredIdentity } from '../../store/app.reducers';
+import { selectHasIdentityStored, selectStorageClass } from '../../store/app.reducers';
 import { Observable } from 'rxjs';
 import { IdentityStorageClass } from '../../types/identity-storage-class.types';
-import { map } from 'rxjs/operators';
-import { isNil } from 'lodash-es';
 import { ChangeStorageClass, IdentityVerificationUpload } from '../../store/app.actions';
 import { FileUtils } from '@decentralized-freelance-news/shared-lib';
 
@@ -33,9 +31,7 @@ export class IdentityVerificationContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.storageClass$ = this.store.select(selectStorageClass());
-    this.hasIdentityStored$ = this.store
-      .select(selectStoredIdentity())
-      .pipe(map((value) => !isNil(value)));
+    this.hasIdentityStored$ = this.store.select(selectHasIdentityStored());
   }
 
   onStorageClassChange(newStorageClass: IdentityStorageClass): void {

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 import { firstValueFrom, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectNews } from '../../store/app.reducers';
+import { selectHasIdentityStored, selectNews } from '../../store/app.reducers';
 import { GetNews, IncreaseNewsArticleRating } from '../../store/app.actions';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NewsContractionNotificationsService } from '../../services/news-contraction-notifications.service';
@@ -14,9 +14,10 @@ import { SupportValueModalComponent } from './modals/support-value-modal/support
 @UntilDestroy()
 @Component({
   selector: 'dfn-main-news-feed-container',
-  template: `<ng-container *ngIf="items$">
+  template: `<ng-container *ngIf="items$ && hasIdentityStored$">
     <dfn-main-news-feed-view
       [newsFeedList]="items$ | async"
+      [hasIdentity]="hasIdentityStored$ | async"
       (likeEvent)="onLike($event)"
       (readEvent)="onRead($event)"
     ></dfn-main-news-feed-view>
@@ -26,6 +27,7 @@ import { SupportValueModalComponent } from './modals/support-value-modal/support
 })
 export class NewsFeedContainerComponent implements OnInit {
   items$: Observable<INewsModel[]>;
+  hasIdentityStored$: Observable<boolean>;
 
   constructor(
     private store: Store,
@@ -36,6 +38,7 @@ export class NewsFeedContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.items$ = this.store.select(selectNews());
+    this.hasIdentityStored$ = this.store.select(selectHasIdentityStored());
     this.newsContractionNotificationsService.setup().pipe(untilDestroyed(this)).subscribe();
     this.store.dispatch(GetNews());
   }

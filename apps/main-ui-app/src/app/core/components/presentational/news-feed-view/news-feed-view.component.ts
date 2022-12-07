@@ -9,6 +9,7 @@ import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 })
 export class NewsFeedViewComponent {
   @Input() newsFeedList: INewsModel[] = [];
+  @Input() hasIdentity = false;
   @Output() likeEvent = new EventEmitter<number>();
   @Output() readEvent = new EventEmitter<number>();
 }

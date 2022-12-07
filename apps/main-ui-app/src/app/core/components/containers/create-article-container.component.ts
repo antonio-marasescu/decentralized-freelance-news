@@ -3,17 +3,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadIpfsModalComponent } from './modals/upload-ipfs-modal/upload-ipfs-modal.component';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { INewsModelCreateDto } from '@decentralized-freelance-news/eth-contract-lib';
 import { CreateNewsArticle } from '../../store/app.actions';
 import { isNil } from 'lodash-es';
+import { selectHasIdentityStored } from '../../store/app.reducers';
 
 @Component({
   selector: 'dfn-main-create-article-container',
   template: `
-    <ng-container *ngIf="form">
+    <ng-container *ngIf="form && hasIdentityStored$">
       <dfn-main-create-article-view
         [form]="form"
+        [hasIdentity]="hasIdentityStored$ | async"
         (uploadToIpfs)="onUploadToIpfs()"
         (createArticle)="onCreateArticle()"
       ></dfn-main-create-article-view>
@@ -23,11 +25,13 @@ import { isNil } from 'lodash-es';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateArticleContainerComponent implements OnInit {
+  hasIdentityStored$: Observable<boolean>;
   form: FormGroup;
 
   constructor(private store: Store, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.hasIdentityStored$ = this.store.select(selectHasIdentityStored());
     this.form = new FormGroup({
       ipfsAddress: new FormControl(null, [Validators.required]),
       title: new FormControl(null, [Validators.required]),
