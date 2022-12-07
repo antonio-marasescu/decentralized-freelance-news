@@ -19,7 +19,6 @@ export interface INewsContractResponse {
 export interface INewsModel {
   index: number;
   ipfsAddress: string;
-  newsHash: string;
   title: string;
   summary: string;
   contentType: NewsContentType;
@@ -29,7 +28,6 @@ export interface INewsModel {
 
 export interface INewsModelCreateDto {
   ipfsAddress: string;
-  newsHash: string;
   title: string;
   summary: string;
   contentType: NewsContentType;

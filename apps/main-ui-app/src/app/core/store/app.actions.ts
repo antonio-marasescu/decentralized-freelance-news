@@ -30,6 +30,13 @@ export const CreateNewsArticle = createAction(
   props<{ article: INewsModelCreateDto }>()
 );
 export const CreateNewsArticleSuccess = createAction('[DFN] Create News Article Success');
+export const IncreaseNewsArticleRating = createAction(
+  '[DFN] Increase News Article Rating',
+  props<{ articleId: number; amount: number }>()
+);
+export const IncreaseNewsArticleRatingSuccess = createAction(
+  '[DFN] Increase News Article Rating Success'
+);
 export const AddNewsArticle = createAction(
   '[DFN] Add News Article',
   props<{ articleId: number }>()

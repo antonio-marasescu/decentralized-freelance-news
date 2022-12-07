@@ -33,6 +33,7 @@ import { NewsArticleViewComponent } from './core/components/presentational/news-
 import { NewsArticlePageComponent } from './core/components/pages/news-article-page/news-article-page.component';
 import { NewsArticleViewMarkdownRendererComponent } from './core/components/presentational/news-article-view/renderers/news-article-view-markdown-renderer/news-article-view-markdown-renderer.component';
 import { MarkdownModule } from 'ngx-markdown';
+import { SupportValueModalComponent } from './core/components/containers/modals/support-value-modal/support-value-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MarkdownModule } from 'ngx-markdown';
     NewsArticleViewMarkdownRendererComponent,
     NewsArticleViewComponent,
     NewsArticlePageComponent,
+    SupportValueModalComponent,
   ],
   imports: [
     BrowserModule,

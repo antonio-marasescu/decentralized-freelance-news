@@ -5,28 +5,22 @@ import './verifier.sol';
 
 contract NewsShareContract is Verifier {
   event NewsAdded(uint newsIndex);
+  event NewsUpdated(uint newsIndex);
 
   struct NewsModel {
     uint index;
     string ipfsAddress;
-    string newsHash;
     string title;
     string summary;
     string contentType;
     uint rating;
-    address owner;
+    address payable owner;
   }
 
   NewsModel[] public newsAddresses;
-  mapping(string => address) public newsHashToOwner;
-
-  modifier notUsed(string memory _newsHash) {
-    require(newsHashToOwner[_newsHash] == address(0));
-    _;
-  }
 
   modifier acceptableContentType(string memory _contentType) {
-    require(compareStrings(_contentType, "text/plain") || compareStrings(_contentType, "video/mp4") || compareStrings(_contentType, "application/markdown"));
+    require(compareStrings(_contentType, "text/plain") || compareStrings(_contentType, "application/markdown"));
     _;
   }
 
@@ -34,12 +28,17 @@ contract NewsShareContract is Verifier {
     return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
   }
 
-  function addNews(string memory _ipfsAddress, string memory _newsHash, string memory _title, string memory _summary, string memory _contentType) public notUsed(_newsHash) acceptableContentType(_contentType) returns (bool r) {
-    NewsModel memory news = NewsModel(newsAddresses.length, _ipfsAddress, _newsHash, _title, _summary, _contentType, 0, msg.sender);
-    newsHashToOwner[_newsHash] = msg.sender;
+  function addNews(string memory _ipfsAddress, string memory _title, string memory _summary, string memory _contentType) public acceptableContentType(_contentType) {
+    NewsModel memory news = NewsModel(newsAddresses.length, _ipfsAddress, _title, _summary, _contentType, 0, payable(msg.sender));
     newsAddresses.push(news);
     emit NewsAdded(newsAddresses.length - 1);
-    return true;
+  }
+
+  function increaseRating(uint index) public payable {
+      (bool success, ) = newsAddresses[index].owner.call{value: msg.value}("");
+      require(success, "Failed to send Ether");
+      newsAddresses[index].rating++;
+      emit NewsUpdated(index);
   }
 
   function getNewsByIndex(uint index) external view returns (NewsModel memory) {

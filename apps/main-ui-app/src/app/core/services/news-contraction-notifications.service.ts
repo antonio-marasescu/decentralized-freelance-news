@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DfnContractAdapterService } from '@decentralized-freelance-news/eth-contract-lib';
-import { filter, Observable, tap, withLatestFrom } from 'rxjs';
+import { combineLatest, filter, Observable, tap, withLatestFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectIsInitialized, selectNewsMap } from '../store/app.reducers';
 import { map } from 'rxjs/operators';
@@ -12,7 +12,7 @@ export class NewsContractionNotificationsService {
   constructor(private dfnContractAdapterService: DfnContractAdapterService, private store: Store) {}
 
   setup(): Observable<unknown> {
-    return this.dfnContractAdapterService.newsAddedEvent.asObservable().pipe(
+    const newsAdded$ = this.dfnContractAdapterService.newsAddedEvent.asObservable().pipe(
       withLatestFrom(this.store.select(selectIsInitialized())),
       filter(([, isInitialized]) => isInitialized),
       map(([articleId]) => articleId),
@@ -25,5 +25,14 @@ export class NewsContractionNotificationsService {
         this.store.dispatch(AddNewsArticle({ articleId }));
       })
     );
+    const newsUpdated$ = this.dfnContractAdapterService.newsUpdatedEvent.asObservable().pipe(
+      withLatestFrom(this.store.select(selectIsInitialized())),
+      filter(([, isInitialized]) => isInitialized),
+      map(([articleId]) => articleId),
+      tap((articleId) => {
+        this.store.dispatch(AddNewsArticle({ articleId }));
+      })
+    );
+    return combineLatest([newsAdded$, newsUpdated$]);
   }
 }

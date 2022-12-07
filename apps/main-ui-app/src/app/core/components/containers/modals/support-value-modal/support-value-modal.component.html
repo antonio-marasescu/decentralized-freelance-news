@@ -1,0 +1,23 @@
+<div class="d-flex flex-column h-100 w-100">
+  <h1 mat-dialog-title>Content Support</h1>
+  <div mat-dialog-content>
+    <p>Please support the writer of your favorite content</p>
+    <div
+      class="d-flex justify-content-center align-items-center support-value-modal-content"
+      [formGroup]="form"
+    >
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Value</mat-label>
+        <input matInput placeholder="0.001234" formControlName="supportValue" />
+        <span matSuffix>ETH</span>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="d-flex flex-row-reverse gap-2">
+    <button mat-flat-button color="primary" (click)="onUpload()" [disabled]="form.invalid">
+      Support
+    </button>
+    <button mat-flat-button (click)="onCancel()">Cancel</button>
+  </div>
+</div>

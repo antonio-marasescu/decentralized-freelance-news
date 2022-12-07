@@ -12,6 +12,7 @@ import { DfnEventTypes } from '../types/dfn-contract-events.types';
 import NewsShareContract from 'truffle/abis/NewsShareContract.json';
 import BigNumber from 'bignumber.js';
 import { Web3ProviderService } from './web3-provider.service';
+import { parseUnits } from 'ethers/lib/utils';
 
 @Injectable({ providedIn: 'root' })
 export class DfnContractAdapterService {
@@ -19,12 +20,12 @@ export class DfnContractAdapterService {
   private _contract: Contract = null;
   private _signer: JsonRpcSigner = null;
   newsAddedEvent: Subject<number> = new Subject<number>();
+  newsUpdatedEvent: Subject<number> = new Subject<number>();
 
   private static mapToNewsModel(contractNews: INewsContractResponse): INewsModel {
     return {
       index: contractNews.index.toNumber(),
       title: contractNews.title,
-      newsHash: contractNews.newsHash,
       ipfsAddress: contractNews.ipfsAddress,
       summary: contractNews.summary,
       contentType: contractNews.contentType,
@@ -52,17 +53,23 @@ export class DfnContractAdapterService {
       this._contract.on(DfnEventTypes.NewsAdded, (data: BigNumber) => {
         this.newsAddedEvent.next(data.toNumber());
       });
+      this._contract.on(DfnEventTypes.NewsUpdated, (data: BigNumber) => {
+        this.newsUpdatedEvent.next(data.toNumber());
+      });
     });
   }
 
   async addNews(payload: INewsModelCreateDto): Promise<void> {
     await this._contract['addNews'](
       payload.ipfsAddress,
-      payload.newsHash,
       payload.title,
       payload.summary,
       payload.contentType
     );
+  }
+
+  async increaseRating(index: number, amount: number): Promise<void> {
+    await this._contract['increaseRating'](index, { value: parseUnits(amount.toString()) });
   }
 
   async getNewsByIndex(index: number): Promise<INewsModel> {

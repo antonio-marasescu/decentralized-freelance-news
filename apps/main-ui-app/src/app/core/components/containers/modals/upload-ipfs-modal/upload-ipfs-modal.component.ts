@@ -28,6 +28,10 @@ export class UploadIpfsModalComponent {
     }
     this.file = uploadedFile;
     this.fileAdded = true;
+    this.snackBarRef.open('The file has been added', 'OK', {
+      duration: 2000,
+      panelClass: ['background-colored-snackbar'],
+    });
   }
 
   async onUpload(): Promise<void> {
@@ -36,7 +40,6 @@ export class UploadIpfsModalComponent {
     }
 
     const address = await firstValueFrom(this.ipfsAdapterService.addFile(this.file));
-    console.log(address);
     this.snackBarRef.open('The file has been uploaded to IPFS', 'OK', {
       duration: 4000,
       panelClass: ['background-colored-snackbar'],

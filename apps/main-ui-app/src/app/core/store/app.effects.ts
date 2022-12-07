@@ -20,6 +20,8 @@ import {
   GetNewsSuccess,
   IdentityVerificationUpload,
   IdentityVerificationUploadSuccess,
+  IncreaseNewsArticleRating,
+  IncreaseNewsArticleRatingSuccess,
   RequestAccountsAccess,
   SetupEthereumServices,
   SetupEthereumServicesSuccess,
@@ -200,6 +202,38 @@ export class AppEffects {
           )
         ),
         switchMap(() => from(this.appRoutingService.navigateToNewsFeedPage()))
+      ),
+    { dispatch: false }
+  );
+
+  increaseNewsArticleRating$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(IncreaseNewsArticleRating),
+      switchMap(({ articleId, amount }) => {
+        return from(this.dfnContractAdapterService.increaseRating(articleId, amount)).pipe(
+          map(() => IncreaseNewsArticleRatingSuccess()),
+          catchError((err) =>
+            of(ActionFailure({ reason: err, origin: 'IncreaseNewsArticleRating' }))
+          )
+        );
+      })
+    )
+  );
+
+  increaseNewsArticleRatingSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(IncreaseNewsArticleRatingSuccess),
+        tap(() =>
+          this.snackBarRef.open(
+            'The article rating will be updated as soon the next block is published.',
+            'OK',
+            {
+              duration: 4000,
+              panelClass: ['background-colored-snackbar'],
+            }
+          )
+        )
       ),
     { dispatch: false }
   );

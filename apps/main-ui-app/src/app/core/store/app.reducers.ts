@@ -17,6 +17,8 @@ import {
   GetNewsSuccess,
   IdentityVerificationUpload,
   IdentityVerificationUploadSuccess,
+  IncreaseNewsArticleRating,
+  IncreaseNewsArticleRatingSuccess,
   SetupEthereumServices,
   SetupEthereumServicesSuccess,
   SetupIdentity,
@@ -106,7 +108,9 @@ export const appReducer = createReducer(
   })),
   on(CreateNewsArticle, (state) => ({ ...state, loading: true })),
   on(CreateNewsArticleSuccess, (state) => ({ ...state, loading: false })),
-  on(AddNewsArticleSuccess, (state, { article }) => adapter.addOne(article, { ...state })),
+  on(IncreaseNewsArticleRating, (state) => ({ ...state, loading: true })),
+  on(IncreaseNewsArticleRatingSuccess, (state) => ({ ...state, loading: false })),
+  on(AddNewsArticleSuccess, (state, { article }) => adapter.setOne(article, { ...state })),
   on(ActionFailure, (state, { reason }) => ({ ...state, error: reason, loading: false }))
 );
 
