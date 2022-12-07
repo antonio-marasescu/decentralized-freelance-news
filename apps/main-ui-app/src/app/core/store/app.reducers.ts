@@ -24,7 +24,7 @@ import {
 } from './app.actions';
 import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 import { IdentityStorageClass } from '../types/identity-storage-class.types';
-import { isNil, values } from 'lodash-es';
+import { isNil } from 'lodash-es';
 
 export interface AppState extends EntityState<INewsModel> {
   selectedArticleId: number | null;
