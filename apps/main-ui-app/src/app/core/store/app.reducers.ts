@@ -28,6 +28,7 @@ import { INewsModel } from '@decentralized-freelance-news/eth-contract-lib';
 import { IdentityStorageClass } from '../types/identity-storage-class.types';
 import { isNil } from 'lodash-es';
 import { IZkpProofDto } from '@decentralized-freelance-news/api-shared-lib';
+import { NewsArticleSortUtils } from '../utils/news-article-sort.utils';
 
 export interface AppState extends EntityState<INewsModel> {
   selectedArticleId: number | null;
@@ -41,9 +42,10 @@ export interface AppState extends EntityState<INewsModel> {
 }
 
 export const getArticleId = (model: INewsModel) => model.index;
+
 export const adapter: EntityAdapter<INewsModel> = createEntityAdapter<INewsModel>({
   selectId: getArticleId,
-  sortComparer: (a, b) => b.index - a.index,
+  sortComparer: NewsArticleSortUtils.sortDescendingByDateCompareFn,
 });
 
 export const initialAppState: AppState = adapter.getInitialState({

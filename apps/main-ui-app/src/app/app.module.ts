@@ -34,6 +34,8 @@ import { NewsArticlePageComponent } from './core/components/pages/news-article-p
 import { NewsArticleViewMarkdownRendererComponent } from './core/components/presentational/news-article-view/renderers/news-article-view-markdown-renderer/news-article-view-markdown-renderer.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { SupportValueModalComponent } from './core/components/containers/modals/support-value-modal/support-value-modal.component';
+import { NewsFeedFilterViewComponent } from './core/components/presentational/news-feed-filter-view/news-feed-filter-view.component';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { SupportValueModalComponent } from './core/components/containers/modals/
     NewsArticleViewComponent,
     NewsArticlePageComponent,
     SupportValueModalComponent,
+    NewsFeedFilterViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import { SupportValueModalComponent } from './core/components/containers/modals/
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 42 }) : [],
     EffectsModule.forRoot(RootEffects),
     AppRoutingModule,
+    MatRippleModule,
   ],
   providers: [
     {

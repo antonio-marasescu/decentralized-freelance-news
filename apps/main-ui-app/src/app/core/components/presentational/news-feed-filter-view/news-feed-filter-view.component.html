@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="pt-4 news-filter-container">
+    <div class="container-content p-0 m-0 w-100" [formGroup]="form">
+      <div>
+        <mat-form-field appearance="outline" class="w-100 m-0 p-0">
+          <mat-label>Search</mat-label>
+          <input matInput formControlName="search" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="w-100 m-0 p-0">
+          <mat-label>Sort By</mat-label>
+          <mat-select formControlName="sortType">
+            <mat-option [value]="SortOptions.Date">{{ SortOptions.Date }}</mat-option>
+            <mat-option [value]="SortOptions.Rating">{{ SortOptions.Rating }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="w-100 d-flex justify-content-end">
+        <button
+          mat-icon-button
+          class="h-100 text-center"
+          *ngIf="form.value.ascendedSort"
+          (click)="changeSort.emit(false)"
+        >
+          <mat-icon>arrow_upward</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          class="h-100 text-center"
+          *ngIf="!form.value.ascendedSort"
+          (click)="changeSort.emit(true)"
+        >
+          <mat-icon>arrow_downward</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
