@@ -1,5 +1,5 @@
 # Decentralized Freelance News
-
+The master's thesis application which is centered on creating an open news platform that ensures the verifiability of writers' identities using Zero-Knowledge Proofs.
 
 ## IPFS
 
